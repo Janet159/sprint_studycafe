@@ -20,6 +20,11 @@ background-color: rgba(22, 128, 153, 0.55) !important;  /* ✅ 여기만 투명 
 color: white !important;
 border: none !important;
 }
+.btn-red{
+  background-color: #E87575 !important;
+  color:white !important;
+  border:none !important;
+}
 /* 텍스트 색상 브랜드 컬러 */
 .text-cyan-700{
     color: #17A2B8 !important;
