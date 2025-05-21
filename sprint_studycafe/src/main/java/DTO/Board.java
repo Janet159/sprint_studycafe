@@ -38,4 +38,8 @@ public class Board {
 	private Date updatedAt;
 	/** 답변여부 */
 	private boolean isAnswered;
+	
+	public String getIsAnswered() {
+		return String.valueOf(isAnswered);
+	}
 }
