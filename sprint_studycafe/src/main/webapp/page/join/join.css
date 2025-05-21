@@ -1,0 +1,56 @@
+    .body {
+      background-color: white;
+      padding: 40px;
+    }
+    .border-box {
+      border: 3px; 
+      padding: 40px 30px;
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: white;
+      position: relative;
+    }
+    .form-box {
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      padding: 30px 25px;
+      background-color: #fff;
+    }
+    .logo {
+      width: 50px;
+      height: auto;
+    }
+    .logo-wrapper {
+      position: absolute;
+      top: 25px;
+      left: 25px;
+    }
+    .title {
+      font-size: 25px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .form-control {
+      background-color: #f9f9f9;
+      border: none;
+    }
+    .btn-check-id {
+/*       background-color: #11697a; */
+      color: white;
+      border: none;
+      white-space: nowrap;
+    }
+    .btn-signup {
+/*       background-color: #0095a8; */
+      color: white;
+      border: none;
+    }
+    .btn-cancel {
+      background-color: white;
+      border: 1px solid #ccc;
+      color: #333;
+    }
+    label {
+      white-space: nowrap;
+    }

@@ -1,0 +1,41 @@
+    body {
+      background-color: white;
+      padding: 40px;
+    }
+    .border-box {
+      border: 3px;
+      padding: 50px 40px;
+      max-width: 900px;
+      margin: 0 auto;
+      background-color: #fff;
+      border-radius: 8px;
+      position: relative;
+      min-height: 800px;
+    }
+    .title {
+      font-size: 24px;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 40px;
+      color: #5a5656;
+    }
+    .table thead th {
+      color: #5ecbe1;
+      border-bottom: 1px solid #ccc;
+      text-align: center;
+      padding: 12px;
+    }
+    .table tbody td {
+      text-align: center;
+      padding: 12px;
+    }
+    .btn-main {
+      background-color: #0095a8;
+      color: white;
+      border: none;
+      padding: 8px 20px;
+      border-radius: 4px;
+      position: absolute;
+      bottom: 30px;
+      right: 40px;
+    }
