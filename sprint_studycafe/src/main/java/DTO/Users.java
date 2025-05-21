@@ -1,6 +1,8 @@
 package DTO;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import com.alohaclass.jdbc.annotation.Pk;
 import com.alohaclass.jdbc.annotation.Table;
@@ -29,4 +31,14 @@ public class Users {
 	private boolean isAdmin;
 	/** 가입날짜 */
 	private Date createdAt;
+
+	public static List<Users> getTestList() {
+		List<Users> resultList = new ArrayList<Users>();
+
+		for (int i = 0; i < 6; i++) {
+			Users result = new Users("userid" + i, "123456", "name" + i, "email" + i, false, new Date());
+			resultList.add(result);
+		}
+		return resultList;
+	}
 }

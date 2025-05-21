@@ -1,17 +1,16 @@
-<%-- <%@ include file="/layout/jstl.jsp" %> --%>
-<%-- <%@ include file="/layout/common.jsp" %> --%>
+<%@ include file="/alljsp/common.jsp" %>
+<%@ page import="Config.Common"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>project💻 - ALOHA CLASS🌴</title>
-	<link rel="stylesheet" href="../allcss/location.css">
-    <link rel="stylesheet" href="../allcss/all.css">
-<%-- 	<jsp:include page="/layout/meta.jsp" /> --%>
+	<title><%= Common.TITLE %></title>
+	<jsp:include page="/alljsp/link.jsp" />
+	<link rel="stylesheet" href="<%= root %>/allcss/location.css">
 </head>
 <body>
-	<jsp:include page="header.jsp" />
+	<jsp:include page="/alljsp/header.jsp" />
 	<%-- [Contents] ######################################################### --%>
 	<main>
         <div class="container-1360 location-container mx-auto">
@@ -47,7 +46,7 @@
 		
 	
 	<%-- [Contents] ######################################################### --%>
-	<jsp:include page="footer.jsp" />
-<%-- 	<jsp:include page="/layout/script.jsp" /> --%>
+	<jsp:include page="/alljsp/footer.jsp" />
+
 </body>
 </html>

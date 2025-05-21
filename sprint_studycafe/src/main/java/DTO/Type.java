@@ -1,5 +1,8 @@
 package DTO;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.alohaclass.jdbc.annotation.Pk;
 import com.alohaclass.jdbc.annotation.Table;
 
@@ -28,4 +31,15 @@ public class Type {
 	private int typeNo;
 	/** 구분명 */
 	private String typeName;
+	
+	
+	public static List<Type> getTestList() {
+		List<Type> resultList = new ArrayList<Type>();
+
+		for (int i = 0; i < 3; i++) {
+			Type result = new Type("type", i, "typeName" + i);
+			resultList.add(result);
+		}
+		return resultList;
+	}
 }

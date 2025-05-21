@@ -1,21 +1,20 @@
-<%-- <%@ include file="/layout/jstl.jsp" %>
-<%@ include file="/layout/common. --%>
+<%@ include file="/alljsp/common.jsp"%>
+<%@ page import="Config.Common"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>project💻 - ALOHA CLASS🌴</title>
-	<link rel="stylesheet" href="../allcss/introduce.css">
-    <link rel="stylesheet" href="../allcss/all.css">
-<%-- <jsp:include page="/layout/meta.jsp" /> --%>
+	<title><%= Common.TITLE %></title>
+	<jsp:include page="/alljsp/link.jsp" />
+	<link rel="stylesheet" href="<%= root %>/allcss/introduce.css">
 </head>
 <body>
-	<jsp:include page="header.jsp" />
+	<jsp:include page="/alljsp/header.jsp" />
 	<%-- [Contents] ######################################################### --%>
 	<main>
         <div class="container-1360 introduce-container text-center">
-        <img src="../img/회사소개 브랜드 이미지 컬러.png" class="introduce-img d-block mb-10">
+        <img src="<%= root %>/img/회사소개 브랜드 이미지 컬러.png" class="introduce-img d-block mb-10">
             <div class="introduce-text-container pb-10 mb-10">
                 <p class="introduce-text fw-normal fs-35 text-body-secondary">빠르게 몰입하는 공간</p>
                 <p class="introduce-text fw-bold fs-35 mb-5 text-cyan-700">스프린트 스터디카페</p>
@@ -45,7 +44,6 @@
 		
 	
 	<%-- [Contents] ######################################################### --%>
-	<jsp:include page="footer.jsp" />
-<%-- 	<jsp:include page="/layout/script.jsp" /> --%>
+	<jsp:include page="/alljsp/footer.jsp" />
 </body>
 </html>

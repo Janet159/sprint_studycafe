@@ -1,14 +1,14 @@
 <%@ include file="/alljsp/jstl.jsp" %>
 <%@ include file="/alljsp/common.jsp" %>
+
+<%@ page import="Config.Common"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>회원가입</title>
-<%-- 	<jsp:include page="/layout/meta.jsp" /> --%>
-<%-- 	<jsp:include page="/layout/link.jsp" /> --%>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	<title>회원 가입</title>
+	<jsp:include page="/alljsp/link.jsp" />
 	<link href="join.css" rel="stylesheet">
 </head>
 <body>
@@ -67,9 +67,7 @@
     </div>
   </div>
 	
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 	<%-- [Contents] ######################################################### --%>
 	<jsp:include page="/alljsp/footer.jsp" />
-<%-- 	<jsp:include page="/layout/script.jsp" /> --%>
 </body>
 </html>

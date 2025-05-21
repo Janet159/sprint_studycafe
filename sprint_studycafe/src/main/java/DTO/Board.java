@@ -1,6 +1,8 @@
 package DTO;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import com.alohaclass.jdbc.annotation.Pk;
 import com.alohaclass.jdbc.annotation.Table;
@@ -42,4 +44,22 @@ public class Board {
 	public String getIsAnswered() {
 		return String.valueOf(isAnswered);
 	}
+
+	public static List<Board> getTestList() {
+		List<Board> resultList = new ArrayList<Board>();
+		Board board = new Board(1, "t1", 1, "j1", "k1", true, "010000", new Date(), new Date(), false);
+		resultList.add(board);
+
+		boolean is1 = true ;
+		boolean is2 = false ;
+		for (int i = 0; i < 6; i++) {
+			Board result = new Board(i,"userid" + i, i , "title" + i, "content" + i, is1, "01012345678", new Date(), new Date(), is2);
+			resultList.add(result);
+			is1 = !is1;
+			is2 = !is2;
+		}
+		
+		return resultList;
+	}
+
 }

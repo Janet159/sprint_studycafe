@@ -6,8 +6,7 @@
 <html>
 <head>
 	<title>마이페이지</title>
-<%-- 	<jsp:include page="/layout/meta.jsp" /> --%>
-<%-- 	<jsp:include page="/layout/link.jsp" /> --%>
+	<jsp:include page="/alljsp/link.jsp" />
 	<link href="quelist.css" rel="stylesheet">
 </head>
 <body>

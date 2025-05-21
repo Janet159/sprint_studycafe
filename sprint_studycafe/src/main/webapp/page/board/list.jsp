@@ -1,24 +1,22 @@
 <%@ include file="/alljsp/jstl.jsp" %>
 <%@ include file="/alljsp/common.jsp" %>
-<%@page import="java.util.Date"%>
-<%@page import="DTO.Board"%>
+
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
+<%@page import="java.util.Date"%>
+<%@page import="DTO.Board"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 	<title>고객센터</title>
-<%-- 	<jsp:include page="/layout/meta.jsp" /> --%>
-<%-- 	<jsp:include page="/layout/link.jsp" /> --%>
-    <link href="고객센터2.css" rel="stylesheet">
+	<jsp:include page="/alljsp/link.jsp" />
+	<link href="고객센터2.css" rel="stylesheet">
 </head>
 <body>
     <% 
-      List<Board> boardList = new ArrayList<Board>();
-      Board board = new Board(1, "t1", 1, "j1", "k1", true, "010000", new Date(), new Date(), false);
-      boardList.add(board);
+      List<Board> boardList = Board.getTestList();
       
       request.setAttribute("boardList" ,boardList);
     %>
@@ -62,7 +60,7 @@
     </div>
     <button class="btn btn-main text-cyan-700">메인</button>
 
-              <div class="pagination">
+    <div class="pagination">
         <span>1</span>
         <span>2</span>
         <span>3</span>

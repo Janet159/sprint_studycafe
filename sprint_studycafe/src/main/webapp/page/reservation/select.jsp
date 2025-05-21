@@ -1,9 +1,14 @@
+<%@ include file="/alljsp/jstl.jsp" %>
+<%@ include file="/alljsp/common.jsp" %>
+
+<%@ page import="Config.Common"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 
 <head>
-	<title>project💻 - ALOHA CLASS🌴</title>
+	<title><%= Common.TITLE %></title>
+	<jsp:include page="/alljsp/link.jsp" />
 </head>
 
 <body>

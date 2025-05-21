@@ -6,9 +6,7 @@
 <html>
 <head>
 	<title>로그인</title>
-<%-- 	<jsp:include page="/layout/meta.jsp" /> --%>
-<%-- 	<jsp:include page="/layout/link.jsp" /> --%>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	<jsp:include page="/alljsp/link.jsp" />
 	<link href="login.css" rel="stylesheet">
 </head>
 <body>
@@ -39,7 +37,6 @@
 	</form>
 </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 	<%-- [Contents] ######################################################### --%>
 	<jsp:include page="/alljsp/footer.jsp" />
 <%-- 	<jsp:include page="/alljsp/script.jsp" /> --%>

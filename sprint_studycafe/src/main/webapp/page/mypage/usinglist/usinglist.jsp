@@ -6,8 +6,7 @@
 <html>
 <head>
 	<title>마이페이지</title>
-<%-- 	<jsp:include page="/alljsp/meta.jsp" /> --%>
-<%-- 	<jsp:include page="/alljsp/link.jsp" /> --%>
+	<jsp:include page="/alljsp/link.jsp" />
     <link href="usinglist.css" rel="stylesheet">
 </head>
 <body>

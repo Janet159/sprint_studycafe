@@ -1,5 +1,8 @@
 package DTO;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.alohaclass.jdbc.annotation.Pk;
 import com.alohaclass.jdbc.annotation.Table;
 
@@ -16,9 +19,19 @@ import lombok.NoArgsConstructor;
 public class Ticket {
 	@Pk
 	/** 티켓 아이디 */
-	private String ticketId ;
+	private String ticketId;
 	/** 가격 */
 	private int price;
 	/** 이용권 시간 */
 	private int ticketTime;
+
+	public static List<Ticket> getTestList() {
+		List<Ticket> resultList = new ArrayList<Ticket>();
+
+		for (int i = 0; i < 6; i++) {
+			Ticket result = new Ticket("ticketId" + i, 2000*(i+1), i);
+			resultList.add(result);
+		}
+		return resultList;
+	}
 }
