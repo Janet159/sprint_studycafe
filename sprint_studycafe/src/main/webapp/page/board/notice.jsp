@@ -1,3 +1,6 @@
+<%@page import="Config.Common"%>
+<%@page import="DTO.Resevation"%>
+<%@page import="java.util.List"%>
 <%@ include file="/alljsp/jstl.jsp" %>
 <%@ include file="/alljsp/common.jsp" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -5,37 +8,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>마이페이지</title>
+	<title>고객센터</title>
 	<jsp:include page="/alljsp/link.jsp" />
-    <link href="<%=root %>/allcss/buylist.css" rel="stylesheet">
+    <link href="<%= root%>/allcss/list.css" rel="stylesheet">
 </head>
 <body>
+
 	<jsp:include page="/alljsp/header.jsp" />
 	<%-- [Contents] ######################################################### --%>
 	  <div class="border-box">
-    <div class="title">마이페이지</div>
-
+    <div class="title">고객센터</div>
     <div class="table-responsive">
       <table class="table">
-        <div class="title2">구매내역</div>
+        <div class="title2">공지사항</div>
         <thead>
           <tr>
             <th>번호</th>
-            <th>구매일시</th>
-            <th>이용권정보</th>
-            <th>이용시간</th>
+            <th>구분</th>
+            <th>제목</th>
+            <th>등록일</th>
           </tr>
         </thead>
         <tbody>
-           <tr>
-           <td ></td>
-           <td ></td>
-           <td ></td>
-           <td ></td>
-           <td ></td>
-          
-          <td ></td>
-          </tr>
         </tbody>
       </table>
     </div>
