@@ -36,7 +36,7 @@
 	          </tr>
 	        </thead>
 	        <tbody>
-	        <c:forEach var="board" items="${boardList}">
+	        <c:forEach var="board" items="${resultList}">
 	         <tr>
 	         	<td>${board.no}</td>
 	         	<td>${board.isAnswered}</td>

@@ -14,6 +14,8 @@ public class BoardServiceImpl implements BoardService {
 		try {
 			list = boardDAO.list();
 		} catch (Exception e) {
+			System.err.println();
+			System.out.println();
 			e.printStackTrace();
 		}
 
@@ -42,7 +44,6 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public Board insert(Board board) {
-		System.out.println("등록");
 		int result = 0;
 		try {
 			result = boardDAO.insert(board);

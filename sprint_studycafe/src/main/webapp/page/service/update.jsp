@@ -44,11 +44,11 @@
 			<c:forEach var="type" items="${typeList}" varStatus="index">
 				<div class="form-check">
 					<c:choose>
-					    <c:when test="${type.typeNo == service.typeNo}">
-					        <input class="form-check-input" type="radio" name="typeNo" id="type${index.index}" value="${type.typeNo}" checked>
+					    <c:when test="${type.no == service.typeNo}">
+					        <input class="form-check-input" type="radio" name="typeNo" id="type${index.index}" value="${type.no}" checked>
 					    </c:when>
 					    <c:otherwise>
-					        <input class="form-check-input" type="radio" name="typeNo" id="type${index.index}" value="${type.typeNo}">
+					        <input class="form-check-input" type="radio" name="typeNo" id="type${index.index}" value="${type.no}">
 					    </c:otherwise>
 					</c:choose>
 					<label class="form-check-label" for="type${index.index}">${type.typeName}</label>
