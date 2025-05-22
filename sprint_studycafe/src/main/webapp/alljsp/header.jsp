@@ -48,11 +48,47 @@
 						<li class="menu-item"><a href="">서브메뉴4</a></li>
 					</ul> -->
 				</li> 
-			</ul> 
+			</ul>
+	       	<%
+			if( loginId == null || loginId.equals("") ) { 
+			%>
+			<!-- 비로그인 시 -->
 			<div class="col-md-3 text-end"> 
 				<button type="button" class="btn btn-outline-primary me-2 btn-cyan-700-55 fw-semibold">로그인</button> 
 				<button type="button" class="btn btn-primary btn-cyan-700 fw-semibold">회원가입</button>
-			</div> 
+			</div>
+	        <%
+			}
+        	else {
+        	%>
+			<!-- 로그인 시 -->
+              <div class="login-after d-flex col-md-3 text-end me-0 justify-content-end"> 
+              <div class="dropdown">
+              <button class="btn btn-outline-primary me-2 btn-cyan-700-55 fw-semibold dropdown-toggle" 
+                      type="button" 
+                      data-bs-toggle="dropdown" 
+                      aria-expanded="false">
+                  마이페이지
+              </button>
+              <ul class="dropdown-menu">
+            	<% if (role) { %>
+                  <li><a class="dropdown-item d-block px-2 text-start" href="#">회원정보</a></li>
+                  <li><a class="dropdown-item d-block px-2 text-start" href="#">좌석현황</a></li>
+                  <li><a class="dropdown-item d-block px-2 text-start" href="#">회원목록</a></li>
+	    	    <% } else{ %> 
+                  <li><a class="dropdown-item d-block px-2 text-start" href="#">회원정보</a></li>
+                  <li><a class="dropdown-item d-block px-2 text-start" href="#">좌석정보</a></li>
+                  <li><a class="dropdown-item d-block px-2 text-start" href="#">문의내역</a></li>
+                  <li><a class="dropdown-item d-block px-2 text-start" href="#">구매내역</a></li>
+	    	    <% } %> 
+              </ul>
+              </div>
+
+              <button type="button" class="btn btn btn-primary btn-red fw-semibold">로그아웃</button> 
+          	</div>
+    	    <%
+        	}
+        	%> 
 		</header> 
 	</div> 
 </main>
