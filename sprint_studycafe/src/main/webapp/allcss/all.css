@@ -1,16 +1,13 @@
 /* 공통 크기 */
+
 .container-1360 {
-	max-width: 1360px !important;
-	margin: 0 auto;
+  width: 1360px !important;
+  margin: 0 auto;
 }
-
-/* 공통 폰트 */
-body {
-  font-family: "IBM Plex Sans KR", sans-serif;
-/*   font-weight: 400;
-  font-style: normal; */
+.main-1920{
+  width: 1920px !important; 
+  margin: 0 auto;
 }
-
 
 /* 버튼 백그라운드 색상 브랜드 컬러*/
 .btn-cyan-700 {
@@ -68,9 +65,14 @@ background-color: white !important;
 
 /* 폰트 크기 */
 .fs-15 { font-size: 15px; } 
+.fs-20 { font-size: 20px; }
+.fs-25 { font-size: 25px; }
 .fs-30 { font-size: 30px; }
 .fs-35 { font-size: 35px; }
 .fs-50 { font-size: 30px; }
+/* 갭 */
+.gap-20 {gap: 20px !important;}
+.gap-40 {gap: 40px !important;}
 /* 마진 */
 .m-6 { margin: 4rem; }
 .m-7 { margin: 5rem; }

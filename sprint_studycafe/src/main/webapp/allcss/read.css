@@ -1,0 +1,42 @@
+.payment-complete-box {
+  width: 800px;
+  height: 801px;
+  background-color: white;
+  box-shadow: 0 0 0 1px #ccc;
+  box-sizing: border-box;
+}
+.mypage-infor-box {
+  width: 700px;
+  height: 400px;
+  background-color: white;
+  box-shadow: 0 0 0 1px #ccc;
+  box-sizing: border-box;
+}
+
+.info-box {
+  background-color: #f1f1f1;
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  color: #333;
+}
+.read-item{
+    width: 650px;
+    height: 47px;
+    box-sizing: border-box;
+}
+.ok-btn{
+    width: 650px;
+    height: 50px;
+}
+.gotomain-btn{
+  width: 104px;
+  height: 50px;
+  padding: 0 !important;
+}
+.read-container-height{
+	height: 1500px;
+	background-color:white;
+}
+
+
