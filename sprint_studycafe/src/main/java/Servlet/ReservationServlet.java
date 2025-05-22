@@ -1,6 +1,7 @@
 package Servlet;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 import Config.Common;
@@ -28,6 +29,7 @@ import jakarta.servlet.http.HttpServletResponse;
 public class ReservationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ReservationService service = new ReservationServiceImpl();
+	private CommonService common = new CommonServiceImpl();
 	private String urlJsp = "/page/board/" ;
 	private String url = "/reservation/" ;
 
@@ -51,32 +53,33 @@ public class ReservationServlet extends HttpServlet {
 			// 이동 할 페이지 
 			page = urlJsp + "list.jsp";
 
-		} else if (path.equals("/read") || path.equals("/read.jsp")) {
+		} else if (path.equals("/select") || path.equals("/select.jsp")) {
 			// 조회 화면
 
 			// 조회 할 데이터 PK(KEY)
 			int no = Integer.parseInt(request.getParameter("no"));
 
 			// DB에서 데이터 조회
-//			Board board = service.select(no);
+			Reservation dto = service.select(no);
 
 			// 화면에 표시를 위해 request 에 담기
 //			request.setAttribute("board", board);
 
 			// 이동 할 페이지 
-			page = urlJsp + "read.jsp";
+			page = urlJsp + "select.jsp";
 			
 		} else if (path.equals("/order") || path.equals("/order.jsp")) {
 			// 조회 화면
 
-			// 조회 할 데이터 PK(KEY)
-			int no = Integer.parseInt(request.getParameter("no"));
+			// 선택한 좌석
+			String seatId = request.getParameter("seatId");
 
 			// DB에서 데이터 조회
-//			Board board = service.select(no);
+			List<Ticket> resultList = common.getTicketList();
 
 			// 화면에 표시를 위해 request 에 담기
-//			request.setAttribute("board", board);
+			request.setAttribute("resultList", resultList);
+			request.setAttribute("seatId", seatId);
 
 			// 이동 할 페이지 
 			page = urlJsp + "order.jsp";
@@ -109,7 +112,7 @@ public class ReservationServlet extends HttpServlet {
 				System.out.print(dto.getTypeName() + "\t");
 				System.out.println();
 			}
-			page = urlJsp + "order.jsp";
+			page = urlJsp + "list.jsp";
 		}
 
 		// 화면 이동
@@ -130,21 +133,21 @@ public class ReservationServlet extends HttpServlet {
 			// 등록 처리 
 
 			// 등록 할 데이터 화면에서 가져오기
-			String title = request.getParameter("title");
-			String content = request.getParameter("content");
+			String seatId = request.getParameter("seatId");		// 선택한 좌석
+			String ticketId = request.getParameter("ticketId");	// 선택한 이용권
 
 			// 등록 할 데이터 만들기
-			Board board = Board.builder().title(title).content(content).userId(userId).build();
-
+			Reservation dto = Reservation.builder().userId(userId).seatId(seatId).ticketId(ticketId)//
+					.startTime(null).endTime(null).build();
+			
 			// DB에 등록하기
-			Board createdBoard = null; 
-//					service.insert(board);
+			Reservation resultDto = service.insert(dto);
 
 			// 등록 결과
-			if (createdBoard != null) {
+			if (resultDto != null) {
 				System.out.println("등록 성공");
 				// 등록 성공시 이동할 페이지
-				response.sendRedirect(root + url + "read");
+				response.sendRedirect(root + url + "select?no=" + resultDto.getNo());
 			} else {
 				System.out.println("등록 실패");
 				// 등록 실패시 이동할 페이지
