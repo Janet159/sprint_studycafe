@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.alohaclass.jdbc.annotation.Column;
 import com.alohaclass.jdbc.annotation.Pk;
 import com.alohaclass.jdbc.annotation.Table;
 
@@ -17,7 +18,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Resevation {
+public class Reservation {
 	@Pk
 	/** 내역 */
 	private int no;
@@ -34,12 +35,15 @@ public class Resevation {
 	/** 종료 시간 */
 	private Date endTime;
 
-	public static List<Resevation> getTestList() {
-		List<Resevation> resultList = new ArrayList<Resevation>();
+	@Column(exist = false)
+	private String ticketName;
+
+	public static List<Reservation> getTestList() {
+		List<Reservation> resultList = new ArrayList<Reservation>();
 
 		for (int i = 0; i < 6; i++) {
-			Resevation result = new Resevation(i, "userid" + i, "seatid" + i, "ticketid" + i, new Date(), new Date(),
-					new Date());
+			Reservation result = new Reservation(i, "userid" + i, "seatid" + i, "ticketid" + i, new Date(), new Date(),
+					new Date(), "ticketName" + i);
 			resultList.add(result);
 		}
 		return resultList;

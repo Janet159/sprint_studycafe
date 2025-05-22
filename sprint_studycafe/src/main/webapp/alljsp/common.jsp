@@ -5,8 +5,10 @@
 	// 로그인 아이디 (세션)
 	String loginId = (String) session.getAttribute("loginId");
 	
+	loginId = "admin" ;
+	
 	// 관리자 권한
-	boolean role = false;
+	boolean role = true;
 	
 	pageContext.setAttribute("root", root);
 %>

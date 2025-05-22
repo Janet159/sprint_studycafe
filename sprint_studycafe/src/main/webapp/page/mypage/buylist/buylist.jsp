@@ -7,7 +7,7 @@
 <head>
 	<title>마이페이지</title>
 	<jsp:include page="/alljsp/link.jsp" />
-        <link href="buylist.css" rel="stylesheet">
+    <link href="<%=root %>/allcss/buylist.css" rel="stylesheet">
 </head>
 <body>
 	<jsp:include page="/alljsp/header.jsp" />

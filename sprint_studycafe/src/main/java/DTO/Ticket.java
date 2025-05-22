@@ -20,6 +20,8 @@ public class Ticket {
 	@Pk
 	/** 티켓 아이디 */
 	private String ticketId;
+	/** 티켓 명 */
+	private String ticketName;
 	/** 가격 */
 	private int price;
 	/** 이용권 시간 */
@@ -29,7 +31,7 @@ public class Ticket {
 		List<Ticket> resultList = new ArrayList<Ticket>();
 
 		for (int i = 0; i < 6; i++) {
-			Ticket result = new Ticket("ticketId" + i, 2000*(i+1), i);
+			Ticket result = new Ticket("ticketId" + i, "ticketName" + i,2000*(i+1), i);
 			resultList.add(result);
 		}
 		return resultList;

@@ -1,12 +1,16 @@
 package Config;
 
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.Date;
 public class Common {
 	public static final String UTF_8 = "UTF-8";
 	public static final String TEXT_PLAIN = "text/plain; charset=UTF-8";
 	public static final String TEXT_HTML = "text/html; charset=UTF-8";
 	public static final String JSON = "application/json; charset=UTF-8";
 	public static final String OCTET_STREAM = "application/octet-stream; charset=UTF-8";
+	public static final String PROJECT = "sprint_studycafe" ;
 	
 	public static final String TITLE = "Sprint Study Cafe☕" ;
 
@@ -23,11 +27,17 @@ public class Common {
 	public static final String INSERT = "insert";
 	public static final String UPDATE = "update";
 	public static final String DELETE = "delete";
+	public static final String ORDER = "order";
 
 	public static String getUrl(String... urls) {
-		return "/" + String.join("/", urls);
+		return "/" + PROJECT + "/" + String.join("/", urls);
 	}
 	
+	/**
+	 * 현재 시간으로 부터 지정 시간 이후 시간을 HH:mm 형식의 문자열로 리턴
+	 * @param int : 현재 시간으로 부터 몇 시간 후
+	 * @return String : 현재 시간으로 부터 지정 시간 이후 시간
+	 */
 	public static String afterHour(int time) {
 
 	    LocalDateTime now = LocalDateTime.now();
@@ -42,5 +52,54 @@ public class Common {
 	    }
 
 	    return String.format("%02d:%02d", virtualHour, afterOneHour.getMinute());
+	}
+	
+	/**
+	 * 지정 시간 Date 타입의 데이터를 HH:mm 형식의 문자열로 리턴
+	 * @param date
+	 * @return
+	 */
+	public static String getDateToString(Date date) {
+
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+		return formatter.format(date);     
+	}
+	
+	/**
+	 * 지정 시간 Date 타입의 데이터를 HH:mm 형식의 문자열로 리턴
+	 * @param date
+	 * @return
+	 */
+	public static String getHourMinuteFromDate(Date date) {
+
+		SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
+		return formatter.format(date);     
+	}
+	
+	/**
+	 * 지정된 두 개의 시간의 차이를 HH:mm 형식의 문자열로 리턴
+	 * @param start 시작 시간
+	 * @param end 끝 시간
+	 * @return
+	 */
+	public static String getTimeDifference(Date start, Date end) {
+        long diffMillis = end.getTime() - start.getTime();
+
+        long diffMinutes = (diffMillis / (1000 * 60)) % 60;
+        long diffHours = diffMillis / (1000 * 60 * 60);
+
+        return diffHours + ":" + diffMinutes;
+    }
+	
+	/**
+	 * 지정된 순자를 #,### 형식의 문자열로 리턴
+	 * @param number
+	 * @return 문자열
+	 */
+	public static String getIntegerToString(int number) {
+	    DecimalFormat formatter = new DecimalFormat("#,###");
+	    String formatted = formatter.format(number);
+	    return formatted; // 출력: 1,000
+		
 	}
 }
