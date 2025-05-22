@@ -21,7 +21,7 @@ import jakarta.servlet.http.HttpServletResponse;
 public class BoardServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private BoardService boardService = new BoardServiceImpl();
+	private BoardService service = new BoardServiceImpl();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -35,7 +35,7 @@ public class BoardServlet extends HttpServlet {
 			// 문의 사항 목록 화면
 
 			// DB에서 데이터 전체 조회
-			List<Board> boardList = boardService.list();
+			List<Board> boardList = service.list();
 
 			// 화면에 표시를 위해 request 에 담기
 			request.setAttribute("boardList", boardList);
@@ -56,7 +56,7 @@ public class BoardServlet extends HttpServlet {
 			int no = Integer.parseInt(request.getParameter("no"));
 
 			// DB에서 데이터 조회
-			Board board = boardService.select(no);
+			Board board = service.select(no);
 
 			// 화면에 표시를 위해 request 에 담기
 			request.setAttribute("board", board);
@@ -71,7 +71,7 @@ public class BoardServlet extends HttpServlet {
 			int no = Integer.parseInt(request.getParameter("no"));
 
 			// DB에서 데이터 조회
-			Board board = boardService.select(no);
+			Board board = service.select(no);
 
 			// 화면에 표시를 위해 request 에 담기
 			request.setAttribute("board", board);
@@ -106,7 +106,7 @@ public class BoardServlet extends HttpServlet {
 			Board board = Board.builder().title(title).content(content).userId(userId).build();
 
 			// DB에 등록하기
-			Board createdBoard = boardService.insert(board);
+			Board createdBoard = service.insert(board);
 
 			// 등록 결과
 			if (createdBoard != null) {
@@ -131,7 +131,7 @@ public class BoardServlet extends HttpServlet {
 			Board board = Board.builder().no(no).title(title).content(content).userId(userId).build();
 
 			// DB에 업데이트 보내기
-			boolean result = boardService.update(board);
+			boolean result = service.update(board);
 
 			// 업데이트 처리 결과
 			if (result) {
@@ -155,7 +155,7 @@ public class BoardServlet extends HttpServlet {
 			Board board = Board.builder().no(no).build();
 
 			// DB에 삭제 처리 보내기
-			boolean result = boardService.delete(board);
+			boolean result = service.delete(board);
 
 			// 삭제 결과
 			if (result) {
