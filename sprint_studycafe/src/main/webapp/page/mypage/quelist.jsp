@@ -1,3 +1,6 @@
+<%@page import="Config.Common"%>
+<%@page import="DTO.Notice"%>
+<%@page import="java.util.List"%>
 <%@ include file="/alljsp/jstl.jsp" %>
 <%@ include file="/alljsp/common.jsp" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -7,14 +10,18 @@
 <head>
 	<title>마이페이지</title>
 	<jsp:include page="/alljsp/link.jsp" />
-	<link href="quelist.css" rel="stylesheet">
+	<link href="<%= root%>/allcss/list.css" rel="stylesheet">
 </head>
 <body>
+	<% 
+	List<Notice> arrayList = Notice.getTestList();
+	
+	request.setAttribute("arrayList" ,arrayList);
+	%>
 	<jsp:include page="/alljsp/header.jsp" />
 	<%-- [Contents] ######################################################### --%>
 	  <div class="border-box">
     <div class="title">마이페이지</div>
-
     <div class="table-responsive">
       <table class="table">
         <div class="title2">나의 문의내역</div>
@@ -27,17 +34,21 @@
           </tr>
         </thead>
         <tbody>
-          <td ></td>
-          <td ></td>
-          <td ></td>
-          <td ></td>
-          <td ></td>
-          
-    
+			<% 
+			 for (int i = 0; i < arrayList.size(); i++){
+				 Notice question = arrayList.get(i);
+			%>
+			<tr>
+				<td><%= question.getNo() %></td>
+			    <td><%= question.getTypeNo() %></td>
+			    <td><%= question.getTitle() %></td>
+				<td><%= Common.getDateToString(question.getCreatedAt()) %></td>
+			</tr>
+			<% } %>   
         </tbody>
       </table>
     </div>
-        <div class="pagination">
+       <div class="pagination">
         <span>1</span>
         <span>2</span>
         <span>3</span>

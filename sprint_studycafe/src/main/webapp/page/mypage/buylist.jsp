@@ -1,3 +1,6 @@
+<%@page import="Config.Common"%>
+<%@page import="DTO.Resevation"%>
+<%@page import="java.util.List"%>
 <%@ include file="/alljsp/jstl.jsp" %>
 <%@ include file="/alljsp/common.jsp" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -7,14 +10,18 @@
 <head>
 	<title>마이페이지</title>
 	<jsp:include page="/alljsp/link.jsp" />
-        <link href="buylist.css" rel="stylesheet">
+    <link href="<%= root%>/allcss/list.css" rel="stylesheet">
 </head>
 <body>
+    <% 
+      List<Resevation> arrayList = Resevation.getTestList();
+      
+      request.setAttribute("arrayList" ,arrayList);
+    %>
 	<jsp:include page="/alljsp/header.jsp" />
 	<%-- [Contents] ######################################################### --%>
 	  <div class="border-box">
     <div class="title">마이페이지</div>
-
     <div class="table-responsive">
       <table class="table">
         <div class="title2">구매내역</div>
@@ -27,15 +34,17 @@
           </tr>
         </thead>
         <tbody>
-           <tr>
-           <td ></td>
-           <td ></td>
-           <td ></td>
-           <td ></td>
-           <td ></td>
-          
-          <td ></td>
-          </tr>
+         <% 
+           	for (int i = 0; i < arrayList.size(); i++){
+           		Resevation item = arrayList.get(i);
+         %>
+         <tr>
+         	<td><%= item.getNo() %></td>
+         	<td><%= Common.getDateToString(item.getOrderTime()) %></td>
+         	<td><%= item.getTicketName() %></td>
+         	<td><%= Common.getDateToString(item.getStartTime()) %> - <%= Common.getDateToString(item.getEndTime()) %></td>
+         </tr>
+         <% } %>
         </tbody>
       </table>
     </div>

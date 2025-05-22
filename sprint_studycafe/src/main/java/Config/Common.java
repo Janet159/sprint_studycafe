@@ -1,6 +1,8 @@
 package Config;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.Date;
 public class Common {
 	public static final String UTF_8 = "UTF-8";
 	public static final String TEXT_PLAIN = "text/plain; charset=UTF-8";
@@ -42,5 +44,26 @@ public class Common {
 	    }
 
 	    return String.format("%02d:%02d", virtualHour, afterOneHour.getMinute());
+	}
+	/**
+	 * 지정 시간 Date 타입의 데이터를 HH:mm 형식의 문자열로 리턴
+	 * @param date
+	 * @return
+	 */
+	public static String getHourMinuteFromDate(Date date) {
+
+		SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
+		return formatter.format(date);     
+	}
+	
+	/**
+	 * 지정 시간 Date 타입의 데이터를 HH:mm 형식의 문자열로 리턴
+	 * @param date
+	 * @return
+	 */
+	public static String getDateToString(Date date) {
+
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm");
+		return formatter.format(date);     
 	}
 }

@@ -12,7 +12,7 @@
 <head>
 	<title>고객센터</title>
 	<jsp:include page="/alljsp/link.jsp" />
-	<link href="고객센터2.css" rel="stylesheet">
+	<link href="<%= root%>/allcss/list.css" rel="stylesheet">
 </head>
 <body>
     <% 
@@ -26,7 +26,7 @@
     <div class="title">고객센터</div> 
    <div class="table-responsive">
       <table class="table">
-        <div class="title2 text-cyan-700">문의사항</div>
+        <div class="title2">문의사항</div>
         <thead>
           <tr>
             <th>번호</th>
@@ -46,15 +46,6 @@
          	<td>${board.createdAt}</td>
          </tr>
          </c:forEach>
-          <tr><td colspan="5">&nbsp;</td></tr>
-          <tr><td colspan="5">&nbsp;</td></tr>
-          <tr><td colspan="5">&nbsp;</td></tr>
-          <tr><td colspan="5">&nbsp;</td></tr>
-          <tr><td colspan="5">&nbsp;</td></tr>
-          <tr><td colspan="5">&nbsp;</td></tr>
-          <tr><td colspan="5">&nbsp;</td></tr>
-          <tr><td colspan="5">&nbsp;</td></tr>
-          <tr><td colspan="5">&nbsp;</td></tr>
         </tbody>
       </table>
     </div>
