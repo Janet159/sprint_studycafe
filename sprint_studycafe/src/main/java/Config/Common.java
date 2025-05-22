@@ -61,6 +61,7 @@ public class Common {
 	 */
 	public static String getDateToString(Date date) {
 
+		if (null == date) return "";
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH:mm");
 		return formatter.format(date);     
 	}
@@ -71,7 +72,7 @@ public class Common {
 	 * @return
 	 */
 	public static String getHourMinuteFromDate(Date date) {
-
+		if (null == date) return "";
 		SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
 		return formatter.format(date);     
 	}
@@ -83,6 +84,7 @@ public class Common {
 	 * @return
 	 */
 	public static String getTimeDifference(Date start, Date end) {
+		if (null == start || null == end) return "";
         long diffMillis = end.getTime() - start.getTime();
 
         long diffMinutes = (diffMillis / (1000 * 60)) % 60;

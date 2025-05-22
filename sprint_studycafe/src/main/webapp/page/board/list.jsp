@@ -12,12 +12,12 @@
 <head>
 	<title>고객센터</title>
 	<jsp:include page="/alljsp/link.jsp" />
-	<link href="고객센터2.css" rel="stylesheet">
+	<link href="<%= root %>/page/board/고객센터2.css" rel="stylesheet">
 </head>
 <body>
     <% 
-      List<Board> boardList = Board.getTestList();
-      request.setAttribute("boardList" ,boardList);
+      //List<Board> boardList = Board.getTestList();
+      //request.setAttribute("boardList" ,boardList);
     %>
 	<jsp:include page="/alljsp/header.jsp" />
 	<%-- [Contents] ######################################################### --%>
