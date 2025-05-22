@@ -35,10 +35,10 @@ public class BoardServlet extends HttpServlet {
 			// 문의 사항 목록 화면
 
 			// DB에서 데이터 전체 조회
-			List<Board> boardList = service.list();
+			List<Board> resultList = service.list();
 
 			// 화면에 표시를 위해 request 에 담기
-			request.setAttribute("boardList", boardList);
+			request.setAttribute("resultList", resultList);
 
 			// 이동 할 페이지 
 			page = "/page/board/list.jsp";
@@ -56,10 +56,10 @@ public class BoardServlet extends HttpServlet {
 			int no = Integer.parseInt(request.getParameter("no"));
 
 			// DB에서 데이터 조회
-			Board board = service.select(no);
+			Board result = service.select(no);
 
 			// 화면에 표시를 위해 request 에 담기
-			request.setAttribute("board", board);
+			request.setAttribute("result", result);
 
 			// 이동 할 페이지 
 			page = "/page/board/read.jsp";
@@ -71,10 +71,10 @@ public class BoardServlet extends HttpServlet {
 			int no = Integer.parseInt(request.getParameter("no"));
 
 			// DB에서 데이터 조회
-			Board board = service.select(no);
+			Board result = service.select(no);
 
 			// 화면에 표시를 위해 request 에 담기
-			request.setAttribute("board", board);
+			request.setAttribute("result", result);
 
 			// 이동 할 페이지 
 			page = "/page/board/update.jsp";
@@ -103,13 +103,13 @@ public class BoardServlet extends HttpServlet {
 			String content = request.getParameter("content");
 
 			// 등록 할 데이터 만들기
-			Board board = Board.builder().title(title).content(content).userId(userId).build();
+			Board dto = Board.builder().title(title).content(content).userId(userId).build();
 
 			// DB에 등록하기
-			Board createdBoard = service.insert(board);
+			Board resultDto = service.insert(dto);
 
 			// 등록 결과
-			if (createdBoard != null) {
+			if (resultDto != null) {
 				System.out.println("등록 성공");
 				// 등록 성공시 이동할 페이지
 				response.sendRedirect(root + "/board/list");
@@ -128,10 +128,10 @@ public class BoardServlet extends HttpServlet {
 			String content = request.getParameter("content");
 
 			// 수정 할 데이터 만들기
-			Board board = Board.builder().no(no).title(title).content(content).userId(userId).build();
+			Board dto = Board.builder().no(no).title(title).content(content).userId(userId).build();
 
 			// DB에 업데이트 보내기
-			boolean result = service.update(board);
+			boolean result = service.update(dto);
 
 			// 업데이트 처리 결과
 			if (result) {
@@ -152,10 +152,10 @@ public class BoardServlet extends HttpServlet {
 			int no = Integer.parseInt(request.getParameter("no"));
 
 			// 삭제 할 데이터 만들기
-			Board board = Board.builder().no(no).build();
+			Board dto = Board.builder().no(no).build();
 
 			// DB에 삭제 처리 보내기
-			boolean result = service.delete(board);
+			boolean result = service.delete(dto);
 
 			// 삭제 결과
 			if (result) {
