@@ -11,6 +11,8 @@
 	<jsp:include page="/alljsp/link.jsp" />
 </head>
 <body>
+	
+
 	<!-- header 포함하기 -->
 	<jsp:include page="/alljsp/header.jsp" />
 	<%-- [Contents] ######################################################### --%>

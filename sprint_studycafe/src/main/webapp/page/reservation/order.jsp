@@ -14,6 +14,7 @@
 </head>
 <body>
 	<%
+		String seatsId = request.getParameter("seatsId");
 		List<Ticket> ticketList = Ticket.getTestList();
 		request.setAttribute("ticketList" ,ticketList);
 	%>
@@ -27,44 +28,46 @@
 			<h2 class="mb-4 text-center">좌석 구매</h2>
 
 			<div class="container text-center">
-			
-				<c:forEach items="${ticketList}" var="ticket" varStatus="index">
-					<c:if test="${index.index % 3 == 0 }">
-						<div class="row">
-					</c:if>
-						<div class="col">
-							<c:if test="${index.first}">
-								<div class="card text-bg-info mb-3" style="max-width: 18rem;">
-							</c:if>
-							<c:if test="${!index.first}">
-								<div class="card border-info mb-3" style="max-width: 18rem;">
-							</c:if>
-								<div class="card-header">${ticket.ticketTime}시간</div>
+				<%
+					for (int i = 0 ; i < ticketList.size() ; i++  ) {
+						Ticket ticket = ticketList.get(i);
+				%>
+				
+					<% if (i % 3 == 0) { %>
+					<div class="row justify-content-center">
+					<% } %>
+						<div class="col-auto">
+							<% if (i == 0) { %>
+								<div class="card mb-3 btn-cyan-700-55" style="max-width: 18rem;">
+							<% } else {%>
+								<div class="card mb-3" style="max-width: 18rem;">
+							<% } %>
+								<input type="hidden" id="hidden<%= i %>" value="<%= ticket.getTicketId() %>"/>
+								<div class="card-header"><%= ticket.getTicketTime() %>시간</div>
 								<div class="card-body">
-									<h6 class="card-title">${ticket.ticketTime}시간 : <fmt:formatNumber value="${ticket.price}" type="number" />원</h6>
-									<% Ticket ticketObj = (Ticket) pageContext.getAttribute("ticket"); %>
-									<p class="card-text">퇴실 예정 시간 : <%= Common.afterHour(ticketObj.getTicketTime()) %></p>
+									<h6 class="card-title"><%= ticket.getTicketTime() %>시간 : <%= Common.getIntegerToString(ticket.getPrice()) %>원</h6>
+									<p class="card-text">퇴실 예정 시간 : <%= Common.afterHour(ticket.getTicketTime()) %></p>
 								</div>
 							</div>
 						</div>
-					<c:if test="${index.index % 3 == 2 || index.last}">
-						</div>
-					</c:if>
-				</c:forEach>
+						
+					<% if (i % 3 == 2 || i == ticketList.size() -1 ) { %>
+					</div>
+					<% } %>
+				<% } %>
 				<%-- end row --%>
 
 				<div class="row">
 					<div class="col-12">
-						<form action="/resevation/order" method="post">
-							<input type="hidden" value="1" />
-							<button type="button" class="btn btn-cyan-700 w-100 mb-3"
-								onclick="order()">구매</button>
+						<form action="<%= Common.getUrl(Common.RESERVATION, Common.ORDER) %>" method="post">
+							<input type="hidden" value="1" id="seatsNo" name="seatsNo"/>
+							<input type="submit" class="btn btn-cyan-700 w-100 mb-3" value="구매"/>
 						</form>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-12">
-						<a href="/resevation/list" class="btn btn-cyan-700-55 w-100">취소</a>
+						<a href="<%= Common.getUrl(Common.RESERVATION, Common.LIST) %> class="btn btn-cyan-700-55 w-100">취소</a>
 					</div>
 				</div>
 			</div>
@@ -80,12 +83,21 @@
 
 	<!-- script 포함하기 -->
 	<script>
-		function order() {
-			/*
-				1. 카드를 선택하면 히든에 티켓 아이디 저장
-				2. 폼 submit
-			 */
-		}
-	</script>
+	$(function() {
+		$('.col-auto').click(function() {
+			// 클릭된 .col 내부의 input[type=hidden]의 값을 가져옴
+			let ticketId = $(this).find('input[type=hidden]').val();
+
+			// 그 값을 #seatsNo의 value로 설정
+			$('#seatsNo').val(ticketId);
+
+			// 기존 선택된 카드들 클래스 변경: text-bg-info -> border-info
+	        $('.card.btn-cyan-700-55').removeClass('btn-cyan-700-55'); // .addClass('border-info');
+	        // 현재 클릭된 카드에 클래스 변경: border-info -> text-bg-info
+	        $(this).find('.card')/*.removeClass('btn-cyan-700')*/.addClass('btn-cyan-700-55');
+		});
+	});
+</script>
+
 </body>
 </html>

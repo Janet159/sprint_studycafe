@@ -1,5 +1,5 @@
-<%@ include file="/alljsp/jstl.jsp" %>
 <%@ include file="/alljsp/common.jsp" %>
+<%@ include file="/alljsp/jstl.jsp" %>
 
 <%@ page import="java.util.List"%>
 <%@ page import="Config.Common"%>
@@ -43,15 +43,15 @@
 			<span class="input-group-text" id="inputGroup-sizing-default">구분</span>
 			<c:forEach var="type" items="${typeList}" varStatus="index">
 				<div class="form-check">
-<c:choose>
-    <c:when test="${type.typeNo == service.typeNo}">
-        <input class="form-check-input" type="radio" name="typeNo" id="type${index.index}" value="${type.typeNo}" checked>
-    </c:when>
-    <c:otherwise>
-        <input class="form-check-input" type="radio" name="typeNo" id="type${index.index}" value="${type.typeNo}">
-    </c:otherwise>
-</c:choose>
-				<label class="form-check-label" for="type${index.index}">${type.typeName}</label>
+					<c:choose>
+					    <c:when test="${type.typeNo == service.typeNo}">
+					        <input class="form-check-input" type="radio" name="typeNo" id="type${index.index}" value="${type.typeNo}" checked>
+					    </c:when>
+					    <c:otherwise>
+					        <input class="form-check-input" type="radio" name="typeNo" id="type${index.index}" value="${type.typeNo}">
+					    </c:otherwise>
+					</c:choose>
+					<label class="form-check-label" for="type${index.index}">${type.typeName}</label>
 				</div>
 			</c:forEach>
 		</div>
@@ -82,10 +82,7 @@
 </div>
 
 			</form>
-
 		</div>
-
-
 	</main>
 
 	<%-- [Contents] ######################################################### --%>
@@ -96,5 +93,4 @@
 	<!-- script 포함하기 -->
 
 </body>
-
 </html>

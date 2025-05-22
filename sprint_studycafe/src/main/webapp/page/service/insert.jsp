@@ -24,7 +24,6 @@
 	<%-- [Contents] ######################################################### --%>
 
 	<main>
-
 		<div class="container">
 			<div class="px-4 pt-5 my-5 text-center border-bottom">
 				<h2 class="mb-4">편의 시설 등록</h2>
@@ -65,7 +64,6 @@
 				aria-describedby="inputGroup-sizing-default">
 		</div>
 	</div>
-
 	<div class="p-2">
 		<div class="input-group mb-3">
 			<input type="submit" class="btn btn-cyan-700 w-100 mb-3" value="등록" />
@@ -74,10 +72,7 @@
 </div>
 
 			</form>
-
 		</div>
-
-
 	</main>
 
 	<%-- [Contents] ######################################################### --%>
@@ -88,5 +83,4 @@
 	<!-- script 포함하기 -->
 
 </body>
-
 </html>
