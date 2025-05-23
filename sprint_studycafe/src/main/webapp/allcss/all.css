@@ -31,6 +31,17 @@
   background-color: rgba(17, 105, 122, 0.55) !important; /* 기존 색보다 약간 어둡게 */
   color: white !important;
 }
+/* 취소 버튼 */
+.btn-cancel {
+     background-color: white !important;
+     border: 1px solid #ccc !important;
+     color: #333 !important;
+   }
+.btn-cancel:hover {
+  background-color: #f8f9fa !important;
+  border: 1px solid #ccc !important;
+  color: #333 !important;
+}
 
 .btn-red {
 	background-color: #E87575 !important;
