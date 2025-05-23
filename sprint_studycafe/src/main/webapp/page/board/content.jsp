@@ -10,6 +10,7 @@
 <%-- 	<jsp:include page="/layout/link.jsp" /> --%>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   	<link href="<%= root%>/allcss/insert.css" rel="stylesheet">
+  	<link href="<%= root%>/allcss/all.css" rel="stylesheet">
 </head>
 <body>
 	<jsp:include page="/alljsp/header.jsp" />
@@ -33,7 +34,7 @@
         </div>
         </div>
         <div class="d-grid gap-2">
-          <button type="submit" class="btn btn-signup">수정</button>
+          <button type="submit" class="btn btn-signup btn-cyan-700:hover btn-cyan-700">수정</button>
           <button type="button" class="btn btn-cancel">삭제</button>
         </div>
     </form>

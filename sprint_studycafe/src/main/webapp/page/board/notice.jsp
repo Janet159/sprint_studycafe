@@ -11,6 +11,7 @@
 	<title>고객센터</title>
 	<jsp:include page="/alljsp/link.jsp" />
     <link href="<%= root%>/allcss/list.css" rel="stylesheet">
+     <link href="<%= root%>/allcss/all.css" rel="stylesheet">
 </head>
 <body>
 
@@ -46,7 +47,7 @@
         <span>10</span>
       </div>
 
-    <button class="btn btn-main">메인</button>
+    <button class="btn btn-main btn-cyan-700:hover btn-cyan-700">메인</button>
   </div>
 	
 	<%-- [Contents] ######################################################### --%>

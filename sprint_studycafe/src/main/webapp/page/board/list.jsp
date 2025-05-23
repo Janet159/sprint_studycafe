@@ -12,12 +12,20 @@
 <head>
 	<title>고객센터</title>
 	<jsp:include page="/alljsp/link.jsp" />
-	<link href="<%= root %>/page/board/고객센터2.css" rel="stylesheet">
+	<link href="<%= root %>/allcss/list.css" rel="stylesheet">
+	<link href="<%= root %>/allcss/all.css" rel="stylesheet">
 </head>
 <body>
     <% 
       //List<Board> boardList = Board.getTestList();
       //request.setAttribute("boardList" ,boardList);
+      
+		String param = request.getParameter("type");
+		String title = "나의 문의사항";
+		if (null == param || param.isEmpty()) {
+			title ="문의사항";
+		}
+     
     %>
 	<jsp:include page="/alljsp/header.jsp" />
 	<%-- [Contents] ######################################################### --%>
@@ -25,7 +33,7 @@
 	    <div class="title">고객센터</div> 
 		<div class="table-responsive">
 	      <table class="table">
-	        <div class="title2 text-cyan-700">문의사항</div>
+	        <div class="title2 text-cyan-700"><%= title %></div>
 	        <thead>
 	          <tr>
 	            <th>번호</th>
@@ -45,19 +53,10 @@
 	         	<td>${board.createdAt}</td>
 	         </tr>
 	         </c:forEach>
-	          <tr><td colspan="5">&nbsp;</td></tr>
-	          <tr><td colspan="5">&nbsp;</td></tr>
-	          <tr><td colspan="5">&nbsp;</td></tr>
-	          <tr><td colspan="5">&nbsp;</td></tr>
-	          <tr><td colspan="5">&nbsp;</td></tr>
-	          <tr><td colspan="5">&nbsp;</td></tr>
-	          <tr><td colspan="5">&nbsp;</td></tr>
-	          <tr><td colspan="5">&nbsp;</td></tr>
-	          <tr><td colspan="5">&nbsp;</td></tr>
 	        </tbody>
 	      </table>
 	    </div>
-	    <button class="btn btn-main text-cyan-700">메인</button>
+	    <button class="btn btn-main btn-cyan-700:hover btn-cyan-700">메인</button>
 	
 	    <div class="pagination">
 	        <span>1</span>
