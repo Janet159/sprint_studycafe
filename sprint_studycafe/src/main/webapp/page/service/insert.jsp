@@ -16,8 +16,8 @@
 
 <body>
 	<%
-		List<Type> typeList = Type.getTestList();
-		request.setAttribute("typeList" ,typeList);
+		//List<Type> typeList = Type.getTestList();
+		//request.setAttribute("typeList" ,typeList);
 	%>
 	<!-- header 포함하기 -->
 	<jsp:include page="/alljsp/header.jsp" />

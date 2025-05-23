@@ -47,7 +47,7 @@ public class BoardServlet extends HttpServlet {
 			// 게시글 등록 화면
 
 			// 이동 할 페이지 
-			page = "/page/board/create.jsp";
+			page = "/page/board/insert.jsp";
 
 		} else if (path.equals("/read") || path.equals("/read.jsp")) {
 			// 문의 사항 조회 화면
@@ -95,7 +95,7 @@ public class BoardServlet extends HttpServlet {
 
 		System.out.println("BoardServlet : POST : " + path);
 
-		if (path.equals("/create") || path.equals("/create.jsp")) {
+		if (path.equals("/insert") || path.equals("/insert.jsp")) {
 			// 문의 사항 등록 처리 
 
 			// 등록 할 데이터 화면에서 가져오기

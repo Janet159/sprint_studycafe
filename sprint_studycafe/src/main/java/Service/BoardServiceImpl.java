@@ -14,8 +14,6 @@ public class BoardServiceImpl implements BoardService {
 		try {
 			list = boardDAO.list();
 		} catch (Exception e) {
-			System.err.println();
-			System.out.println();
 			e.printStackTrace();
 		}
 

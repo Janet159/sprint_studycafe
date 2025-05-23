@@ -15,14 +15,14 @@
 </head>
 
 <body>
-	<%
+<%-- 	<%
 		List<Type> typeList = Type.getTestList();
 		request.setAttribute("typeList" ,typeList);
 		Service service = new Service(1, 2, "serviceId", "location");
 		request.setAttribute("service" ,service);
 		
 		int no = 10 ;
-	%>
+	%> --%>
 
 	<!-- header 포함하기 -->
 	<jsp:include page="/alljsp/header.jsp" />
@@ -36,6 +36,7 @@
 			</div>
 
 			<form action="<%= Common.getUrl(Common.SERVICE, Common.UPDATE) %>" method="post">
+<input type="hidden" name="no" value="${service.no}">
 
 <div class="d-flex flex-column mb-3">
 	<div class="p-2">

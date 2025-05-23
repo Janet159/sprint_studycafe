@@ -30,7 +30,7 @@ public class ReservationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ReservationService service = new ReservationServiceImpl();
 	private CommonService common = new CommonServiceImpl();
-	private String urlJsp = "/page/board/" ;
+	private final String urlJsp = "/page/board/" ;
 	private String url = "/reservation/" ;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)

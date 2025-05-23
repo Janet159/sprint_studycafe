@@ -15,8 +15,8 @@
 <body>
 	<% 
 		role = true; 
-		List<Service> serviceList = Service.getTestList();
-		request.setAttribute("serviceList" ,serviceList);
+		// List<Service> serviceList = Service.getTestList();
+		// request.setAttribute("serviceList" ,serviceList);
 	%>
 	<%-- header 포함하기 --%>
 	<jsp:include page="/alljsp/header.jsp" />
@@ -40,12 +40,12 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:if test="${serviceList.isEmpty()}">
+					<c:if test="${resultList.isEmpty()}">
 	            		<tr>
 	            			<td align="center" colspan="4">조회된 데이터가 없습니다.</td>
 	            		</tr>
 	            	</c:if>
-					<c:forEach var="service" items="${serviceList}">
+					<c:forEach var="service" items="${resultList}">
 	                    <tr class="text-center">
 	                    <% if (role) { %>
 	                    	<td><a href="<%= Common.getUrl(Common.SERVICE, Common.UPDATE) %>?no=${service.no}">${service.no}</a></td>
