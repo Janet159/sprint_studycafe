@@ -98,7 +98,7 @@ public class ReservationServlet extends HttpServlet {
 			for (Seats dto : seatList) {
 				System.out.print(dto.getSeatId() + "\t");
 				System.out.print(dto.getSeatName() + "\t");
-				System.out.print(dto.getUsingType() + "\t");
+				System.out.print(dto.getUsing_kbn() + "\t");
 				System.out.println();
 				
 			}

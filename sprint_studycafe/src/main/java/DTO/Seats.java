@@ -23,7 +23,7 @@ public class Seats {
 	/** 좌석명 */
 	private String seatName;
 	/** 이용 여부 */
-	private Boolean usingType;
+	private Boolean using_kbn;
 
 	public static List<Seats> getTestList() {
 		List<Seats> resultList = new ArrayList<Seats>();
