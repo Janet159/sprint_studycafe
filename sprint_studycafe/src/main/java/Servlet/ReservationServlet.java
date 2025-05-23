@@ -30,7 +30,7 @@ public class ReservationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ReservationService service = new ReservationServiceImpl();
 	private CommonService common = new CommonServiceImpl();
-	private String urlJsp = "/page/board/" ;
+	private String urlJsp = "/page/reservation/" ;
 	private String url = "/reservation/" ;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -41,7 +41,7 @@ public class ReservationServlet extends HttpServlet {
 
 		System.out.println("ReservationServlet : GET : " + path);
 
-		if (path.isEmpty() || path == null || path.equals("/list") || path.equals("/list.jsp")) {
+		if (path == null || path.isEmpty() || path.equals("/list") || path.equals("/list.jsp")) {
 			// 목록 화면
 
 			// DB에서 데이터 전체 조회

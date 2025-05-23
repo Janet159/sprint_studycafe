@@ -20,6 +20,7 @@
 	<%-- [Contents] ######################################################### --%>
 	
 	<%
+		role = false ;
 		String title = "" ;		
 		String usingSeat1 = "사용중" ;
 		String usingSeat2 = "" ;
@@ -67,7 +68,9 @@
 						if (null == seat.getUserId() || seat.getUserId().isEmpty()) {
 						// 빈 좌석일때
 					%>
-					<a href="<%= Common.getUrl(Common.RESERVATION, Common.ORDER) %>/?seatsId=<%= seat.getSeatId() %>">
+					<% if (!role) { /* 사용자 일 때*/ %>
+					<a href="<%= Common.getUrl(Common.RESERVATION, Common.ORDER) %>?seatsId=<%= seat.getSeatId() %>">
+					<% } %>
 					<div class="card btn-cyan-700-55 mb-3" style="max-width: 18rem;">
 						<div class="card-header"><%= seat.getSeatName() %></div>
 						<div class="card-body">
@@ -75,7 +78,9 @@
 							<p class="card-text"><%= emptySeat2 %><br></p>							
 						</div>
 					</div>
+					<% if (!role) { /* 사용자 일 때*/ %>
 					</a>
+					<% } %>
 					<% 
 						} else {
 						// 사용 중 일때
@@ -86,7 +91,7 @@
 							<h5 class="card-title"><%= usingSeat1 %></h5>
 							<% if (role) { /* 관리자 일 때*/ %>
 							<p class="card-text"><%= seat.getUserId() %> : <%= seat.getUserName() %><br>
-								 <%= Common.getHourMinuteFromDate(seat.getStartTime()) %> : <%= Common.getHourMinuteFromDate(seat.getEndTime()) %></p>
+								 <%= Common.getHourMinuteFromDate(seat.getStartTime()) %> ~ <%= Common.getHourMinuteFromDate(seat.getEndTime()) %></p>
 							<% } else { /* 사용자 일 때 */ %>
 							<p class="card-text"><%= usingSeat2 %><br>
 								<%= Common.getHourMinuteFromDate(seat.getEndTime()) %><%= usingSeat3 %></p>
