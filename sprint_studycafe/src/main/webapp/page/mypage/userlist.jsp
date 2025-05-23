@@ -61,7 +61,7 @@
 				<tr>
 					<td><%= users.getName() %></td>
 				    <td><%= users.getUserId() %></td>
-				 	<td><%= users.isAdmin() %></td>
+				 	<td><%= users.isAdmin_kbn() %></td>
 					<td><%= users.getEmail() %></td>
 					<td><%= Common.getDateToString(users.getCreatedAt()) %></td>
 				</tr>

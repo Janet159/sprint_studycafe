@@ -1,9 +1,10 @@
-<%@page import="java.util.List"%>
 <%@ include file="/alljsp/jstl.jsp" %>
 <%@ include file="/alljsp/common.jsp" %>
 
+<%@ page import="java.util.List"%>
+<%@ page import="java.util.ArrayList"%>
 <%@ page import="Config.Common"%>
-<%@page import="DTO.Reservation"%>
+<%@ page import="DTO.Reservation"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -46,7 +47,13 @@
 			usingSeat3 = " 이후 선택 가능합니다." ;
 		}
 
-		List<Reservation> arrList = Reservation.getTestList() ;
+		Object att = request.getAttribute("resultList") ;
+		List<Reservation> arrList ;
+		if (att != null ) {
+			arrList = (List<Reservation>) request.getAttribute("resultList");
+		} else {
+			arrList = new ArrayList<Reservation>();
+		}
 	%>
 
 	<main>
@@ -69,7 +76,7 @@
 						// 빈 좌석일때
 					%>
 					<% if (!role) { /* 사용자 일 때*/ %>
-					<a href="<%= Common.getUrl(Common.RESERVATION, Common.ORDER) %>?seatsId=<%= seat.getSeatId() %>">
+					<a href="<%= Common.getUrl(Common.RESERVATION, Common.ORDER) %>?seatId=<%= seat.getSeatId() %>">
 					<% } %>
 					<div class="card btn-cyan-700-55 mb-3" style="max-width: 18rem;">
 						<div class="card-header"><%= seat.getSeatName() %></div>
@@ -94,7 +101,8 @@
 								 <%= Common.getHourMinuteFromDate(seat.getStartTime()) %> ~ <%= Common.getHourMinuteFromDate(seat.getEndTime()) %></p>
 							<% } else { /* 사용자 일 때 */ %>
 							<p class="card-text"><%= usingSeat2 %><br>
-								<%= Common.getHourMinuteFromDate(seat.getEndTime()) %><%= usingSeat3 %></p>
+							<%= seat.getEndTime() %>
+								<%-- Common.getHourMinuteFromDate(seat.getEndTime()) --%><%= usingSeat3 %></p>
 							<% } %>
 						</div>
 					</div>

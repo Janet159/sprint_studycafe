@@ -1,5 +1,4 @@
 <%@page import="Config.Common"%>
-<%@page import="DTO.Resevation"%>
 <%@page import="java.util.List"%>
 <%@ include file="/alljsp/jstl.jsp" %>
 <%@ include file="/alljsp/common.jsp" %>

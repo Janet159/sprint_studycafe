@@ -21,11 +21,11 @@ public class CommonServiceImpl implements CommonService {
 	@Override
 	public List<Type> getTypeList(String type) {
 		List<Type> list = new ArrayList<Type>();
-		
+
 		try {
-			Map<String,Object> param = new HashMap<String, Object>();
+			Map<String, Object> param = new HashMap<String, Object>();
 			param.put("type_kbn", type);
-			
+
 			list = typeDao.listBy(param);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -34,11 +34,23 @@ public class CommonServiceImpl implements CommonService {
 		return list;
 	}
 
+	@Override
+	public Map<Integer, Type> getTypeMap(String type) {
+		Map<Integer, Type> map = new HashMap<Integer, Type>();
+
+		List<Type> typeList = getTypeList(type);
+		for (Type dto : typeList) {
+			map.put(dto.getNo(), dto);
+		}
+
+		return map;
+	}
+
 	/** 이용권 목록 조회 */
 	@Override
 	public List<Ticket> getTicketList() {
-		List<Ticket> list = new ArrayList<Ticket>() ;
-		
+		List<Ticket> list = new ArrayList<Ticket>();
+
 		try {
 			list = ticketDao.list();
 		} catch (Exception e) {
@@ -48,13 +60,25 @@ public class CommonServiceImpl implements CommonService {
 		return list;
 	}
 
+	@Override
+	public Map<String, Ticket> getTicketMap() {
+		Map<String, Ticket> map = new HashMap<String, Ticket>();
+
+		List<Ticket> typeList = getTicketList();
+		for (Ticket dto : typeList) {
+			map.put(dto.getTicketId(), dto);
+		}
+
+		return map;
+	}
+
 	/** 좌석 관리 목록 조회 */
 	@Override
 	public List<Seats> getSeatList() {
-		List<Seats> list = new ArrayList<Seats>() ;
-		
+		List<Seats> list = new ArrayList<Seats>();
+
 		try {
-			Map<String,Object> param = new HashMap<String, Object>();
+			Map<String, Object> param = new HashMap<String, Object>();
 			param.put("using_type", true);
 			list = seatsdao.listBy(param);
 		} catch (Exception e) {
@@ -63,4 +87,17 @@ public class CommonServiceImpl implements CommonService {
 
 		return list;
 	}
+
+	@Override
+	public Map<String, Seats> getSeatMap() {
+		Map<String, Seats> map = new HashMap<String, Seats>();
+
+		List<Seats> typeList = getSeatList();
+		for (Seats dto : typeList) {
+			map.put(dto.getSeatId(), dto);
+		}
+
+		return map;
+	}
+
 }

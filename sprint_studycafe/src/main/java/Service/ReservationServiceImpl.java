@@ -18,6 +18,7 @@ public class ReservationServiceImpl implements ReservationService {
 			list = dao.list();
 		} catch (Exception e) {
 			e.printStackTrace();
+			list = new ArrayList<Reservation>();
 		}
 
 		return list;
@@ -41,11 +42,12 @@ public class ReservationServiceImpl implements ReservationService {
 	/** 주문 등록 */
 	@Override
 	public Reservation insert(Reservation dto) {
-		Reservation result = null ;
+		Reservation result = null;
 		try {
 			result = dao.insertKey(dto);
 		} catch (Exception e) {
 			e.printStackTrace();
+			dto = new Reservation();
 		}
 
 		return result;

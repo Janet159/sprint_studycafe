@@ -1,8 +1,8 @@
-<%@page import="Config.Common"%>
-<%@page import="DTO.Resevation"%>
-<%@page import="java.util.List"%>
 <%@ include file="/alljsp/jstl.jsp" %>
 <%@ include file="/alljsp/common.jsp" %>
+<%@page import="DTO.Reservation"%>
+<%@page import="Config.Common"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -14,7 +14,7 @@
 </head>
 <body>
     <% 
-      List<Resevation> arrayList = Resevation.getTestList();
+      List<Reservation> arrayList = Reservation.getTestList();
       
       request.setAttribute("arrayList" ,arrayList);
     %>
@@ -36,7 +36,7 @@
         <tbody>
          <% 
            	for (int i = 0; i < arrayList.size(); i++){
-           		Resevation item = arrayList.get(i);
+           		Reservation item = arrayList.get(i);
          %>
          <tr>
          	<td><%= item.getNo() %></td>

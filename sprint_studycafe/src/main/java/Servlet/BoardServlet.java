@@ -95,7 +95,7 @@ public class BoardServlet extends HttpServlet {
 
 		System.out.println("BoardServlet : POST : " + path);
 
-		if (path.equals("/create") || path.equals("/create.jsp")) {
+		if (path.equals("/insert") || path.equals("/insert.jsp")) {
 			// 문의 사항 등록 처리 
 
 			// 등록 할 데이터 화면에서 가져오기
@@ -145,7 +145,7 @@ public class BoardServlet extends HttpServlet {
 				response.sendRedirect(root + "/board/update.jsp?error=true");
 			}
 
-		} else if (path.equals("/delete") || path.equals("/update.jsp")) {
+		} else if (path.equals("/delete") || path.equals("/delete.jsp")) {
 			// 문의 사항 삭제 처리
 
 			// 삭제 할 데이터 화면에서 가져오기

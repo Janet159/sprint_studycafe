@@ -1,5 +1,6 @@
 package Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import DAO.BoardDAO;
@@ -14,9 +15,8 @@ public class BoardServiceImpl implements BoardService {
 		try {
 			list = boardDAO.list();
 		} catch (Exception e) {
-			System.err.println();
-			System.out.println();
 			e.printStackTrace();
+			list = new ArrayList<Board>();
 		}
 
 		return list;
