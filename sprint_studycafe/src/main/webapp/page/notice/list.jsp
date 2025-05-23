@@ -1,3 +1,4 @@
+<%@page import="DTO.Notice"%>
 <%@page import="Config.Common"%>
 <%@page import="DTO.Resevation"%>
 <%@page import="java.util.List"%>
@@ -14,7 +15,11 @@
      <link href="<%= root%>/allcss/all.css" rel="stylesheet">
 </head>
 <body>
-
+	<% 
+	//List<Notice> arrayList = Notice.getTestList();
+	//request.setAttribute("arrayList" ,arrayList);
+	List<Notice> arrayList = (List<Notice>) request.getAttribute("resultList");
+	%>
 	<jsp:include page="/alljsp/header.jsp" />
 	<%-- [Contents] ######################################################### --%>
 	  <div class="border-box">
@@ -25,12 +30,21 @@
         <thead>
           <tr>
             <th>번호</th>
-            <th>구분</th>
             <th>제목</th>
             <th>등록일</th>
           </tr>
         </thead>
         <tbody>
+     		<% 
+		 for (int i = 0; i < arrayList.size(); i++){
+				 Notice notice = arrayList.get(i); 
+ 			%>
+			<tr>
+				<td><%= notice.getNo() %></td>
+			    <td><a href="<%= Common.getUrl(Common.NOTICE, Common.READ) %>?no=<%=notice.getNo()%>"><%= notice.getTitle() %></a></td>
+			    <td><%= Common.getDateToString(notice.getCreatedAt()) %></td>
+			</tr>
+			<% } %> 
         </tbody>
       </table>
     </div>
@@ -46,8 +60,13 @@
         <span>9</span>
         <span>10</span>
       </div>
-
-    <button class="btn btn-main btn-cyan-700:hover btn-cyan-700">메인</button>
+      
+    <div class="btn-main">
+   		<% if (role) { %>
+			<a href="<%= Common.getUrl(Common.NOTICE, Common.INSERT) %>" class="btn btn-cyan-700">등록</a>
+		<% } %> 
+    <a href="<%=root %>" class="btn btn-cyan-700">메인</a>
+    </div>
   </div>
 	
 	<%-- [Contents] ######################################################### --%>

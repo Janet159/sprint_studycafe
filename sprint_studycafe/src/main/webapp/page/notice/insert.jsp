@@ -1,3 +1,4 @@
+<%@page import="Config.Common"%>
 <%@ include file="/alljsp/jstl.jsp" %>
 <%@ include file="/alljsp/common.jsp" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -5,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>공지사항 수정/삭제</title>
+	<title>공지사항 등록</title>
 <%-- 	<jsp:include page="/layout/meta.jsp" /> --%>
 <%-- 	<jsp:include page="/layout/link.jsp" /> --%>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -20,24 +21,24 @@
     <div class="col-md-7">
     <div class="content-box">
         <div class="content-title">공지사항</div>
-        <form>
-        <div class="row mb-5 pb-3 border-bottom">
-        <label for="title" class="col-sm-2 col-form-label">제목</label>
-        <div class="col-sm-10">
-        <input type="text" class="form-control" id="title">
-        </div>
-        </div>
-        <div class="row mb-5 pb-3 border-bottom">
-        <label for="floatingTextarea2" class="col-sm-2 col-form-label d-flex align-items-center justify-content-center">내용</label>
-        <div class="col-sm-10">
-        <textarea class="form-control" id="floatingTextarea2" style="resize: none; height: 300px;"></textarea>
-        </div>
-        </div>
-        <div class="d-grid gap-2">
-          <button type="submit" class="btn btn-signup btn-cyan-700:hove btn-cyan-700">수정</button>
-          <button type="button" class="btn btn-cancel">삭제</button>
-        </div>
-    </form>
+        <form action="<%= Common.getUrl(Common.NOTICE, Common.INSERT) %>" method="post" >
+	        <div class="row mb-5 pb-3 border-bottom">
+	        <label for="title" class="col-sm-2 col-form-label">제목</label>
+	        <div class="col-sm-10">
+	        <input type="text" class="form-control" id="title" name="title">
+	        </div>
+	        </div>
+	        <div class="row mb-5 pb-3 border-bottom">
+	        <label for="floatingTextarea2" class="col-sm-2 col-form-label d-flex align-items-center justify-content-center">내용</label>
+	        <div class="col-sm-10">
+	        <textarea class="form-control" id="floatingTextarea2" style="resize: none; height: 300px;" name="content"></textarea>
+	        </div>
+	        </div>
+	        <div class="d-grid gap-2">
+	          <button type="submit" class="btn btn-signup btn-cyan-700:hover btn-cyan-700">등록</button>
+<!-- 	          <button type="button" class="btn btn-cancel">삭제</button> -->
+	        </div>
+    	</form>
     </div>
     </div>
     </div>
