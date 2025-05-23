@@ -28,7 +28,7 @@ public class Users {
 	/** 이메일 */
 	private String email;
 	/** 권한 */
-	private boolean isAdmin;
+	private boolean admin_kbn;
 	/** 가입날짜 */
 	private Date createdAt;
 
