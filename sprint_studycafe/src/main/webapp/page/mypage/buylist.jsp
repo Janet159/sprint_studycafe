@@ -1,8 +1,9 @@
 <%@ include file="/alljsp/jstl.jsp" %>
 <%@ include file="/alljsp/common.jsp" %>
-<%@page import="DTO.Reservation"%>
+
 <%@page import="Config.Common"%>
 <%@page import="java.util.List"%>
+<%@page import="DTO.Reservation"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -21,10 +22,10 @@
 	<jsp:include page="/alljsp/header.jsp" />
 	<%-- [Contents] ######################################################### --%>
 	  <div class="border-box">
-    <div class="title">마이페이지</div>
+    <div class="title fs-30 text-dark">마이페이지</div>
     <div class="table-responsive">
       <table class="table">
-        <div class="title2">구매내역</div>
+        <div class="title2 fs-25 text-dark">구매내역</div>
         <thead>
           <tr>
             <th>번호</th>
@@ -61,7 +62,7 @@
         <span>10</span>
       </div>
 
-    <button class="btn btn-main">메인</button>
+    <button class="btn btn-main btn-cyan-700">메인</button>
   </div>
 	
 	<%-- [Contents] ######################################################### --%>

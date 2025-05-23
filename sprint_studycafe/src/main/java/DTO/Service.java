@@ -27,13 +27,13 @@ public class Service {
 	/** 위치 */
 	private String location;
 
-	public static List<Service> getTestList() {
-		List<Service> resultList = new ArrayList<Service>();
-
-		for (int i = 0; i < 6; i++) {
-			Service result = new Service(i, i, "serviceId" + i, "location" + i);
-			resultList.add(result);
-		}
-		return resultList;
-	}
+//	public static List<Service> getTestList() {
+//		List<Service> resultList = new ArrayList<Service>();
+//
+//		for (int i = 0; i < 6; i++) {
+//			Service result = new Service(i, i, "serviceId" + i, "location" + i);
+//			resultList.add(result);
+//		}
+//		return resultList;
+//	}
 }

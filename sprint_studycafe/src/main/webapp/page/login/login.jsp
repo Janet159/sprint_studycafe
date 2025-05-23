@@ -1,5 +1,6 @@
 <%@ include file="/alljsp/jstl.jsp" %>
 <%@ include file="/alljsp/common.jsp" %>
+<%@ include file="/alljsp/jstl.jsp" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -8,12 +9,13 @@
 	<title>로그인</title>
 	<jsp:include page="/alljsp/link.jsp" />
 	<link href="login.css" rel="stylesheet">
+	<link href="<%= root %>/allcss/all.css" rel="stylesheet">
 </head>
 <body>
 	<jsp:include page="/alljsp/header.jsp" />
 	<%-- [Contents] ######################################################### --%>
 	
-<div class="container login-box d-flex justify-content-center align-items-center">
+<div class="container login-box d-flex justify-content-center align-items-center my-10">
 	<form>
 		<div class="login-title">Login</div>
 		<div class="mb-3">

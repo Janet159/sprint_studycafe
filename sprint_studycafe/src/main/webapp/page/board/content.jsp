@@ -1,15 +1,19 @@
-<%@ include file="/alljsp/jstl.jsp" %>
+<%@ page import="Config.Common"%>
 <%@ include file="/alljsp/common.jsp" %>
+<%@ include file="/alljsp/jstl.jsp" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>문의사항 답변</title>
-<%-- 	<jsp:include page="/layout/meta.jsp" /> --%>
-<%-- 	<jsp:include page="/layout/link.jsp" /> --%>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	<title><%= Common.TITLE %></title>
+	<jsp:include page="/alljsp/link.jsp" />
   	<link href="<%= root%>/allcss/insert.css" rel="stylesheet">
+  	<style>
+  	body {
+  		padding-bottom: 100px;
+    	 }
+  	</style>
 </head>
 <body>
 	<jsp:include page="/alljsp/header.jsp" />
@@ -33,7 +37,7 @@
         </div>
         </div>
         <div class="d-grid gap-2">
-          <button type="submit" class="btn btn-signup">수정</button>
+          <button type="submit" class="btn btn-signup btn-cyan-700:hover btn-cyan-700">수정</button>
           <button type="button" class="btn btn-cancel">삭제</button>
         </div>
     </form>
