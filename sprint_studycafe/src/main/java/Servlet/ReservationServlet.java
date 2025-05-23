@@ -43,12 +43,17 @@ public class ReservationServlet extends HttpServlet {
 
 		if (path.isEmpty() || path == null || path.equals("/list") || path.equals("/list.jsp")) {
 			// 목록 화면
-
+			String param = request.getParameter("type");
+			String title = "나의 문의사항";
+			if (null == param || param.isEmpty()) {
+				title ="문의사항";
+			}
 			// DB에서 데이터 전체 조회
 			List<Reservation> resultList = service.list();
 
 			// 화면에 표시를 위해 request 에 담기
 			request.setAttribute("resultList", resultList);
+			request.setAttribute("title", title);
 
 			// 이동 할 페이지 
 			page = urlJsp + "list.jsp";

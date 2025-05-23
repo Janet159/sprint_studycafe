@@ -7,13 +7,15 @@
 <head>
 	<title>로그인</title>
 	<jsp:include page="/alljsp/link.jsp" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 	<link href="login.css" rel="stylesheet">
+	<link href="<%= root %>/allcss/all.css" rel="stylesheet">
 </head>
 <body>
 	<jsp:include page="/alljsp/header.jsp" />
 	<%-- [Contents] ######################################################### --%>
 	
-<div class="container login-box d-flex justify-content-center align-items-center">
+<div class="container login-box d-flex justify-content-center align-items-center mb-5 mt-5">
 	<form>
 		<div class="login-title">Login</div>
 		<div class="mb-3">

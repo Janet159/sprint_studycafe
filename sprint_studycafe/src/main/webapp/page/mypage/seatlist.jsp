@@ -15,11 +15,11 @@
     </style>
 </head>
 <body>
-<%--     <%  --%>
-//       List<Seats> arrayList = Seats.getTestList();
+    <% 
+      List<Seats> arrayList = Seats.getTestList();
       
-//       request.setAttribute("arrayList" ,arrayList);
-<%--     %> --%>
+      request.setAttribute("arrayList" ,arrayList);
+    %>
 	<jsp:include page="/alljsp/header.jsp" />
 	<%-- [Contents] ######################################################### --%>
 		  <div class="border-box">
@@ -27,32 +27,32 @@
 	
 	    <div class="table-responsive">
 	    <table class="table">
-	      <colgroup>
-	          <col style="width: 25%;">
-	          <col style="width: 25%;">
-	          <col style="width: 25%;">
-	          <col style="width: 25%;">
-	       </colgroup>
+<!-- 	      <colgroup> -->
+<!-- 	          <col style="width: 25%;"> -->
+<!-- 	          <col style="width: 25%;"> -->
+<!-- 	          <col style="width: 25%;"> -->
+<!-- 	          <col style="width: 25%;"> -->
+<!-- 	       </colgroup> -->
 	      <thead>
 	        <tr>
 	          <th>이름</th>
 	          <th>아이디</th>
-	          <th>좌석번호</th>
-	          <th>이용시간</th>
+	          <th>이용여부</th>
+<!-- 	          <th>이용시간</th> -->
 	        </tr>
 	      </thead>
 	      <tbody>
-<%--     			<%  --%>
-// 				   for (int i = 0; i < arrayList.size(); i++){
-// 					   Seats seat = arrayList.get(i);
-<%-- 				%> --%>
-<!-- 				<tr> -->
-<%-- 					<td><%= seat.getSeatName() %></td> --%>
-<%-- 				    <td><%= seat.getSeatId() %></td> --%>
-<%-- 				 	<td><%= seat.isAdmin() %></td> --%>
-<%-- 					<td><%= seat.getEmail() %></td> --%>
-<!-- 				</tr> -->
-<%-- 				<% } %> --%>
+         <% 
+           	for (int i = 0; i < arrayList.size(); i++){
+           		Seats seat = arrayList.get(i);
+         %>
+         <tr>
+         	<td><%= seat.getSeatName()%></td>
+         	<td><%= seat.getSeatId() %></td>
+         	<td><%= seat.getUsingType() %></td>
+<!--          	<td></td> -->
+         </tr>
+         <% } %>
 	      </tbody>
 	    </table>
 	  </div>
