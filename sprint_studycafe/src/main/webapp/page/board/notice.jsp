@@ -1,17 +1,19 @@
-<%@page import="Config.Common"%>
-<%@page import="DTO.Resevation"%>
-<%@page import="java.util.List"%>
-<%@ include file="/alljsp/jstl.jsp" %>
+<%@ page import="Config.Common"%>
 <%@ include file="/alljsp/common.jsp" %>
+<%@ include file="/alljsp/jstl.jsp" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>고객센터</title>
+	<title><%= Common.TITLE %></title>
 	<jsp:include page="/alljsp/link.jsp" />
-    <link href="<%= root%>/allcss/list.css" rel="stylesheet">
-     <link href="<%= root%>/allcss/all.css" rel="stylesheet">
+  	<link href="<%= root%>/allcss/list.css" rel="stylesheet">
+  	<style>
+  	body {
+  		padding-bottom: 100px;
+    	 }
+  	</style>
 </head>
 <body>
 
@@ -21,7 +23,7 @@
     <div class="title">고객센터</div>
     <div class="table-responsive">
       <table class="table">
-        <div class="title2">공지사항</div>
+        <div class="title2 text-cyan-700 fs-25">공지사항</div>
         <thead>
           <tr>
             <th>번호</th>

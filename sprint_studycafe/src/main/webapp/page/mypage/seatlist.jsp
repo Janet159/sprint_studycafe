@@ -23,7 +23,7 @@
 	<jsp:include page="/alljsp/header.jsp" />
 	<%-- [Contents] ######################################################### --%>
 		  <div class="border-box">
-	    <div class="title">좌석현황</div>
+	    <div class="title fs-50">좌석현황</div>
 	
 	    <div class="table-responsive">
 	    <table class="table">
@@ -49,7 +49,7 @@
          <tr>
          	<td><%= seat.getSeatName()%></td>
          	<td><%= seat.getSeatId() %></td>
-         	<td><%= seat.getUsingType() %></td>
+         	<td><%= seat.getUsing_kbn() %></td>
 <!--          	<td></td> -->
          </tr>
          <% } %>
@@ -69,7 +69,7 @@
         <span>10</span>
       </div>
 	
-	    <button class="btn btn-main">메인</button>
+	    <button class="btn btn-main btn-cyan-700">메인</button>
 	  </div>
 	
 	<%-- [Contents] ######################################################### --%>

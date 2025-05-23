@@ -13,8 +13,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Table("users")
-@Data
 @NoArgsConstructor
+@Data
 @AllArgsConstructor
 @Builder
 public class Users {

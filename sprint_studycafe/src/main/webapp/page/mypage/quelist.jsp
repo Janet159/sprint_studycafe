@@ -1,7 +1,7 @@
 <%@page import="Config.Common"%>
 <%@page import="DTO.Notice"%>
-<%@page import="java.util.List"%>
 <%@ include file="/alljsp/jstl.jsp" %>
+<%@page import="java.util.List"%>
 <%@ include file="/alljsp/common.jsp" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -61,7 +61,7 @@
         <span>10</span>
       </div>
 
-    <button class="btn btn-main">메인</button>
+    <button class="btn btn-main btn-cyan-700">메인</button>
   </div>
 	
 	<%-- [Contents] ######################################################### --%>

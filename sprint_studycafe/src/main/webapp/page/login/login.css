@@ -19,11 +19,11 @@
       font-weight: bold;
       margin-bottom: 30px;
     }
-    .form-control {
+/* 	.form-control {
       background-color: #f8f9fa;
       border: none;
       border-radius: 6px;
-    }
+    } */
     .form-check-label {
       font-size: 14px;
     }

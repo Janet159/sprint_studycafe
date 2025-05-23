@@ -1,16 +1,19 @@
-<%@ include file="/alljsp/jstl.jsp" %>
+<%@ page import="Config.Common"%>
 <%@ include file="/alljsp/common.jsp" %>
+<%@ include file="/alljsp/jstl.jsp" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>공지사항 등록</title>
-<%-- 	<jsp:include page="/layout/meta.jsp" /> --%>
-<%-- 	<jsp:include page="/layout/link.jsp" /> --%>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+	<title><%= Common.TITLE %></title>
+	<jsp:include page="/alljsp/link.jsp" />
   	<link href="<%= root%>/allcss/insert.css" rel="stylesheet">
-  	<link href="<%= root%>/allcss/all.css" rel="stylesheet">
+  	<style>
+  	body {
+  		padding-bottom: 100px;
+    	 }
+  	</style>
 </head>
 <body>
 	<jsp:include page="/alljsp/header.jsp" />

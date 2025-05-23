@@ -61,7 +61,7 @@
 				<tr>
 					<td><%= users.getName() %></td>
 				    <td><%= users.getUserId() %></td>
-				 	<td><%= users.isAdmin() %></td>
+				 	<td><%= users.isAdmin_kbn() %></td>
 					<td><%= users.getEmail() %></td>
 					<td><%= Common.getDateToString(users.getCreatedAt()) %></td>
 				</tr>
@@ -83,7 +83,7 @@
       </div>
 
     
-    <button class="btn btn-main">메인</button>
+    <button class="btn btn-main btn-cyan-700">메인</button>
   </div>
 	
 	

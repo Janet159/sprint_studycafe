@@ -1,6 +1,6 @@
 <%@ include file="/alljsp/jstl.jsp" %>
 <%@ include file="/alljsp/common.jsp" %>
-
+<%@ include file="/alljsp/jstl.jsp" %>
 <%@ page import="Config.Common"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -9,7 +9,6 @@
 <head>
 	<title>회원 가입</title>
 	<jsp:include page="/alljsp/link.jsp" />
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 	<link href="join.css" rel="stylesheet">
 </head>
 <body>
@@ -22,7 +21,7 @@
 
     <div class="title">회원가입</div>
 
-    <div class="form-box border-gray">
+    <div class="form-box border-gray mt-5 mb-10">
       <form>
         <div class="mb-3 row align-items-center">
           <label class="col-3 col-form-label">아이디</label>

@@ -5,6 +5,7 @@
     position: absolute;
     top: 100%;
     left: -1px;
+    z-index: 10000 !important;
 }
 
 .menu-item{
@@ -39,7 +40,10 @@
   align-items: center;
 }
 .nav { position: relative; }
+
+
 .nav .back {
+	z-index: 9999;
   display: none;
   position: absolute;
   top: 100%;

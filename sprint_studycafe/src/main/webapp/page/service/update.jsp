@@ -32,7 +32,7 @@
 
 		<div class="container">
 			<div class="px-4 pt-5 my-5 text-center border-bottom">
-				<h2 class="mb-4">편의 시설 수정</h2>
+				<h2 class="mb-4 fs-50">편의 시설 수정</h2>
 			</div>
 
 			<form action="<%= Common.getUrl(Common.SERVICE, Common.UPDATE) %>" method="post">
@@ -41,7 +41,7 @@
 <div class="d-flex flex-column mb-3">
 	<div class="p-2">
 		<div class="input-group mb-3">
-			<span class="input-group-text" id="inputGroup-sizing-default">구분</span>
+			<span class="input-group-text fs-25" id="inputGroup-sizing-default">구분</span>
 			<c:forEach var="type" items="${typeList}" varStatus="index">
 				<div class="form-check">
 					<c:choose>
@@ -59,14 +59,14 @@
 	</div>
 	<div class="p-2">
 		<div class="input-group mb-3">
-			<span class="input-group-text" id="inputGroup-sizing-default">종류</span>
+			<span class="input-group-text fs-25" id="inputGroup-sizing-default">종류</span>
 			<input type="text" class="form-control" aria-label="Sizing example input" name="serviceId" value="${service.serviceId}"
 				aria-describedby="inputGroup-sizing-default">
 		</div>
 	</div>
 	<div class="p-2">
 		<div class="input-group mb-3">
-			<span class="input-group-text" id="inputGroup-sizing-default">위치</span>
+			<span class="input-group-text fs-25" id="inputGroup-sizing-default">위치</span>
 			<input type="text" class="form-control" aria-label="Sizing example input" name="location" value="${service.location}"
 				aria-describedby="inputGroup-sizing-default">
 		</div>
@@ -74,10 +74,10 @@
 
 	<div class="p-2">
 		<div class="input-group mb-3">
-			<input type="submit" class="btn btn-cyan-700 w-100 mb-3" value="수정" />
+			<input type="submit" class="btn btn-cyan-700 w-100 mb-3 fs-30" value="수정" />
 		</div>
 		<div class="input-group mb-3">
-			<a href="<%= Common.getUrl(Common.SERVICE, Common.DELETE) %>?no=${service.no}" class="btn btn-cyan-700-55 w-100" >삭제</a>
+			<a href="<%= Common.getUrl(Common.SERVICE, Common.DELETE) %>?no=${service.no}" class="btn btn-cyan-700-55 w-100 fs-30" >삭제</a>
 		</div>
 	</div> 
 </div>

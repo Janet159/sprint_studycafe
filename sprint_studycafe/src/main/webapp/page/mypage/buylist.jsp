@@ -1,7 +1,8 @@
+<%@page import="DTO.Reservation"%>
 <%@page import="Config.Common"%>
+<%@ include file="/alljsp/jstl.jsp" %>
 <%@page import="DTO.Resevation"%>
 <%@page import="java.util.List"%>
-<%@ include file="/alljsp/jstl.jsp" %>
 <%@ include file="/alljsp/common.jsp" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -14,17 +15,17 @@
 </head>
 <body>
     <% 
-      List<Resevation> arrayList = Resevation.getTestList();
+      List<Reservation> arrayList = Reservation.getTestList();
       
       request.setAttribute("arrayList" ,arrayList);
     %>
 	<jsp:include page="/alljsp/header.jsp" />
 	<%-- [Contents] ######################################################### --%>
 	  <div class="border-box">
-    <div class="title">마이페이지</div>
+    <div class="title fs-30 text-dark">마이페이지</div>
     <div class="table-responsive">
       <table class="table">
-        <div class="title2">구매내역</div>
+        <div class="title2 fs-25 text-dark">구매내역</div>
         <thead>
           <tr>
             <th>번호</th>
@@ -36,7 +37,7 @@
         <tbody>
          <% 
            	for (int i = 0; i < arrayList.size(); i++){
-           		Resevation item = arrayList.get(i);
+           		Reservation item = arrayList.get(i);
          %>
          <tr>
          	<td><%= item.getNo() %></td>
@@ -61,7 +62,7 @@
         <span>10</span>
       </div>
 
-    <button class="btn btn-main">메인</button>
+    <button class="btn btn-main btn-cyan-700">메인</button>
   </div>
 	
 	<%-- [Contents] ######################################################### --%>
