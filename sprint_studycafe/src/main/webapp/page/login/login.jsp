@@ -34,7 +34,7 @@
 		</div>
 		<div class="d-grid gap-2">
 			<button type="submit" class="btn btn-login btn-cyan-700">로그인</button>
-			<button type="button" class="btn btn-join">회원가입</button>
+			<button type="button" class="btn btn-cancel">회원가입</button>
 		</div>
 	</form>
 </div>

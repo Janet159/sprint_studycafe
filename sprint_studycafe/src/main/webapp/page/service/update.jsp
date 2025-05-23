@@ -77,7 +77,7 @@
 			<input type="submit" class="btn btn-cyan-700 w-100 mb-3 fs-30" value="수정" />
 		</div>
 		<div class="input-group mb-3">
-			<a href="<%= Common.getUrl(Common.SERVICE, Common.DELETE) %>?no=${service.no}" class="btn btn-cyan-700-55 w-100 fs-30" >삭제</a>
+			<a href="<%= Common.getUrl(Common.SERVICE, Common.DELETE) %>?no=${service.no}" class="btn btn-cancel w-100 fs-30" >삭제</a>
 		</div>
 	</div> 
 </div>

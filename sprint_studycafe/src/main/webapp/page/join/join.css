@@ -42,16 +42,7 @@
       color: white;
       border: none;
     }
-    .btn-cancel {
-      background-color: white !important;
-      border: 1px solid #ccc !important;
-      color: #333 !important;
-    }
-    .btn-cancel:hover {
-	  background-color: #f8f9fa !important;
-	  border: 1px solid #ccc !important;
-	  color: #333 !important;
-	}
+
     .label {
       white-space: nowrap;
     }
