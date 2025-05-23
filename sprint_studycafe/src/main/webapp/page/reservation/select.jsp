@@ -20,28 +20,28 @@
             <div class="read-item mb-3 row">
                 <label class="col-4 col-form-label text-center fs-20">결제 일시</label>
                 <div class="col-8">
-                    <div class="info-box">2025년 5월 18일 9시 23분</div>
+                    <div class="info-box">${dto.orderTime}</div>
                 </div>
             </div>
             
             <div class="read-item mb-3 row">
                 <label class="col-4 col-form-label text-center fs-20">선택 시간</label>
                 <div class="col-8">
-                    <div class="info-box">1시간</div>
+                    <div class="info-box">${dto.ticketId}</div>
                 </div>
             </div>
             
             <div class="read-item mb-3 row">
                 <label class="col-4 col-form-label text-center fs-20">이용 시작 시간</label>
                 <div class="col-8">
-                    <div class="info-box">2025년 5월 18일 9시 30분</div>
+                    <div class="info-box">${dto.startTime}</div>
                 </div>
             </div>
             
             <div class="read-item mb-4 row">
                 <label class="col-4 col-form-label text-center fs-20">이용 종료 예정 시간</label>
                 <div class="col-8">
-                    <div class="info-box">2025년 5월 18일 10시 30분</div>
+                    <div class="info-box">${dto.endTime}</div>
                 </div>
             </div>
             

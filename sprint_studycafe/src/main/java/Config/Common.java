@@ -1,5 +1,6 @@
 package Config;
 
+import java.sql.Timestamp;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -28,6 +29,9 @@ public class Common {
 	public static final String UPDATE = "update";
 	public static final String DELETE = "delete";
 	public static final String ORDER = "order";
+	
+	public static final int TRUE = 1;
+	public static final int FALSE = 0;
 
 	public static String getUrl(String... urls) {
 		return "/" + PROJECT + "/" + String.join("/", urls);
@@ -77,6 +81,13 @@ public class Common {
 		return formatter.format(date);     
 	}
 	
+//	public static String getHourMinuteFromDate(Timestamp date) {
+//		if (date == null) {
+//	        return "";
+//	    }
+//	    return new SimpleDateFormat("HH:mm").format(date);     
+//	}
+
 	/**
 	 * 지정된 두 개의 시간의 차이를 HH:mm 형식의 문자열로 리턴
 	 * @param start 시작 시간

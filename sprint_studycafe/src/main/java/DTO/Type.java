@@ -34,13 +34,13 @@ public class Type {
 	private String typeName;
 	
 	
-	public static List<Type> getTestList() {
-		List<Type> resultList = new ArrayList<Type>();
-
-		for (int i = 0; i < 3; i++) {
-			Type result = new Type( i, "type","typeName" + i);
-			resultList.add(result);
-		}
-		return resultList;
-	}
+//	public static List<Type> getTestList() {
+//		List<Type> resultList = new ArrayList<Type>();
+//
+//		for (int i = 0; i < 3; i++) {
+//			Type result = new Type( i, "type","typeName" + i);
+//			resultList.add(result);
+//		}
+//		return resultList;
+//	}
 }

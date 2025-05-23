@@ -1,6 +1,6 @@
 <%@page import="DTO.Notice"%>
 <%@page import="Config.Common"%>
-<%@page import="DTO.Resevation"%>
+<%@page import="DTO.Reservation"%>
 <%@page import="java.util.List"%>
 <%@ include file="/alljsp/jstl.jsp" %>
 <%@ include file="/alljsp/common.jsp" %>
@@ -11,9 +11,12 @@
 <head>
 	<title>고객센터</title>
 	<jsp:include page="/alljsp/link.jsp" />
-    <link href="<%= root%>/allcss/list.css" rel="stylesheet">
-     <link href="<%= root%>/allcss/all.css" rel="stylesheet">
-</head>
+	<link href="<%= root%>/allcss/list.css" rel="stylesheet">
+	<style>
+	body {
+		padding-bottom: 100px;
+	 }
+	</style></head>
 <body>
 	<% 
 	//List<Notice> arrayList = Notice.getTestList();

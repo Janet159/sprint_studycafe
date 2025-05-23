@@ -14,9 +14,11 @@
 </head>
 <body>
 	<%
-		String seatsId = request.getParameter("seatsId");
-		List<Ticket> ticketList = Ticket.getTestList();
-		request.setAttribute("ticketList" ,ticketList);
+		//String seatsId = request.getParameter("seatsId");
+		//List<Ticket> ticketList = Ticket.getTestList();
+		//request.setAttribute("ticketList" ,ticketList);
+		
+		List<Ticket> resultList = (List<Ticket>) request.getAttribute("resultList");
 	%>
 
 	<!-- header 포함하기 -->
@@ -29,8 +31,8 @@
 
 			<div class="container text-center">
 				<%
-					for (int i = 0 ; i < ticketList.size() ; i++  ) {
-						Ticket ticket = ticketList.get(i);
+					for (int i = 0 ; i < resultList.size() ; i++  ) {
+						Ticket ticket = resultList.get(i);
 				%>
 				
 					<% if (i % 3 == 0) { %>
@@ -51,7 +53,7 @@
 							</div>
 						</div>
 						
-					<% if (i % 3 == 2 || i == ticketList.size() -1 ) { %>
+					<% if (i % 3 == 2 || i == resultList.size() -1 ) { %>
 					</div>
 					<% } %>
 				<% } %>
@@ -60,8 +62,9 @@
 				<div class="row">
 					<div class="col-12">
 						<form action="<%= Common.getUrl(Common.RESERVATION, Common.ORDER) %>" method="post">
-							<input type="hidden" value="1" id="seatsNo" name="seatsNo"/>
-							<input type="submit" class="btn btn-cyan-700 w-100 mb-3" value="구매"/>
+							<input type="hidden" value="${seatId}" id="seatId" name="seatId" />
+							<input type="hidden" value="<%= resultList.get(0).getTicketId() %>" id="ticketId" name="ticketId" />
+							<input type="submit" class="btn bt>n-cyan-700 w-100 mb-3" value="구매"/>
 						</form>
 					</div>
 				</div>
@@ -88,8 +91,9 @@
 			// 클릭된 .col 내부의 input[type=hidden]의 값을 가져옴
 			let ticketId = $(this).find('input[type=hidden]').val();
 
-			// 그 값을 #seatsNo의 value로 설정
-			$('#seatsNo').val(ticketId);
+			// 그 값을 #ticketId의 value로 설정
+			$('#ticketId').val(ticketId);
+			alert(ticketId);
 
 			// 기존 선택된 카드들 클래스 변경: text-bg-info -> border-info
 	        $('.card.btn-cyan-700-55').removeClass('btn-cyan-700-55'); // .addClass('border-info');

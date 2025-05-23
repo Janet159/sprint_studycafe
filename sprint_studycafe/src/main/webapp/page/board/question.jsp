@@ -1,15 +1,18 @@
-<%@ include file="/alljsp/jstl.jsp" %>
+<%@ page import="Config.Common"%>
 <%@ include file="/alljsp/common.jsp" %>
+<%@ include file="/alljsp/jstl.jsp" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>1:1 문의</title>
-<%-- 	<jsp:include page="/layout/meta.jsp" /> --%>
-<%-- 	<jsp:include page="/layout/link.jsp" /> --%>
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-		<link href="<%= root%>/allcss/all.css" rel="stylesheet">
+	<title><%= Common.TITLE %></title>
+	<jsp:include page="/alljsp/link.jsp" />
+  	<style>
+  	body {
+  		padding-bottom: 100px;
+    	 }
+  	</style>
 </head>
 <body>
 	<jsp:include page="/alljsp/header.jsp" />
@@ -18,8 +21,8 @@
   <div class="container my-5">
     <div class="row justify-content-center">
       <div class="col-md-8">
-        <h1 class="text-center mb-5">1:1 문의</h1>
-        <h5 class="text-center mt-3 mb-3">문의내용</h5>
+        <h1 class="text-center mb-6 fs-50">1:1 문의</h1>
+        <h5 class="text-center mt-3 mb-5 fs-25">문의내용</h5>
 
         <div class="mb-5">
 
@@ -44,14 +47,14 @@
           <div class="row mb-3 border-bottom pb-3">
             <label for="title" class="col-sm-2 col-form-label">제목</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" id="title" placeholder="Placeholder">
+              <input type="text" class="form-control" id="title" placeholder="제목을 입력하세요.">
             </div>
           </div>
 
           <div class="row mb-3 border-bottom pb-3">
             <label for="content" class="col-sm-2 col-form-label">내용</label>
             <div class="col-sm-10">
-              <textarea class="form-control" id="content" rows="6" placeholder="Placeholder" style="resize: none;"></textarea>
+              <textarea class="form-control" id="content" rows="6" placeholder="내용을 입력하세요." style="resize: none;"></textarea>
             </div>
           </div>
 
@@ -62,13 +65,13 @@
           <div class="row mb-3">
             <label for="phone" class="col-sm-2 col-form-label">전화번호</label>
             <div class="col-sm-4">
-              <input type="text" class="form-control" id="phone" placeholder="">
+              <input type="text" class="form-control" id="phone" placeholder="-없이 입력하세요.">
             </div>
           </div>
         </div>
 
         <div class="mb-4 mt-5">
-          <h6 class="fw-bold">개인정보 수집에 대한 동의</h6>
+          <h6 class="fw-bold mt-10">개인정보 수집에 대한 동의</h6>
           <p class="small text-muted">
             문의를 통해 수집된 개인정보는 문의처리를 위해서만 사용되며, 수집된 개인정보는 문의처리 목적 외에 사용되지 않습니다.
           </p>

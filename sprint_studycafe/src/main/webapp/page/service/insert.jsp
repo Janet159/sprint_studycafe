@@ -16,17 +16,17 @@
 
 <body>
 	<%
-		List<Type> typeList = Type.getTestList();
-		request.setAttribute("typeList" ,typeList);
+		//List<Type> typeList = Type.getTestList();
+		//request.setAttribute("typeList" ,typeList);
 	%>
 	<!-- header 포함하기 -->
 	<jsp:include page="/alljsp/header.jsp" />
 	<%-- [Contents] ######################################################### --%>
 
 	<main>
-		<div class="container">
+		<div class="container mb-10">
 			<div class="px-4 pt-5 my-5 text-center border-bottom">
-				<h2 class="mb-4">편의 시설 등록</h2>
+				<h2 class="mb-4 fs-25">편의 시설 등록</h2>
 			</div>
 
 			<form action="<%= Common.getUrl(Common.SERVICE, Common.INSERT) %>" method="post">
@@ -34,7 +34,7 @@
 <div class="d-flex flex-column mb-3">
 	<div class="p-2">
 		<div class="input-group mb-3">
-			<span class="input-group-text" id="inputGroup-sizing-default">구분</span>
+			<span class="input-group-text fs-25" id="inputGroup-sizing-default">구분</span>
 			<c:forEach var="type" items="${typeList}" varStatus="index">
 				<div class="form-check">
 				<c:choose>
@@ -52,21 +52,21 @@
 	</div>
 	<div class="p-2">
 		<div class="input-group mb-3">
-			<span class="input-group-text" id="inputGroup-sizing-default">종류</span>
+			<span class="input-group-text fs-25" id="inputGroup-sizing-default">종류</span>
 			<input type="text" class="form-control" aria-label="Sizing example input" name="serviceId"
 				aria-describedby="inputGroup-sizing-default">
 		</div>
 	</div>
 	<div class="p-2">
 		<div class="input-group mb-3">
-			<span class="input-group-text" id="inputGroup-sizing-default">위치</span>
+			<span class="input-group-text fs-25" id="inputGroup-sizing-default">위치</span>
 			<input type="text" class="form-control" aria-label="Sizing example input" name="location"
 				aria-describedby="inputGroup-sizing-default">
 		</div>
 	</div>
 	<div class="p-2">
 		<div class="input-group mb-3">
-			<input type="submit" class="btn btn-cyan-700 w-100 mb-3" value="등록" />
+			<input type="submit" class="btn btn-cyan-700 w-100 mb-10 fs-30" value="등록" />
 		</div>
 	</div> 
 </div>

@@ -83,7 +83,7 @@
       </div>
 
     
-    <button class="btn btn-main">메인</button>
+    <button class="btn btn-main btn-cyan-700">메인</button>
   </div>
 	
 	

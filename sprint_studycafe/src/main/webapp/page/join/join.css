@@ -8,7 +8,8 @@
       max-width: 600px;
       margin: 0 auto;
       background-color: white;
-      position: relative;
+  position: static !important;
+      z-index: 0 !important;
     }
     .form-box {
       border: 1px solid #ddd;
@@ -21,7 +22,7 @@
       height: auto;
     }
     .logo-wrapper {
-      position: absolute;
+  position: static !important;
       top: 25px;
       left: 25px;
     }
@@ -41,11 +42,7 @@
       color: white;
       border: none;
     }
-    .btn-cancel {
-      background-color: white;
-      border: 1px solid #ccc;
-      color: #333;
-    }
+
     .label {
       white-space: nowrap;
     }

@@ -48,8 +48,8 @@ public class BoardServlet extends HttpServlet {
 		} else if (path.equals("/insert") || path.equals("/insert.jsp")) {
 			// 게시글 등록 화면
 
-			// 이동 할 페이지
-			page = urlJsp + "insert.jsp";
+			// 이동 할 페이지 
+			page = "/page/board/insert.jsp";
 
 		} else if (path.equals("/read") || path.equals("/read.jsp")) {
 			// 문의 사항 조회 화면
@@ -98,7 +98,7 @@ public class BoardServlet extends HttpServlet {
 		System.out.println("BoardServlet : POST : " + path);
 
 		if (path.equals("/insert") || path.equals("/insert.jsp")) {
-			// 문의 사항 등록 처리
+			// 문의 사항 등록 처리 
 
 			// 등록 할 데이터 화면에서 가져오기
 			String title = request.getParameter("title");
@@ -147,7 +147,7 @@ public class BoardServlet extends HttpServlet {
 				response.sendRedirect(root + url + "update.jsp?error=true");
 			}
 
-		} else if (path.equals("/delete") || path.equals("/update.jsp")) {
+		} else if (path.equals("/delete") || path.equals("/delete.jsp")) {
 			// 문의 사항 삭제 처리
 
 			// 삭제 할 데이터 화면에서 가져오기
