@@ -1,6 +1,7 @@
 package Service;
 
 import java.util.List;
+import java.util.Map;
 
 import DTO.Seats;
 import DTO.Ticket;
@@ -10,10 +11,13 @@ public interface CommonService {
 	
 	/** 타입 목록 조회 */ 
 	List<Type> getTypeList(String type);
+	Map<Integer, Type> getTypeMap(String type);
 
 	/** 이용권 목록 조회 */
 	List<Ticket> getTicketList();
+	Map<String, Ticket> getTicketMap();
 	
 	/** 좌석 관리 */
 	List<Seats> getSeatList();
+	Map<String, Seats> getSeatMap();
 }

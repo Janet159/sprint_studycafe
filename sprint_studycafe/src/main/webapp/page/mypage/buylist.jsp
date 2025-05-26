@@ -1,9 +1,9 @@
-<%@page import="DTO.Reservation"%>
-<%@page import="Config.Common"%>
 <%@ include file="/alljsp/jstl.jsp" %>
-<%@page import="DTO.Resevation"%>
-<%@page import="java.util.List"%>
 <%@ include file="/alljsp/common.jsp" %>
+
+<%@page import="Config.Common"%>
+<%@page import="java.util.List"%>
+<%@page import="DTO.Reservation"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>

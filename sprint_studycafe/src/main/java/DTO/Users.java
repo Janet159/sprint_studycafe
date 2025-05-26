@@ -31,6 +31,10 @@ public class Users {
 	private boolean admin_kbn;
 	/** 가입날짜 */
 	private Date createdAt;
+	
+	public boolean getAdminKbn() {
+		return this.admin_kbn;
+	}
 
 	public static List<Users> getTestList() {
 		List<Users> resultList = new ArrayList<Users>();

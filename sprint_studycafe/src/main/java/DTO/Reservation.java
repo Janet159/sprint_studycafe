@@ -15,7 +15,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Table("Resevation")
+@Table("Reservation")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -31,18 +31,27 @@ public class Reservation {
 	/** 티켓 아이디 */
 	private String ticketId;
 	/** 구매 시간 */
+//	private LocalDateTime orderTime;
 	private Date orderTime;
 	/** 시작 시간 */
+//	private LocalDateTime startTime;
 	private Date startTime;
 	/** 종료 시간 */
+//	private LocalDateTime endTime;
 	private Date endTime;
 
 	@Column(exist = false)
 	private String ticketName;
 
+	@Column(exist = false)
 	private String userName;
 
+	@Column(exist = false)
 	private String seatName;
+	
+	
+	@Column(exist = false)
+	private Users user;  
 
 	public static List<Reservation> getTestList() {
 		List<Reservation> resultList = new ArrayList<Reservation>();

@@ -1,4 +1,6 @@
-<%@ page import="Config.Common"%>
+<%@page import="Config.Common"%>
+<%@page import="java.util.List"%>
+<%@ include file="/alljsp/jstl.jsp" %>
 <%@ include file="/alljsp/common.jsp" %>
 <%@ include file="/alljsp/jstl.jsp" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
