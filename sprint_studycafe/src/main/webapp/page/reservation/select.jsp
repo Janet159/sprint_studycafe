@@ -25,9 +25,16 @@
             </div>
             
             <div class="read-item mb-3 row">
+                <label class="col-4 col-form-label text-center fs-20">좌석 번호</label>
+                <div class="col-8">
+                    <div class="info-box">${dto.seatName}</div>
+                </div>
+            </div>
+            
+            <div class="read-item mb-3 row">
                 <label class="col-4 col-form-label text-center fs-20">선택 시간</label>
                 <div class="col-8">
-                    <div class="info-box">${dto.ticketId}</div>
+                    <div class="info-box">${dto.ticketName}</div>
                 </div>
             </div>
             
@@ -46,7 +53,7 @@
             </div>
             
             
-            <button class="ok-btn btn btn-cyan-700 fw-semibold ">확인</button>
+            <a href="<%= Common.getUrl(Common.RESERVATION) %>" class="ok-btn btn btn-cyan-700 fw-semibold ">확인</a>
             
         </div>
         </div>

@@ -10,7 +10,6 @@ import com.alohaclass.jdbc.annotation.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Table("board")
@@ -18,7 +17,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Getter
 public class Board {
 
 	@Pk
@@ -33,7 +31,7 @@ public class Board {
 	/** 내용 */
 	private String content;
 	/** 공개여부 */
-	private boolean private_kbn;
+	private boolean privateKbn;
 	/** 전화번호 */
 	private String phonenumber;
 	/** 등록일자 */
@@ -41,17 +39,11 @@ public class Board {
 	/** 수정일자 */
 	private Date updatedAt;
 	/** 답변여부 */
-	private boolean answered_kbn;
+	private boolean answeredKbn;
 	
-	public boolean isAnsweredKbn() {
-	    return answered_kbn; 
+	public String getIsAnswered() {
+		return String.valueOf(answeredKbn);
 	}
-	
-
-	
-//	public String getIsAnswered() {
-//		return String.valueOf(answered_kbn);
-//	}
 
 	public static List<Board> getTestList() {
 		List<Board> resultList = new ArrayList<Board>();

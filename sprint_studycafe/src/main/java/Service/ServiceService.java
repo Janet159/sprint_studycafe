@@ -2,7 +2,6 @@ package Service;
 
 import java.util.List;
 
-import DTO.Board;
 import DTO.Service;
 
 public interface ServiceService {

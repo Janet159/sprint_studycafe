@@ -64,7 +64,7 @@
 						<form action="<%= Common.getUrl(Common.RESERVATION, Common.ORDER) %>" method="post">
 							<input type="hidden" value="${seatId}" id="seatId" name="seatId" />
 							<input type="hidden" value="<%= resultList.get(0).getTicketId() %>" id="ticketId" name="ticketId" />
-							<input type="submit" class="btn bt>n-cyan-700 w-100 mb-3" value="구매"/>
+							<input type="submit" class="btn btn-cyan-700 w-100 mb-3" value="구매"/>
 						</form>
 					</div>
 				</div>
@@ -93,7 +93,6 @@
 
 			// 그 값을 #ticketId의 value로 설정
 			$('#ticketId').val(ticketId);
-			alert(ticketId);
 
 			// 기존 선택된 카드들 클래스 변경: text-bg-info -> border-info
 	        $('.card.btn-cyan-700-55').removeClass('btn-cyan-700-55'); // .addClass('border-info');

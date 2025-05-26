@@ -81,12 +81,22 @@ public class Common {
 		return formatter.format(date);     
 	}
 	
-//	public static String getHourMinuteFromDate(Timestamp date) {
-//		if (date == null) {
-//	        return "";
-//	    }
-//	    return new SimpleDateFormat("HH:mm").format(date);     
-//	}
+	public static String getRemainingTime(Date date) {
+		if (date == null) return "";
+
+	    // 현재 시간
+	    Date now = new Date();
+
+	    // 차이 (밀리초)
+	    long diffInMillis = Math.abs(now.getTime() - date.getTime());
+
+	    // 시간과 분 계산
+	    long diffInMinutes = diffInMillis / (1000 * 60);
+	    long hours = diffInMinutes / 60;
+	    long minutes = diffInMinutes % 60;
+
+	    return String.format("%02d시간 %02d분", hours, minutes);
+	}
 
 	/**
 	 * 지정된 두 개의 시간의 차이를 HH:mm 형식의 문자열로 리턴

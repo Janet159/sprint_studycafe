@@ -20,7 +20,6 @@
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3165.718723172975!2d126.71806287660146!3d37.490963472058205!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357b7c4657c1fbbb%3A0xdc62da8af7b28c8a!2z7J247LKc6rSR7Jet7IucIOu2gO2Pieq1rCDrtoDtj4nrj5kgNTM0LTQ4!5e0!3m2!1sko!2skr!4v1747728552950!5m2!1sko!2skr"
                         width="800"
                         height="450"
-                        style="border: 0; pointer-events: none;"
                         allowfullscreen=""
                         loading="lazy"
                         referrerpolicy="no-referrer-when-downgrade">

@@ -2,9 +2,7 @@ package Service;
 
 import java.util.List;
 
-import DAO.BoardDAO;
 import DAO.ServiceDAO;
-import DTO.Board;
 import DTO.Service;
 
 public class ServiceServiceImpl implements ServiceService {

@@ -4,7 +4,10 @@ import java.io.IOException;
 import java.util.List;
 
 import Config.Common;
+<<<<<<< HEAD
 import DTO.Answer;
+=======
+>>>>>>> branch 'main' of https://github.com/Janet159/sprint_studycafe.git
 import DTO.Board;
 import DTO.Type;
 import DTO.Users;
@@ -29,8 +32,12 @@ public class BoardServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private BoardService service = new BoardServiceImpl();
+<<<<<<< HEAD
 	private CommonService commonservice = new CommonServiceImpl(); 
 	private AnswerService answerservice = new AnswerServiceImpl();
+=======
+	private CommonService comService = new CommonServiceImpl(); 
+>>>>>>> branch 'main' of https://github.com/Janet159/sprint_studycafe.git
 	private final String urlJsp = "/page/board/";
 	private final String url = "/board/";
 
@@ -66,14 +73,28 @@ public class BoardServlet extends HttpServlet {
 		} else if (path.equals("/read") || path.equals("/read.jsp")) {
 			// 문의 사항 조회 화면
 
+<<<<<<< HEAD
 			// 조회 할 데이터 PK(KEY)
 			int no = Integer.parseInt(request.getParameter("no"));
 			List<Type> typelist = commonservice.getTypeList(Common.BOARD);  
 			// System.out.println(typelist);
+=======
+>>>>>>> branch 'main' of https://github.com/Janet159/sprint_studycafe.git
 			// DB에서 데이터 조회
+			// 1. 타입
+			List<Type>  a = comService.getTypeList(Common.BOARD);
+			
+			// 2. Board 데이터
+			int no = Integer.parseInt(request.getParameter("no"));
+			// 조회 할 데이터 PK(KEY)
 			Board result = service.select(no);
 			
+<<<<<<< HEAD
 			Answer answer = answerservice.selectBy(no);
+=======
+			// 3. 답변 데이터
+			// 답변
+>>>>>>> branch 'main' of https://github.com/Janet159/sprint_studycafe.git
 
 			// 화면에 표시를 위해 request 에 담기
 			request.setAttribute("result", result);
@@ -134,8 +155,13 @@ public class BoardServlet extends HttpServlet {
 
 		String root = request.getContextPath();
 		String path = request.getPathInfo();
+<<<<<<< HEAD
 //		String userId = ((Users) request.getSession().getAttribute("loginUser")).getUserId();
 		String userId = "qwer" ;
+=======
+		String userId = ((Users) request.getSession().getAttribute("loginUser")).getUser_id();
+
+>>>>>>> branch 'main' of https://github.com/Janet159/sprint_studycafe.git
 		System.out.println("BoardServlet : POST : " + path);
 
 		if (path.equals("/insert") || path.equals("/insert.jsp")) {
