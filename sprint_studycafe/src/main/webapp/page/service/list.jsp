@@ -14,11 +14,11 @@
     <link href="<%= root%>/allcss/list.css" rel="stylesheet">
 </head>
 <body>
-	<% 
+<%-- 	<% 
 		role = true; 
 		// List<Service> serviceList = Service.getTestList();
 		// request.setAttribute("serviceList" ,serviceList);
-	%>
+	%> --%>
 	<%-- header 포함하기 --%>
 	<jsp:include page="/alljsp/header.jsp" />
 	<%-- [Contents] ######################################################### --%>
@@ -50,12 +50,12 @@
 	                    <tr class="text-center">
 	                    <% if (role) { %>
 	                    	<td><a href="<%= Common.getUrl(Common.SERVICE, Common.UPDATE) %>?no=${service.no}">${service.no}</a></td>
-	                    	<td><a href="<%= Common.getUrl(Common.SERVICE, Common.UPDATE) %>?no=${service.no}">${service.typeNo}</a></td>
+	                    	<td><a href="<%= Common.getUrl(Common.SERVICE, Common.UPDATE) %>?no=${service.no}">${service.typeName}</a></td>
 	                    	<td><a href="<%= Common.getUrl(Common.SERVICE, Common.UPDATE) %>?no=${service.no}">${service.serviceId}</a></td>
 	                    	<td><a href="<%= Common.getUrl(Common.SERVICE, Common.UPDATE) %>?no=${service.no}">${service.location}</a></td>
 	                    <%  } else { %>
 	                    	<td>${service.no}</td>
-	                    	<td>${service.typeNo}</td>
+	                    	<td>${service.typeName}</td>
 	                    	<td>${service.serviceId}</td>
 	                    	<td>${service.location}</td>
 	                    <%  } %>

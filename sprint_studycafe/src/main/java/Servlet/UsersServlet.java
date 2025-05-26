@@ -10,6 +10,7 @@ import Service.UsersServiceImpl;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -150,8 +151,23 @@ public class UsersServlet extends HttpServlet {
 				session.setAttribute("loginId", user.getUser_id());
 				session.setAttribute("loginUser", loginUser);
 				session.setAttribute("role", loginUser.getAdminKbn());
-				response.sendRedirect(root + "/main.jsp");
+				
+			    // 아이디 저장 체크 여부 확인
+			    String saveId = request.getParameter("saveId");
 
+			    Cookie cookie = new Cookie("savedId", user_id);
+			    cookie.setPath("/");
+
+			    if (saveId != null) {
+			        cookie.setMaxAge(60 * 60 * 24 * 7); // 7일간 저장
+			    } else {
+			        cookie.setMaxAge(0); // 삭제
+			    }
+
+			    response.addCookie(cookie);
+				
+				response.sendRedirect(root+"/main.jsp");
+				
 			}
 			// 로그인 실패
 			else {

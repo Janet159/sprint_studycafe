@@ -3,6 +3,18 @@
 <%@ include file="/alljsp/jstl.jsp" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+    // 저장된 쿠키 읽기
+    String savedId = "";
+    Cookie[] cookies = request.getCookies();
+    if (cookies != null) {
+        for (Cookie c : cookies) {
+            if (c.getName().equals("savedId")) {
+                savedId = c.getValue();
+            }
+        }
+    }
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,14 +30,15 @@
 	<form action="<%= root %>/users/login" method="post">
 		<div class="login-title">Login</div>
 		<div class="mb-3">
-			<input type="text" class="form-control" name="user_id" placeholder="아이디">
+			<input type="text" class="form-control" name="user_id"  value="<%= savedId %>" placeholder="아이디">
 		</div>
 		<div class="mb-2">
 			<input type="password" class="form-control" name="password" placeholder="비밀번호">
 		</div>
 		<div class="mb-4 text-end">
 			<div class="form-check d-inline-block">
-			<input class="form-check-input" type="checkbox" id="saveId">
+			<input class="form-check-input" type="checkbox" name="saveId" id="saveId"
+			       <%= !savedId.equals("") ? "checked" : "" %>>
 			<label class="form-check-label" for="saveId">
 			  아이디 저장
 			</label>

@@ -25,6 +25,7 @@ insert into ticket values
 ('3',	'4시간', '7000'	,'4'),
 ('4',	'6시간', '9000'	,'6');
 
+<<<<<<< HEAD
 insert into users values
 ('admin',	'123456',	'관리자',	'test@nate.com',	'1',	'2025-05-23 10:03:23'),
 ('test	','123456',	'테스터',	'test@nate.com',	'0',	'2025-05-23 10:04:02');
@@ -50,3 +51,45 @@ insert into seats VALUES
 
 insert into reservation (user_id, seat_id, ticket_id, order_time, start_time, end_time)
 values ('admin'	,'1'	,'1'	,'2025-05-23 10:05:10',	'2025-05-23 10:23:00',	'2025-08-23 11:30:00')
+
+insert into users (user_id, password, name, email, admin_kbn) values
+('admin',	'123456',	'관리자',	'test@nate.com',	'1',	'2025-05-23 10:03:23'),
+('test	','123456',	'테스터',	'test@nate.com',	'0',	'2025-05-23 10:04:02'),
+  ('admin01', 'admin', '주자영', 'admin01@test.com', true),
+  ('admin02', 'admin', '장예지', 'admin02@test.com', true),
+  ('admin03', 'admin', '이윤태', 'admin03@test.com', true),
+  ('test01', '1234', '홍길동', 'hong@test.com', false),
+  ('user02', 'abcd', '김철수', 'chulsoo@test.com', false),
+  ('user03', 'qwer', '이영희', 'younghee@test.com', false),
+  ('dev99', 'devpass', '박개발', 'dev@test.com', false);
+
+insert into seats VALUES
+(1, 'A-01', 1),
+(2, 'A-02', 1),
+(3, 'A-03', 1),
+(4, 'A-04', 1),
+(5, 'B-01', 1),
+(6, 'B-02', 1),
+(7, 'B-03', 1),
+(8, 'B-04', 1),
+(9, 'C-01', 1),
+(10, 'C-02', 1),
+(11, 'C-03', 1),
+(12, 'C-04', 1),
+(13, 'D-01', 1),
+(14, 'D-02', 1),
+(15, 'D-03', 1),
+(16, 'D-04', 1),
+(17, 'D-05', 0);
+
+insert into reservation (user_id, seat_id, ticket_id, order_time, start_time, end_time)
+values ('admin'	,'1'	,'1'	,'2025-05-23 10:05:10',	'2025-05-23 10:23:00',	'2025-08-23 11:30:00')
+
+INSERT INTO users (user_id, password, name, email, admin_kbn)
+VALUES 
+  ('test01', '1234', '홍길동', 'hong@test.com', false),
+  ('admin01', 'admin', '관리자', 'admin@test.com', true),
+  ('user02', 'abcd', '김철수', 'chulsoo@test.com', false),
+  ('user03', 'qwer', '이영희', 'younghee@test.com', false),
+  ('dev99', 'devpass', '박개발', 'dev@test.com', true);
+
