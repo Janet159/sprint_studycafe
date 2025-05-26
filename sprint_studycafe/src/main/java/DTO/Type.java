@@ -20,7 +20,6 @@ public class Type {
 
 	@Pk
 	/** 구분 */
-	
 	private int no;
 	/** 
 	 * 구분자

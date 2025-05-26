@@ -83,7 +83,7 @@
                   <li><a class="dropdown-item d-block px-2 text-start" href="<%= root %>/page/mypage/seatlist.jsp">좌석현황</a></li>
                   <li><a class="dropdown-item d-block px-2 text-start" href="<%= root %>/users/userlist.jsp">회원목록</a></li>
 	    	    <% } else{ %> 
-                  <li><a class="dropdown-item d-block px-2 text-start" href="<%= root %>/page/mypage/userread.jsp">회원정보</a></li>
+                  <li><a class="dropdown-item d-block px-2 text-start" href="<%= root %>/page/users/userread.jsp">회원정보</a></li>
                   <li><a class="dropdown-item d-block px-2 text-start" href="<%= root %>/page/mypage/seatread.jsp">좌석정보</a></li>
                   <li><a class="dropdown-item d-block px-2 text-start" href="<%= root %>/page/mypage/quelist.jsp">문의내역</a></li>
                   <li><a class="dropdown-item d-block px-2 text-start" href="<%= root %>/page/mypage/buylist.jsp">구매내역</a></li>

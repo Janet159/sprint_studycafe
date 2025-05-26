@@ -108,10 +108,10 @@ public class ReservationServlet extends HttpServlet {
 		String root = request.getContextPath();
 		String path = request.getPathInfo();
 
-		String userId = "";
+		String userId = "test";
 		Object attribute = request.getSession().getAttribute("loginUser");
 		if (null != attribute) {
-			userId = ((Users) attribute).getUserId();
+			userId = ((Users) attribute).getUser_id();
 		}
 
 		System.out.println("ReservationServlet : POST : " + path);
@@ -136,7 +136,7 @@ public class ReservationServlet extends HttpServlet {
 			Date endTime = Date.from(endDate.atZone(zone).toInstant());
 
 			// 등록 할 데이터 만들기
-			Reservation dto = Reservation.builder().no(0).userId("test").seatId(seatId).ticketId(ticketId)
+			Reservation dto = Reservation.builder().no(0).userId(userId).seatId(seatId).ticketId(ticketId)
 					.orderTime(orderTime).startTime(startTime).endTime(endTime).build();
 
 			System.out.println("orderTime : " + dto.getOrderTime());

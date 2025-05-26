@@ -4,12 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-import Config.Common;
-import DTO.Board;
-import DTO.Type;
 import DTO.Users;
-import Service.CommonService;
-import Service.CommonServiceImpl;
 import Service.UsersService;
 import Service.UsersServiceImpl;
 import jakarta.servlet.RequestDispatcher;
@@ -28,9 +23,8 @@ public class UsersServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private UsersService users = new UsersServiceImpl();
-	
-	private final String urlJsp = "/page/users/" ;
 
+	private final String urlJsp = "/page/users/";
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -66,24 +60,26 @@ public class UsersServlet extends HttpServlet {
 			request.setAttribute("result", result);
 
 			// 이동 할 페이지 
-			page = "/page/users/usersread.jsp";
+			page = urlJsp + "usersread.jsp";
 
-		}		// /idCheck - 아이디 중복 확인
-		else if(path.contains("/idCheck")){
+		} else if (path.contains("/idCheck")) {
+			// /idCheck - 아이디 중복 확인
+
 			System.out.println("아이디 중복 확인...");
 			String userId = request.getParameter("userId");
 			boolean check = users.idCheck(userId);
 			response.getWriter().print(check);
 			return;		// 안 멈추면 계속 /users 로 돌아감
-		}
-		
-		// /logout - 로그아웃
-		else if(path.equals("/logout")) {
+
+		} else if (path.equals("/logout")) {
+			// /logout - 로그아웃
+
 			System.out.println("로그아웃...");
 			HttpSession session = request.getSession();
 			session.invalidate();
 			response.sendRedirect(root + "/main.jsp");
 			return;
+
 		}
 
 		// 화면 이동
@@ -96,7 +92,6 @@ public class UsersServlet extends HttpServlet {
 
 		String root = request.getContextPath();
 		String path = request.getPathInfo();
-		//String userId = ((Users) request.getSession().getAttribute("loginUser")).getUserId();
 
 		System.out.println("UsersServlet : POST : " + path);
 
@@ -106,28 +101,23 @@ public class UsersServlet extends HttpServlet {
 			// 등록 할 데이터 화면에서 가져오기
 			String userId = request.getParameter("userId");
 			String password = request.getParameter("password");
-		    String confirmPassword = request.getParameter("confirmPassword");
+			String confirmPassword = request.getParameter("confirmPassword");
 			String name = request.getParameter("name");
 			String email = request.getParameter("email");
 
-		    if (!password.equals(confirmPassword)) {
-		        response.setContentType("text/html; charset=UTF-8");
-		        PrintWriter out = response.getWriter();
-		        out.println("<script>");
-		        out.println("alert('비밀번호가 일치하지 않습니다.');");
-		        out.println("history.back();"); // 이전 페이지로 돌아가기
-		        out.println("</script>");
-		        out.close();
-		        return;
-		    }
-			
+			if (!password.equals(confirmPassword)) {
+				response.setContentType("text/html; charset=UTF-8");
+				PrintWriter out = response.getWriter();
+				out.println("<script>");
+				out.println("alert('비밀번호가 일치하지 않습니다.');");
+				out.println("history.back();"); // 이전 페이지로 돌아가기
+				out.println("</script>");
+				out.close();
+				return;
+			}
+
 			// 등록 할 데이터 만들기
-			Users dto = Users.builder()
-					.user_id(userId)
-				    .password(password)
-					.name(name)
-					.email(email)
-					.build();
+			Users dto = Users.builder().user_id(userId).password(password).name(name).email(email).build();
 
 			// DB에 등록하기
 			Users resultDto = users.insert(dto);
@@ -136,23 +126,22 @@ public class UsersServlet extends HttpServlet {
 			if (resultDto != null) {
 				System.out.println("등록 성공");
 				// 등록 성공시 이동할 페이지
-				response.sendRedirect(root+"/main.jsp");
+				response.sendRedirect(root + "/main.jsp");
 			} else {
 				System.out.println("등록 실패");
 				// 등록 실패시 이동할 페이지
-				response.sendRedirect(root + "/page/users/join.jsp");
+				response.sendRedirect(root + urlJsp + "join.jsp");
 			}
-		}		// /login - 로그인
-		else if(path.equals("/login") || path.equals("/login.jsp")) {
+
+		} else if (path.equals("/login") || path.equals("/login.jsp")) {
+			// /login - 로그인
+
 			String user_id = request.getParameter("user_id");
 			String password = request.getParameter("password");
-			Users user = Users.builder()
-							.user_id(user_id)
-							.password(password)
-							.build();
+			Users user = Users.builder().user_id(user_id).password(password).build();
 			boolean result = users.login(user);
 			// 로그인 성공
-			if(result) {
+			if (result) {
 				// 회원 조회
 				Users loginUser = users.selectByUsername(user_id);
 				loginUser.setPassword(null);
@@ -160,13 +149,13 @@ public class UsersServlet extends HttpServlet {
 				HttpSession session = request.getSession();
 				session.setAttribute("loginId", user.getUser_id());
 				session.setAttribute("loginUser", loginUser);
-				session.setAttribute("role", loginUser.isAdmin_kbn());
-				response.sendRedirect(root+"/main.jsp");
-				
+				session.setAttribute("role", loginUser.getAdminKbn());
+				response.sendRedirect(root + "/main.jsp");
+
 			}
 			// 로그인 실패
 			else {
-			response.sendRedirect(root + "/page/users/login.jsp?error=true");
+				response.sendRedirect(root + urlJsp + "login.jsp?error=true");
 			}
 		}
 	}
