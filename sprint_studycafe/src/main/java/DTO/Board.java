@@ -31,7 +31,7 @@ public class Board {
 	/** 내용 */
 	private String content;
 	/** 공개여부 */
-	private boolean private_kbn;
+	private boolean privateKbn;
 	/** 전화번호 */
 	private String phonenumber;
 	/** 등록일자 */
@@ -39,10 +39,10 @@ public class Board {
 	/** 수정일자 */
 	private Date updatedAt;
 	/** 답변여부 */
-	private boolean answered_kbn;
+	private boolean answeredKbn;
 	
 	public String getIsAnswered() {
-		return String.valueOf(answered_kbn);
+		return String.valueOf(answeredKbn);
 	}
 
 	public static List<Board> getTestList() {

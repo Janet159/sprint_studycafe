@@ -25,6 +25,7 @@ public class ReservationDAO extends BaseDAOImpl<Reservation>{
 		sql.append(" ) AS RE");
 		sql.append(" ON SEATS.SEAT_ID = RE.SEAT_ID");
 		sql.append(" WHERE SEATS.USING_KBN = " + Common.TRUE);
+		sql.append(" ORDER BY CAST(SEATS.SEAT_ID AS UNSIGNED)");
 		
 		List<Reservation> list = new ArrayList<Reservation>();
 		try {

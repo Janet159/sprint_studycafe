@@ -3,10 +3,14 @@ package Servlet;
 import java.io.IOException;
 import java.util.List;
 
+import Config.Common;
 import DTO.Board;
+import DTO.Type;
 import DTO.Users;
 import Service.BoardService;
 import Service.BoardServiceImpl;
+import Service.CommonService;
+import Service.CommonServiceImpl;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -22,6 +26,7 @@ public class BoardServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private BoardService service = new BoardServiceImpl();
+	private CommonService comService = new CommonServiceImpl(); 
 	private final String urlJsp = "/page/board/";
 	private final String url = "/board/";
 
@@ -54,11 +59,17 @@ public class BoardServlet extends HttpServlet {
 		} else if (path.equals("/read") || path.equals("/read.jsp")) {
 			// 문의 사항 조회 화면
 
-			// 조회 할 데이터 PK(KEY)
-			int no = Integer.parseInt(request.getParameter("no"));
-
 			// DB에서 데이터 조회
+			// 1. 타입
+			List<Type>  a = comService.getTypeList(Common.BOARD);
+			
+			// 2. Board 데이터
+			int no = Integer.parseInt(request.getParameter("no"));
+			// 조회 할 데이터 PK(KEY)
 			Board result = service.select(no);
+			
+			// 3. 답변 데이터
+			// 답변
 
 			// 화면에 표시를 위해 request 에 담기
 			request.setAttribute("result", result);

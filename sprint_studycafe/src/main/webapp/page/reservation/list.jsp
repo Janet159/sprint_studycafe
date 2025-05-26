@@ -21,7 +21,7 @@
 	<%-- [Contents] ######################################################### --%>
 	
 	<%
-		role = false ;
+		role = true ;
 		String title = "" ;		
 		String usingSeat1 = "사용중" ;
 		String usingSeat2 = "" ;
@@ -44,7 +44,7 @@
 			emptySeat1 = "선택 가능" ;
 			emptySeat2 = "선택 가능한 좌석입니다.<br>" ;
 			usingSeat2 = "현재 사용 중인 좌석입니다." ;
-			usingSeat3 = " 이후 선택 가능합니다." ;
+			usingSeat3 = " 후 선택 가능합니다." ;
 		}
 
 		Object att = request.getAttribute("resultList") ;
@@ -101,8 +101,7 @@
 								 <%= Common.getHourMinuteFromDate(seat.getStartTime()) %> ~ <%= Common.getHourMinuteFromDate(seat.getEndTime()) %></p>
 							<% } else { /* 사용자 일 때 */ %>
 							<p class="card-text"><%= usingSeat2 %><br>
-							<%= seat.getEndTime() %>
-								<%-- Common.getHourMinuteFromDate(seat.getEndTime()) --%><%= usingSeat3 %></p>
+								<%= Common.getRemainingTime(seat.getEndTime())%><%= usingSeat3 %></p>
 							<% } %>
 						</div>
 					</div>

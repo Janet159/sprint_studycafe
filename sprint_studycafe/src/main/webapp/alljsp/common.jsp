@@ -4,12 +4,10 @@
 	String root = request.getContextPath();
 	// 로그인 아이디 (세션)
 	String loginId = (String) session.getAttribute("loginId");
-	
-	//로그인 됬을 경우
-	loginId = "admin123";
+
 	
 	// 관리자 권한
-	boolean role = true;
+	boolean role =(boolean) session.getAttribute("role");
 	
 	pageContext.setAttribute("root", root);
 %>

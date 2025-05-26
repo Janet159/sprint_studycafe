@@ -49,7 +49,7 @@
          <tr>
          	<td><%= seat.getSeatName()%></td>
          	<td><%= seat.getSeatId() %></td>
-         	<td><%= seat.getUsing_kbn() %></td>
+         	<td><%= seat.getUsingKbn() %></td>
 <!--          	<td></td> -->
          </tr>
          <% } %>

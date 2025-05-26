@@ -28,12 +28,12 @@ public class Users {
 	/** 이메일 */
 	private String email;
 	/** 권한 */
-	private boolean admin_kbn;
+	private boolean adminKbn;
 	/** 가입날짜 */
 	private Date createdAt;
 	
 	public boolean getAdminKbn() {
-		return this.admin_kbn;
+		return this.adminKbn;
 	}
 
 	public static List<Users> getTestList() {

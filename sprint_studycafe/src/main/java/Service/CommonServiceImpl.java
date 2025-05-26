@@ -34,12 +34,13 @@ public class CommonServiceImpl implements CommonService {
 		return list;
 	}
 
+	/** 타입 목록 조회 */
 	@Override
 	public Map<Integer, Type> getTypeMap(String type) {
 		Map<Integer, Type> map = new HashMap<Integer, Type>();
 
-		List<Type> typeList = getTypeList(type);
-		for (Type dto : typeList) {
+		List<Type> dtoList = getTypeList(type);
+		for (Type dto : dtoList) {
 			map.put(dto.getNo(), dto);
 		}
 
@@ -60,12 +61,13 @@ public class CommonServiceImpl implements CommonService {
 		return list;
 	}
 
+	/** 이용권 목록 조회 */
 	@Override
 	public Map<String, Ticket> getTicketMap() {
 		Map<String, Ticket> map = new HashMap<String, Ticket>();
 
-		List<Ticket> typeList = getTicketList();
-		for (Ticket dto : typeList) {
+		List<Ticket> dtoList = getTicketList();
+		for (Ticket dto : dtoList) {
 			map.put(dto.getTicketId(), dto);
 		}
 
@@ -79,7 +81,7 @@ public class CommonServiceImpl implements CommonService {
 
 		try {
 			Map<String, Object> param = new HashMap<String, Object>();
-			param.put("using_type", true);
+			param.put("using_kbn", true);
 			list = seatsdao.listBy(param);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -88,12 +90,13 @@ public class CommonServiceImpl implements CommonService {
 		return list;
 	}
 
+	/** 좌석 관리 목록 조회 */
 	@Override
 	public Map<String, Seats> getSeatMap() {
 		Map<String, Seats> map = new HashMap<String, Seats>();
 
-		List<Seats> typeList = getSeatList();
-		for (Seats dto : typeList) {
+		List<Seats> dtoList = getSeatList();
+		for (Seats dto : dtoList) {
 			map.put(dto.getSeatId(), dto);
 		}
 

@@ -16,8 +16,11 @@
 				<li class = "position-relative">
 					<a href="#" class="header-menu d-inline-block nav-link px-2 text-dark fs-5 fw-bold">좌석구매</a>
 					<ul class="submenu list-unstyled">
+						<% if (!role) { %>
 						<li class="menu-item"><a href="" class="d-inline-block text-secondary">좌석구매</a></li>
+						<% } else { %>
 						<li class="menu-item"><a href="" class="d-inline-block text-secondary">좌석현황</a></li>
+						<% } %>
 					</ul>
 				</li>
 				<li class = "position-relative"><a href="#" class="header-menu d-inline-block nav-link px-2 text-cyan-700 ">고객센터</a>
