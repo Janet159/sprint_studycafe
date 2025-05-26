@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 public class Users {
 	@Pk
 	/** 아이디 */
-	private String userId;
+	private String user_id;
 	/** 비밀번호 */
 	private String password;
 	/** 이름 */

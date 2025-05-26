@@ -130,7 +130,7 @@ public class ReservationServlet extends HttpServlet {
 
 		String root = request.getContextPath();
 		String path = request.getPathInfo();
-		String userId = ((Users) request.getSession().getAttribute("loginUser")).getUserId();
+		String userId = ((Users) request.getSession().getAttribute("loginUser")).getUser_id();
 
 		System.out.println("ReservationServlet : POST : " + path);
 

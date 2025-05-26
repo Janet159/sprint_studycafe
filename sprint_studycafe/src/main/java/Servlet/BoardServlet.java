@@ -91,7 +91,7 @@ public class BoardServlet extends HttpServlet {
 
 		String root = request.getContextPath();
 		String path = request.getPathInfo();
-		String userId = ((Users) request.getSession().getAttribute("loginUser")).getUserId();
+		String userId = ((Users) request.getSession().getAttribute("loginUser")).getUser_id();
 
 		System.out.println("BoardServlet : POST : " + path);
 

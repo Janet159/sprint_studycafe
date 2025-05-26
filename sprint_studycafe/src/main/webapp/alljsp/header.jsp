@@ -58,8 +58,8 @@
 			%>
 			<!-- 비로그인 시 -->
 			<div class="col-md-3 text-end"> 
-				<button type="button" class="btn btn-outline-primary me-2 btn-cyan-700-55 fw-semibold">로그인</button> 
-				<button type="button" class="btn btn-primary btn-cyan-700 fw-semibold">회원가입</button>
+				<a href="<%= root %>/page/users/login.jsp" class="btn btn-outline-primary me-2 btn-cyan-700-55 fw-semibold">로그인</a>
+				<a href="<%= root %>/page/users/join.jsp" class="btn btn-outline-primary me-2 btn-cyan-700 fw-semibold">회원가입</a>
 			</div>
 	        <%
 			}
@@ -76,9 +76,9 @@
               </button>
               <ul class="dropdown-menu">
             	<% if (role) { %>
-                  <li><a class="dropdown-item d-block px-2 text-start" href="<%= root %>/page/mypage/userread.jsp">회원정보</a></li>
+                  <li><a class="dropdown-item d-block px-2 text-start" href="<%= root %>/page/users/userread.jsp">회원정보</a></li>
                   <li><a class="dropdown-item d-block px-2 text-start" href="<%= root %>/page/mypage/seatlist.jsp">좌석현황</a></li>
-                  <li><a class="dropdown-item d-block px-2 text-start" href="<%= root %>/page/mypage/userlist.jsp">회원목록</a></li>
+                  <li><a class="dropdown-item d-block px-2 text-start" href="<%= root %>/users/userlist.jsp">회원목록</a></li>
 	    	    <% } else{ %> 
                   <li><a class="dropdown-item d-block px-2 text-start" href="<%= root %>/page/mypage/userread.jsp">회원정보</a></li>
                   <li><a class="dropdown-item d-block px-2 text-start" href="<%= root %>/page/mypage/seatread.jsp">좌석정보</a></li>
@@ -88,7 +88,7 @@
               </ul>
               </div>
 
-              <button type="button" class="btn btn btn-primary btn-red fw-semibold">로그아웃</button> 
+              <a href="<%= root %>/users/logout" class="btn btn btn-primary btn-red fw-semibold">로그아웃</a>
           	</div>
     	    <%
         	}
