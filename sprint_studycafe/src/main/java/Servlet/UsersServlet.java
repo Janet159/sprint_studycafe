@@ -69,11 +69,12 @@ public class UsersServlet extends HttpServlet {
 			page = "/page/users/usersread.jsp";
 
 		}		// /idCheck - 아이디 중복 확인
-		else if(path.equals("/idCheck")){
+		else if(path.contains("/idCheck")){
 			System.out.println("아이디 중복 확인...");
 			String userId = request.getParameter("userId");
 			boolean check = users.idCheck(userId);
 			response.getWriter().print(check);
+			return;		// 안 멈추면 계속 /users 로 돌아감
 		}
 		
 		// /logout - 로그아웃
