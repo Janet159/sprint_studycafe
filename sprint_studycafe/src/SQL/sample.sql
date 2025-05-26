@@ -25,9 +25,16 @@ insert into ticket values
 ('3',	'4시간', '7000'	,'4'),
 ('4',	'6시간', '9000'	,'6');
 
-insert into users values
+insert into users (user_id, password, name, email, admin_kbn) values
 ('admin',	'123456',	'관리자',	'test@nate.com',	'1',	'2025-05-23 10:03:23'),
-('test	','123456',	'테스터',	'test@nate.com',	'0',	'2025-05-23 10:04:02');
+('test	','123456',	'테스터',	'test@nate.com',	'0',	'2025-05-23 10:04:02'),
+  ('admin01', 'admin', '주자영', 'admin01@test.com', true),
+  ('admin02', 'admin', '장예지', 'admin02@test.com', true),
+  ('admin03', 'admin', '이윤태', 'admin03@test.com', true),
+  ('test01', '1234', '홍길동', 'hong@test.com', false),
+  ('user02', 'abcd', '김철수', 'chulsoo@test.com', false),
+  ('user03', 'qwer', '이영희', 'younghee@test.com', false),
+  ('dev99', 'devpass', '박개발', 'dev@test.com', false);
 
 insert into seats VALUES
 (1, 'A-01', 1),
