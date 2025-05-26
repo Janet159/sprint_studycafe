@@ -74,6 +74,7 @@ public class UsersServlet extends HttpServlet {
 			String userId = request.getParameter("userId");
 			boolean check = users.idCheck(userId);
 			response.getWriter().print(check);
+			return;
 		}
 		
 		// /logout - 로그아웃

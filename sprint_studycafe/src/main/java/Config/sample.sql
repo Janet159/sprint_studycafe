@@ -50,3 +50,11 @@ insert into seats VALUES
 
 insert into reservation (user_id, seat_id, ticket_id, order_time, start_time, end_time)
 values ('admin'	,'1'	,'1'	,'2025-05-23 10:05:10',	'2025-05-23 10:23:00',	'2025-08-23 11:30:00')
+
+INSERT INTO users (user_id, password, name, email, admin_kbn)
+VALUES 
+  ('test01', '1234', '홍길동', 'hong@test.com', false),
+  ('admin01', 'admin', '관리자', 'admin@test.com', true),
+  ('user02', 'abcd', '김철수', 'chulsoo@test.com', false),
+  ('user03', 'qwer', '이영희', 'younghee@test.com', false),
+  ('dev99', 'devpass', '박개발', 'dev@test.com', true);
