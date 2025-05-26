@@ -74,7 +74,7 @@ public class NoticeServiceImpl implements NoticeService {
 		int result = 0;
 
 		try {
-			result = noticeDAO.delete(notice);
+			result = noticeDAO.delete(notice.getNo());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

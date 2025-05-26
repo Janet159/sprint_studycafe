@@ -73,11 +73,11 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public boolean delete(Board board) {
+	public boolean delete(int no) {
 		int result = 0;
 
 		try {
-			result = boardDAO.delete(board);
+			result = boardDAO.delete(no);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -1,3 +1,5 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="DTO.Board"%>
 <%@page import="Config.Common"%>
 <%@page import="java.util.List"%>
 <%@ include file="/alljsp/jstl.jsp" %>
@@ -21,7 +23,6 @@
     <% 
       //List<Board> boardList = Board.getTestList();
       //request.setAttribute("boardList" ,boardList);
-      
 		String param = request.getParameter("type");
 		String title = "나의 문의사항";
 		if (null == param || param.isEmpty()) {
@@ -46,20 +47,42 @@
 	          </tr>
 	        </thead>
 	        <tbody>
-	        <c:forEach var="board" items="${resultList}">
+                <%
+                	Object object = request.getAttribute("resultList");
+                	List<Board> resultList ;
+                    if ( object != null ) {
+                    resultList = (List<Board>) request.getAttribute("resultList");
+                    } else {
+                    	resultList = new ArrayList<Board>();  
+                    }
+           	 		for (int i = 0; i < resultList.size(); i++){
+					 Board board = resultList.get(i); 
+                %>
 	         <tr>
-	         	<td>${board.no}</td>
-	         	<td>${board.isAnswered}</td>
-	         	<td>${board.typeNo}</td>
-	         	<td>${board.title}</td>
-	         	<td>${board.createdAt}</td>
+	         	<td><%= board.getNo() %></td>
+         	 	<td>
+				<%
+				String answer = board.getAnswerContent();
+				if (answer != null && !answer.trim().isEmpty()) {
+				%>
+				<span style="color: green;">O</span>
+				<%
+				} else {
+				%>
+				<span style="color: red;">X</span>
+				<%
+				}
+				%></td>
+	         	<td><%= board.getTypeNo() %></td>
+	         	<td class="text-start">
+              	<a href="<%= Common.getUrl(Common.BOARD, Common.READ) %>?no=<%= board.getNo() %>">
+                <%= board.getTitle() %></a></td>
+	         	<td><%= Common.getDateToString(board.getCreatedAt()) %></td>
 	         </tr>
-	         </c:forEach>
+	       		<% } %>   <%-- for 끝 --%>
 	        </tbody>
 	      </table>
 	    </div>
-	    <button class="btn btn-main btn-cyan-700:hover btn-cyan-700">메인</button>
-	
 	    <div class="pagination">
 	        <span>1</span>
 	        <span>2</span>
@@ -72,9 +95,12 @@
 	        <span>9</span>
 	        <span>10</span>
 	    </div>
-	</div>
-   
-	
+	        <div class="btn-main">
+			<a href="<%=Common.getUrl(Common.BOARD, Common.INSERT) %>" class="btn btn-cyan-700">1:1문의</a>
+    		<a href="<%= root %>" class="btn btn-cyan-700">메인</a>
+    		</div>
+	</div>  
+
 	<%-- [Contents] ######################################################### --%>
 	<jsp:include page="/alljsp/footer.jsp" />
 <%-- 	<jsp:include page="/layout/script.jsp" /> --%>

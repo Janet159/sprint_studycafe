@@ -3,10 +3,17 @@ package Servlet;
 import java.io.IOException;
 import java.util.List;
 
+import Config.Common;
+import DTO.Answer;
 import DTO.Board;
+import DTO.Type;
 import DTO.Users;
+import Service.AnswerService;
+import Service.AnswerServiceImpl;
 import Service.BoardService;
 import Service.BoardServiceImpl;
+import Service.CommonService;
+import Service.CommonServiceImpl;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -22,18 +29,20 @@ public class BoardServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private BoardService service = new BoardServiceImpl();
+	private CommonService commonservice = new CommonServiceImpl(); 
+	private AnswerService answerservice = new AnswerServiceImpl();
 	private final String urlJsp = "/page/board/";
 	private final String url = "/board/";
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		String root = request.getContextPath();
 		String path = request.getPathInfo();
 		String page = "";
 
 		System.out.println("BoardServlet : GET : " + path);
 
-		if (path == null || path.isEmpty() || path.equals("/list") || path.equals("/list.jsp")) {
+		if (path == null || path.isEmpty() || path.equals("/") || path.equals("/list") || path.equals("/list.jsp")) {
 			// 문의 사항 목록 화면
 
 			// DB에서 데이터 전체 조회
@@ -47,7 +56,10 @@ public class BoardServlet extends HttpServlet {
 
 		} else if (path.equals("/insert") || path.equals("/insert.jsp")) {
 			// 게시글 등록 화면
-
+			
+			List<Type> typelist = commonservice.getTypeList(Common.BOARD);
+			request.setAttribute("typelist", typelist);
+			
 			// 이동 할 페이지 
 			page = "/page/board/insert.jsp";
 
@@ -56,12 +68,17 @@ public class BoardServlet extends HttpServlet {
 
 			// 조회 할 데이터 PK(KEY)
 			int no = Integer.parseInt(request.getParameter("no"));
-
+			List<Type> typelist = commonservice.getTypeList(Common.BOARD);  
+			// System.out.println(typelist);
 			// DB에서 데이터 조회
 			Board result = service.select(no);
+			
+			Answer answer = answerservice.selectBy(no);
 
 			// 화면에 표시를 위해 request 에 담기
 			request.setAttribute("result", result);
+			request.setAttribute("typelist", typelist);
+			request.setAttribute("answer", answer);
 
 			// 이동 할 페이지
 			page = urlJsp + "read.jsp";
@@ -74,13 +91,37 @@ public class BoardServlet extends HttpServlet {
 
 			// DB에서 데이터 조회
 			Board result = service.select(no);
+			List<Type> typelist = commonservice.getTypeList(Common.BOARD);
 
 			// 화면에 표시를 위해 request 에 담기
+			request.setAttribute("typelist", typelist);
 			request.setAttribute("result", result);
+			request.setAttribute("no", no);
 
 			// 이동 할 페이지
 			page = urlJsp + "update.jsp";
 
+		} else if (path.equals("/delete") || path.equals("/delete.jsp")) {
+			// 문의 사항 삭제 처리
+
+			// 삭제 할 데이터 화면에서 가져오기
+			int no = Integer.parseInt(request.getParameter("no"));
+
+			// DB에 삭제 처리 보내기
+			boolean result = service.delete(no);
+
+			// 삭제 결과
+			if (result) {
+				System.out.println("삭제 성공");
+				// 삭제 성공 시 이동할 페이지
+				response.sendRedirect(root + url + "list");
+				return;
+			} else {
+				System.out.println("삭제 실패");
+				// 삭제 실패 시 이동할 페이지
+				response.sendRedirect(root + url + "list.jsp?error=true");
+				return;
+			}
 		}
 
 		// 화면 이동
@@ -93,8 +134,8 @@ public class BoardServlet extends HttpServlet {
 
 		String root = request.getContextPath();
 		String path = request.getPathInfo();
-		String userId = ((Users) request.getSession().getAttribute("loginUser")).getUserId();
-
+//		String userId = ((Users) request.getSession().getAttribute("loginUser")).getUserId();
+		String userId = "qwer" ;
 		System.out.println("BoardServlet : POST : " + path);
 
 		if (path.equals("/insert") || path.equals("/insert.jsp")) {
@@ -103,9 +144,11 @@ public class BoardServlet extends HttpServlet {
 			// 등록 할 데이터 화면에서 가져오기
 			String title = request.getParameter("title");
 			String content = request.getParameter("content");
+			int typeNo = Integer.parseInt(request.getParameter("typeNo"));
+			String phonenumber = request.getParameter("phonenumber");
 
 			// 등록 할 데이터 만들기
-			Board dto = Board.builder().title(title).content(content).userId(userId).build();
+			Board dto = Board.builder().typeNo(typeNo).title(title).content(content).phonenumber(phonenumber).userId(userId).build();
 
 			// DB에 등록하기
 			Board resultDto = service.insert(dto);
@@ -118,19 +161,21 @@ public class BoardServlet extends HttpServlet {
 			} else {
 				System.out.println("등록 실패");
 				// 등록 실패시 이동할 페이지
-				response.sendRedirect(root + url + "list");
+				response.sendRedirect(root + url + "insert.jsp?error=true");
 			}
 
 		} else if (path.equals("/update") || path.equals("/update.jsp")) {
 			// 문의 사항 수정 처리
-
+			
 			// 수정 할 데이터 화면에서 가져오기
 			int no = Integer.parseInt(request.getParameter("no"));
 			String title = request.getParameter("title");
 			String content = request.getParameter("content");
-
+			String phonenumber = request.getParameter("phonenumber");
+			int typeNo = Integer.parseInt(request.getParameter("typeNo"));
+			
 			// 수정 할 데이터 만들기
-			Board dto = Board.builder().no(no).title(title).content(content).userId(userId).build();
+			Board dto = Board.builder().no(no).typeNo(typeNo).title(title).content(content).phonenumber(phonenumber).userId(userId).build();
 
 			// DB에 업데이트 보내기
 			boolean result = service.update(dto);
@@ -147,28 +192,6 @@ public class BoardServlet extends HttpServlet {
 				response.sendRedirect(root + url + "update.jsp?error=true");
 			}
 
-		} else if (path.equals("/delete") || path.equals("/delete.jsp")) {
-			// 문의 사항 삭제 처리
-
-			// 삭제 할 데이터 화면에서 가져오기
-			int no = Integer.parseInt(request.getParameter("no"));
-
-			// 삭제 할 데이터 만들기
-			Board dto = Board.builder().no(no).build();
-
-			// DB에 삭제 처리 보내기
-			boolean result = service.delete(dto);
-
-			// 삭제 결과
-			if (result) {
-				System.out.println("삭제 성공");
-				// 삭제 성공 시 이동할 페이지
-				response.sendRedirect(root + url + "list");
-			} else {
-				System.out.println("삭제 실패");
-				// 삭제 실패 시 이동할 페이지
-				response.sendRedirect(root + url + "update.jsp?error=true");
-			}
-		}
+		} 
 	}
 }
