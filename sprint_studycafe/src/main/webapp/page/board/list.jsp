@@ -60,19 +60,7 @@
                 %>
 	         <tr>
 	         	<td><%= board.getNo() %></td>
-         	 	<td>
-				<%
-				String answer = board.getAnswerContent();
-				if (answer != null && !answer.trim().isEmpty()) {
-				%>
-				<span style="color: green;">O</span>
-				<%
-				} else {
-				%>
-				<span style="color: red;">X</span>
-				<%
-				}
-				%></td>
+         	 	<td><%= board.isAnsweredKbn() ? "✔" : "✖" %></td>
 	         	<td><%= board.getTypeNo() %></td>
 	         	<td class="text-start">
               	<a href="<%= Common.getUrl(Common.BOARD, Common.READ) %>?no=<%= board.getNo() %>">
