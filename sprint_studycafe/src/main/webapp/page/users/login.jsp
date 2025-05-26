@@ -7,22 +7,21 @@
 <html>
 <head>
 	<title>로그인</title>
-	<jsp:include page="/alljsp/link.jsp" />
 	<link href="login.css" rel="stylesheet">
-	<link href="<%= root %>/allcss/all.css" rel="stylesheet">
+	<jsp:include page="/alljsp/link.jsp" />
 </head>
 <body>
 	<jsp:include page="/alljsp/header.jsp" />
 	<%-- [Contents] ######################################################### --%>
 	
 <div class="container login-box d-flex justify-content-center align-items-center my-10">
-	<form>
+	<form action="<%= root %>/users/login" method="post">
 		<div class="login-title">Login</div>
 		<div class="mb-3">
-			<input type="text" class="form-control" placeholder="아이디">
+			<input type="text" class="form-control" name="user_id" placeholder="아이디">
 		</div>
 		<div class="mb-2">
-			<input type="password" class="form-control" placeholder="비밀번호">
+			<input type="password" class="form-control" name="password" placeholder="비밀번호">
 		</div>
 		<div class="mb-4 text-end">
 			<div class="form-check d-inline-block">
@@ -34,7 +33,7 @@
 		</div>
 		<div class="d-grid gap-2">
 			<button type="submit" class="btn btn-login btn-cyan-700">로그인</button>
-			<button type="button" class="btn btn-cancel">회원가입</button>
+			<a href="<%= root %>/page/users/join.jsp" class="btn btn-cancel text-center">회원가입</a>
 		</div>
 	</form>
 </div>

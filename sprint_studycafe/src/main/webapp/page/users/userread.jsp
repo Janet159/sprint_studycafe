@@ -1,7 +1,12 @@
+<%@page import="DTO.Users"%>
 <%@ include file="/alljsp/common.jsp"%>
 <%@ page import="Config.Common"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+    // 세션에서 사용자 정보 꺼내기
+    Users loginUser = (Users) session.getAttribute("loginUser");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,26 +27,29 @@
             <div class="read-item mb-3 row">
                 <label class="col-4 col-form-label text-center fs-20">아이디</label>
                 <div class="col-8">
-                    <div class="info-box">placeholder</div>
+                    <div class="info-box"><%= loginUser.getUser_id() %></div>
                 </div>
             </div>
             
             <div class="read-item mb-3 row">
                 <label class="col-4 col-form-label text-center fs-20">이름</label>
                 <div class="col-8">
-                    <div class="info-box">placeholder</div>
+                    <div class="info-box"><%= loginUser.getName() %></div>
                 </div>
             </div>
             
             <div class="read-item mb-3 row">
                 <label class="col-4 col-form-label text-center fs-20">이메일</label>
                 <div class="col-8">
-                    <div class="info-box">placeholder</div>
+                    <div class="info-box"><%= loginUser.getEmail() %></div>
                 </div>
             </div>
             
         </div>
-        <button class="gotomain-btn btn btn-cyan-700 fw-semibold fs-30 text-center position-absolute end-0"><a href="">메인</a></button>
+        <a href="<%= root %>/main.jsp" class="btn btn-cyan-700 fw-semibold fs-30 text-center position-absolute end-0">
+		  메인
+		</a>
+        
     </div>
     </main>
 		

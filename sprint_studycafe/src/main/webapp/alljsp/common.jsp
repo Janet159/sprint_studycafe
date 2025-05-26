@@ -4,10 +4,7 @@
 	String root = request.getContextPath();
 	// 로그인 아이디 (세션)
 	String loginId = (String) session.getAttribute("loginId");
-
-	
-	// 관리자 권한
-	boolean role =(boolean) session.getAttribute("role");
-	
+	Boolean roleObj = (Boolean) session.getAttribute("role");
+	boolean role = (roleObj != null) ? roleObj : false;
 	pageContext.setAttribute("root", root);
 %>

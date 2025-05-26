@@ -88,7 +88,6 @@ public class ReservationServlet extends HttpServlet {
 			Map<String, Ticket> ticketMap = common.getTicketMap();
 			dto.setSeatName(seatMap.get(dto.getSeatId()).getSeatName());
 			dto.setTicketName(ticketMap.get(dto.getTicketId()).getTicketName());
-			
 
 			// 화면에 표시를 위해 request 에 담기
 			request.setAttribute("dto", dto);

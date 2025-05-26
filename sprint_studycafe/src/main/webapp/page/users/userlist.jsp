@@ -1,3 +1,4 @@
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page import="Config.Common"%>
 <%@page import="DTO.Users"%>
 <%@page import="java.util.List"%>
@@ -20,11 +21,6 @@
     </style>
 </head>
 <body>
-    <% 
-      List<Users> arrayList = Users.getTestList();
-      
-      request.setAttribute("arrayList" ,arrayList);
-    %>
 	<jsp:include page="/alljsp/header.jsp" />
 	<%-- [Contents] ######################################################### --%>
 	  <div class="border-box">
@@ -54,18 +50,32 @@
 	          </tr>
 	        </thead>
 	        <tbody>
-				<% 
-				    for (int i = 0; i < arrayList.size(); i++){
-				    	Users users = arrayList.get(i);
-				%>
-				<tr>
-					<td><%= users.getName() %></td>
-				    <td><%= users.getUser_id() %></td>
-				 	<td><%= users.getAdminKbn() %></td>
-					<td><%= users.getEmail() %></td>
-					<td><%= Common.getDateToString(users.getCreatedAt()) %></td>
-				</tr>
-				<% } %>
+	        	<c:if test="${empty resultList }">
+	        		<tr>
+	        			<td colspan="5" class="text-center">조회된 회원이 없습니다.</td>
+	        		</tr>
+	        	</c:if>
+	        	
+	        	<c:forEach var="user" items="${resultList}">
+							<tr class="text-center">
+                            <td>${user.name}</td>
+                            <td>${user.user_id}</td>
+                            <td>
+                                <c:choose>
+                                    <c:when test="${user.admin_kbn}">
+                                        관리자
+                                    </c:when>
+                                    <c:otherwise>
+                                        사용자
+                                    </c:otherwise>
+                                </c:choose>
+                            </td>
+                            <td>${user.email}</td>
+							<td>
+							  <fmt:formatDate value="${user.createdAt}" pattern="yyyy-MM-dd HH:mm" />
+							</td>
+                        </tr>
+	        	</c:forEach>
 	        </tbody>
 	      </table>
     </div>
@@ -83,7 +93,7 @@
       </div>
 
     
-    <button class="btn btn-main btn-cyan-700">메인</button>
+	<a href="<%= root %>/main.jsp" class="btn btn-main btn-cyan-700">메인</a>
   </div>
 	
 	
