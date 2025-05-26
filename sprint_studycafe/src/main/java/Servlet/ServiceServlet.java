@@ -1,7 +1,9 @@
 package Servlet;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import Config.Common;
 import DTO.Service;
@@ -41,10 +43,16 @@ public class ServiceServlet extends HttpServlet {
 		System.out.println("ServiceServlet : GET : " + path);
 
 		if (path == null || path.isEmpty() || path.equals("/list") || path.equals("/list.jsp")) {
+
 			// 문의 사항 목록 화면
+			Map<Integer, Type> typeMap = typeService.getTypeMap(Common.SERVICE);
 
 			// DB에서 데이터 전체 조회
 			List<Service> resultList = service.list();
+
+			for (Service service : resultList) {
+				service.setTypeName(typeMap.get(service.getTypeNo()).getTypeName());
+			}
 
 			// 화면에 표시를 위해 request 에 담기
 			request.setAttribute("resultList", resultList);

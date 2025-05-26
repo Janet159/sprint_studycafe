@@ -1,8 +1,6 @@
 package DTO;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import com.alohaclass.jdbc.annotation.Column;
 import com.alohaclass.jdbc.annotation.Pk;
 import com.alohaclass.jdbc.annotation.Table;
 
@@ -26,6 +24,9 @@ public class Service {
 	private String serviceId;
 	/** 위치 */
 	private String location;
+	
+	@Column(exist = false)
+	private String typeName ;
 
 //	public static List<Service> getTestList() {
 //		List<Service> resultList = new ArrayList<Service>();
