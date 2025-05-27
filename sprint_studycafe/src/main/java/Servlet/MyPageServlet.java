@@ -29,6 +29,11 @@ public class MyPageServlet extends HttpServlet {
 
 		String path = request.getPathInfo();
 		String page = "/page/users/userread.jsp";
+		String userId = "";
+		Object user = request.getSession().getAttribute("loginUser");
+		if (null != user) {
+			userId = ((Users) user).getUser_id();
+		}
 
 		System.out.println("MyPageServlet : GET : " + path);
 
@@ -37,9 +42,6 @@ public class MyPageServlet extends HttpServlet {
 
 		} else if (path.equals("/orderList") || path.equals("/orderList.jsp")) {
 			// 나의 구매 내역
-
-			// String userId = ((Users) request.getSession().getAttribute("loginUser")).getUser_id();
-			String userId = "test";
 
 			// DB에서 데이터 조회
 			List<Reservation> resultList = reService.orderList(userId);
@@ -53,18 +55,8 @@ public class MyPageServlet extends HttpServlet {
 		} else if (path.equals("/seatRead") || path.equals("/seatRead.jsp")) {
 			// 현재 주문 내역 조회
 
-			// 조회 할 데이터 PK(KEY)
-			String userId = "test";
-			Object attribute = request.getSession().getAttribute("loginUser");
-			if (null != attribute) {
-				userId = ((Users) attribute).getUser_id();
-			}
-			System.out.println(userId);
-
 			// DB에서 데이터 조회
 			Reservation result = reService.select(userId);
-
-			System.out.println(result);
 
 			// 화면에 표시를 위해 request 에 담기
 			request.setAttribute("result", result);
@@ -83,7 +75,7 @@ public class MyPageServlet extends HttpServlet {
 
 			// 이동 할 페이지
 			page = urlJsp + "seatList.jsp";
-			
+
 		}
 
 		// 화면 이동

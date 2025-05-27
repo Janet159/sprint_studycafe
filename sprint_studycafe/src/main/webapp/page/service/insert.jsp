@@ -54,14 +54,14 @@
 		<div class="input-group mb-3">
 			<span class="input-group-text fs-25" id="inputGroup-sizing-default">종류</span>
 			<input type="text" class="form-control" aria-label="Sizing example input" name="serviceId"
-				aria-describedby="inputGroup-sizing-default">
+				aria-describedby="inputGroup-sizing-default" required>
 		</div>
 	</div>
 	<div class="p-2">
 		<div class="input-group mb-3">
 			<span class="input-group-text fs-25" id="inputGroup-sizing-default">위치</span>
 			<input type="text" class="form-control" aria-label="Sizing example input" name="location"
-				aria-describedby="inputGroup-sizing-default">
+				aria-describedby="inputGroup-sizing-default" required>
 		</div>
 	</div>
 	<div class="p-2">

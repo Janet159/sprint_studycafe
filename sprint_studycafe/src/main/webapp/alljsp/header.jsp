@@ -26,18 +26,12 @@
 				<li class = "position-relative">
 				<a href="<%= root %>/page/board/notice.jsp" class="header-menu d-inline-block nav-link px-2 text-cyan-700 ">고객센터</a>
 					<ul class="submenu list-unstyled">
-						<li class="menu-item"><a href="<%= root %>/page/board/notice.jsp" class="d-inline-block text-secondary">공지사항</a></li>
+						<li class="menu-item"><a href="<%= root %>/board/notice.jsp" class="d-inline-block text-secondary">공지사항</a></li>
 						<li class="menu-item"><a href="<%= root %>/board/list.jsp" class="d-inline-block text-secondary">문의사항</a></li>
 					</ul>
 				</li> 
 				<li class = "position-relative">
 				<a href="<%= root %>" class="header-menu d-inline-block nav-link px-2 link-secondary ">이용권 구매</a>
-					<!-- <ul class="submenu list-unstyled">
-						<li class="menu-item"><a href="">서브메뉴1</a></li>
-						<li class="menu-item"><a href="">서브메뉴2</a></li>
-						<li class="menu-item"><a href="">서브메뉴3</a></li>
-						<li class="menu-item"><a href="">서브메뉴4</a></li>
-					</ul> -->
 				</li> 
 				<li class = "position-relative">
 				<a href="<%= root %>/alljsp/introduce.jsp" class="header-menu d-inline-block nav-link px-2 link-secondary ">회사소개</a>
@@ -48,12 +42,6 @@
 				</li> 
 				<li class = "position-relative">
 				<a href="<%= root %>/service/list.jsp" class="header-menu d-inline-block nav-link px-2 link-secondary ">편의시설</a>
-					<!-- <ul class="submenu list-unstyled">
-						<li class="menu-item"><a href="">서브메뉴1</a></li>
-						<li class="menu-item"><a href="">서브메뉴2</a></li>
-						<li class="menu-item"><a href="">서브메뉴3</a></li>
-						<li class="menu-item"><a href="">서브메뉴4</a></li>
-					</ul> -->
 				</li> 
 			</ul>
 	       	<%
@@ -80,13 +68,13 @@
               <ul class="dropdown-menu">
             	<% if (role) { %>
                   <li><a class="dropdown-item d-block px-2 text-start" href="<%= root %>/page/users/userread.jsp">회원정보</a></li>
-                  <li><a class="dropdown-item d-block px-2 text-start" href="<%= root %>/page/mypage/seatlist.jsp">좌석현황</a></li>
+                  <li><a class="dropdown-item d-block px-2 text-start" href="<%= root %>/mypage/seatList.jsp">좌석현황</a></li>
                   <li><a class="dropdown-item d-block px-2 text-start" href="<%= root %>/users/userlist.jsp">회원목록</a></li>
 	    	    <% } else{ %> 
                   <li><a class="dropdown-item d-block px-2 text-start" href="<%= root %>/page/users/userread.jsp">회원정보</a></li>
-                  <li><a class="dropdown-item d-block px-2 text-start" href="<%= root %>/page/mypage/seatread.jsp">좌석정보</a></li>
-                  <li><a class="dropdown-item d-block px-2 text-start" href="<%= root %>/page/mypage/quelist.jsp">문의내역</a></li>
-                  <li><a class="dropdown-item d-block px-2 text-start" href="<%= root %>/page/mypage/buylist.jsp">구매내역</a></li>
+                  <li><a class="dropdown-item d-block px-2 text-start" href="<%= root %>/mypage/seatRead.jsp">좌석정보</a></li>
+                  <li><a class="dropdown-item d-block px-2 text-start" href="<%= root %>/board/list.jsp?type=true">문의내역</a></li>
+                  <li><a class="dropdown-item d-block px-2 text-start" href="<%= root %>/mypage/orderList.jsp">구매내역</a></li>
 	    	    <% } %> 
               </ul>
               </div>

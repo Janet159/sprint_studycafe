@@ -21,6 +21,5 @@
     </main>
 	<%-- [Contents] ######################################################### --%>
 	<jsp:include page="/alljsp/footer.jsp" />
-<%-- 	<jsp:include page="/layout/script.jsp" /> --%>
 </body>
 </html>

@@ -21,8 +21,6 @@
 </head>
 <body>
     <% 
-      //List<Board> boardList = Board.getTestList();
-      //request.setAttribute("boardList" ,boardList);
 		String param = request.getParameter("type");
 		String title = "나의 문의사항";
 		if (null == param || param.isEmpty()) {

@@ -14,11 +14,6 @@
     <link href="<%= root%>/allcss/list.css" rel="stylesheet">
 </head>
 <body>
-<%-- 	<% 
-		role = true; 
-		// List<Service> serviceList = Service.getTestList();
-		// request.setAttribute("serviceList" ,serviceList);
-	%> --%>
 	<%-- header 포함하기 --%>
 	<jsp:include page="/alljsp/header.jsp" />
 	<%-- [Contents] ######################################################### --%>

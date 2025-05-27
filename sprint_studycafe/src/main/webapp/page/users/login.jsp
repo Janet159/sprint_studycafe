@@ -30,7 +30,7 @@
 	<form action="<%= root %>/users/login" method="post">
 		<div class="login-title">Login</div>
 		<div class="mb-3">
-			<input type="text" class="form-control" name="user_id"  value="<%= savedId %>" placeholder="아이디">
+			<input type="text" class="form-control" name="user_id" value="<%= savedId %>" placeholder="아이디">
 		</div>
 		<div class="mb-2">
 			<input type="password" class="form-control" name="password" placeholder="비밀번호">

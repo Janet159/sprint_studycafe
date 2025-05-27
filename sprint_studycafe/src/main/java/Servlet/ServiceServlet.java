@@ -1,14 +1,12 @@
 package Servlet;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import Config.Common;
 import DTO.Service;
 import DTO.Type;
-import DTO.Users;
 import Service.CommonService;
 import Service.CommonServiceImpl;
 import Service.ServiceService;
@@ -36,9 +34,9 @@ public class ServiceServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		String root = request.getContextPath();
 		String path = request.getPathInfo();
 		String page = "";
-		String root = request.getContextPath();
 
 		System.out.println("ServiceServlet : GET : " + path);
 
@@ -129,7 +127,6 @@ public class ServiceServlet extends HttpServlet {
 
 		String root = request.getContextPath();
 		String path = request.getPathInfo();
-		//String userId = ((Users) request.getSession().getAttribute("loginUser")).getUserId();
 
 		System.out.println("ServiceServlet : POST : " + path);
 
@@ -159,7 +156,7 @@ public class ServiceServlet extends HttpServlet {
 			}
 
 		} else if (path.equals("/update") || path.equals("/update.jsp")) {
-			// 문의 사항 수정 처리
+			// 편의 시설 수정 처리
 
 			// 수정 할 데이터 화면에서 가져오기
 			int no = Integer.parseInt(request.getParameter("no"));

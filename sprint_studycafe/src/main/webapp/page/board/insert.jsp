@@ -58,14 +58,14 @@
           <div class="row mb-3 border-bottom pb-3">
             <label for="title" class="col-sm-2 col-form-label">제목</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" id="title" name="title" placeholder="제목을 입력하세요.">
+              <input type="text" class="form-control" id="title" name="title" placeholder="제목을 입력하세요." required>
             </div>
           </div>
 
           <div class="row mb-3 border-bottom pb-3">
             <label for="content" class="col-sm-2 col-form-label">내용</label>
             <div class="col-sm-10">
-              <textarea class="form-control" id="content" name="content" rows="6" placeholder="내용을 입력하세요." style="resize: none;"></textarea>
+              <textarea class="form-control" id="content" name="content" rows="6" placeholder="내용을 입력하세요." style="resize: none;" required></textarea>
             </div>
           </div>
 
@@ -76,7 +76,7 @@
           <div class="col row mb-3">
             <label for="phone" class="col-sm-2 col-form-label">전화번호</label>
             <div class="col-sm-4">
-              <input type="text" class="form-control" id="phone" name="phonenumber" placeholder="-없이 입력하세요.">
+              <input type="text" class="form-control" id="phone" name="phonenumber" placeholder="-없이 입력하세요." maxlength="11" required>
             </div>
           </div>
         </div>

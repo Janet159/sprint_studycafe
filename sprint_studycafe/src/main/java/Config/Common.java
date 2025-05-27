@@ -59,7 +59,7 @@ public class Common {
 	}
 	
 	/**
-	 * 지정 시간 Date 타입의 데이터를 HH:mm 형식의 문자열로 리턴
+	 * 지정 시간 Date 타입의 데이터를 yyyy/MM/dd HH:mm 형식의 문자열로 리턴
 	 * @param date
 	 * @return
 	 */

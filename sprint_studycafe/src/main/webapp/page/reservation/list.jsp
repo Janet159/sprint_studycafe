@@ -21,7 +21,6 @@
 	<%-- [Contents] ######################################################### --%>
 	
 	<%
-		role = true ;
 		String title = "" ;		
 		String usingSeat1 = "사용중" ;
 		String usingSeat2 = "" ;

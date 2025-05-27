@@ -15,14 +15,6 @@
 </head>
 
 <body>
-<%-- 	<%
-		List<Type> typeList = Type.getTestList();
-		request.setAttribute("typeList" ,typeList);
-		Service service = new Service(1, 2, "serviceId", "location");
-		request.setAttribute("service" ,service);
-		
-		int no = 10 ;
-	%> --%>
 
 	<!-- header 포함하기 -->
 	<jsp:include page="/alljsp/header.jsp" />
@@ -79,7 +71,7 @@
 		<div class="input-group mb-3">
 			<a href="<%= Common.getUrl(Common.SERVICE, Common.DELETE) %>?no=${service.no}" class="btn btn-cancel w-100 fs-30" >삭제</a>
 		</div>
-	</div> 
+	</div>
 </div>
 
 			</form>

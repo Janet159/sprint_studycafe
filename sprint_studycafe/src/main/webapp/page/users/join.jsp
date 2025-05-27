@@ -26,7 +26,7 @@
         <div class="mb-3 row align-items-center">
           <label class="col-3 col-form-label">아이디</label>
           <div class="col-9 d-flex">
-            <input type="text" name="userId" id="userId" class="form-control me-2" />
+            <input type="text" name="userId" id="userId" class="form-control me-2" required/>
             <button type="button" class="btn btn-check-id btn-cyan-700" onclick="clickIdCheck()">중복확인</button>
           </div>
         </div>
@@ -34,28 +34,28 @@
         <div class="mb-3 row align-items-center">
           <label class="col-3 col-form-label">비밀번호</label>
           <div class="col-9">
-            <input type="password" name="password" class="form-control" />
+            <input type="password" name="password" class="form-control" required/>
           </div>
         </div>
 
         <div class="mb-3 row align-items-center">
           <label class="col-3 col-form-label">비밀번호 확인</label>
           <div class="col-9">
-            <input type="password" name="confirmPassword" class="form-control" />
+            <input type="password" name="confirmPassword" class="form-control" required/>
           </div>
         </div>
 
         <div class="mb-3 row align-items-center">
           <label class="col-3 col-form-label">이름</label>
           <div class="col-9">
-            <input type="text" name="name" class="form-control" />
+            <input type="text" name="name" class="form-control" required/>
           </div>
         </div>
 
         <div class="mb-4 row align-items-center">
           <label class="col-3 col-form-label">이메일</label>
           <div class="col-9">
-            <input type="email" name="email" class="form-control" />
+            <input type="email" name="email" class="form-control" required/>
           </div>
         </div>
 

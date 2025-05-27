@@ -3,7 +3,6 @@ package Servlet;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -108,7 +107,7 @@ public class ReservationServlet extends HttpServlet {
 		String root = request.getContextPath();
 		String path = request.getPathInfo();
 
-		String userId = "test";
+		String userId = "";
 		Object attribute = request.getSession().getAttribute("loginUser");
 		if (null != attribute) {
 			userId = ((Users) attribute).getUser_id();
@@ -159,6 +158,12 @@ public class ReservationServlet extends HttpServlet {
 		}
 	}
 
+	/**
+	 * 이용 시작 시간 설정 
+	 * 결제 시간에 10분 여유를 두고 5분 단위로 시작 시간 설정
+	 * @param time
+	 * @return
+	 */
 	private LocalDateTime getStartTime(LocalDateTime time) {
 		// 10분 더하기
 		time = time.plusMinutes(10);
@@ -176,31 +181,4 @@ public class ReservationServlet extends HttpServlet {
 
 		return time.withSecond(0).withNano(0);
 	}
-
-	private Date getStartTimeWithCalendar() {
-		Calendar cal = Calendar.getInstance();
-
-		// 10분 더하기
-		cal.add(Calendar.MINUTE, 10);
-
-		int minute = cal.get(Calendar.MINUTE);
-
-		// 5분 단위로 반올림
-		int roundedMinute = Math.round(minute / 5.0f) * 5;
-
-		// 시(hour)가 넘어가는 경우 처리
-		if (roundedMinute >= 60) {
-			cal.add(Calendar.HOUR_OF_DAY, 1);
-			cal.set(Calendar.MINUTE, 0);
-		} else {
-			cal.set(Calendar.MINUTE, roundedMinute);
-		}
-
-		// 초, 밀리초 초기화
-		cal.set(Calendar.SECOND, 0);
-		cal.set(Calendar.MILLISECOND, 0);
-
-		return cal.getTime();
-	}
-
 }

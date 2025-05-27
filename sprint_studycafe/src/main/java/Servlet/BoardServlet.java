@@ -5,7 +5,6 @@ import java.util.List;
 
 import Config.Common;
 import DTO.Answer;
-
 import DTO.Board;
 import DTO.Type;
 import DTO.Users;
@@ -30,7 +29,7 @@ public class BoardServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private BoardService service = new BoardServiceImpl();
-	private CommonService commonservice = new CommonServiceImpl(); 
+	private CommonService commonservice = new CommonServiceImpl();
 	private AnswerService answerService = new AnswerServiceImpl();
 
 	private final String urlJsp = "/page/board/";
@@ -58,39 +57,34 @@ public class BoardServlet extends HttpServlet {
 
 		} else if (path.equals("/insert") || path.equals("/insert.jsp")) {
 			// 게시글 등록 화면
-			
+
 			List<Type> typelist = commonservice.getTypeList(Common.BOARD);
 			request.setAttribute("typelist", typelist);
-			
+
 			// 이동 할 페이지 
 			page = "/page/board/insert.jsp";
 
 		} else if (path.equals("/read") || path.equals("/read.jsp")) {
 			// 문의 사항 조회 화면
 
-
 			// 조회 할 데이터 PK(KEY)
 			int no = Integer.parseInt(request.getParameter("no"));
-			List<Type> typelist = commonservice.getTypeList(Common.BOARD);  
+			List<Type> typelist = commonservice.getTypeList(Common.BOARD);
 			// System.out.println(typelist);
-
 
 			// DB에서 데이터 조회
 			// 1. 타입
-			List<Type>  a = commonservice.getTypeList(Common.BOARD);
-			
+			List<Type> a = commonservice.getTypeList(Common.BOARD);
+
 			// 2. Board 데이터
-//			int no = Integer.parseInt(request.getParameter("no"));
-			
+			//			int no = Integer.parseInt(request.getParameter("no"));
+
 			// 조회 할 데이터 PK(KEY)
 			Board result = service.select(no);
-			
 
 			Answer answer = answerService.selectBy(no);
 
-
 			// 답변
-
 
 			// 화면에 표시를 위해 request 에 담기
 			request.setAttribute("result", result);
@@ -152,8 +146,11 @@ public class BoardServlet extends HttpServlet {
 		String root = request.getContextPath();
 		String path = request.getPathInfo();
 
-//		String userId = ((Users) request.getSession().getAttribute("loginUser")).getUserId();
-		String userId = "qwer" ;
+		String userId = "";
+		Object attribute = request.getSession().getAttribute("loginUser");
+		if (null != attribute) {
+			userId = ((Users) attribute).getUser_id();
+		}
 
 		System.out.println("BoardServlet : POST : " + path);
 
@@ -167,7 +164,8 @@ public class BoardServlet extends HttpServlet {
 			String phonenumber = request.getParameter("phonenumber");
 
 			// 등록 할 데이터 만들기
-			Board dto = Board.builder().typeNo(typeNo).title(title).content(content).phonenumber(phonenumber).userId(userId).build();
+			Board dto = Board.builder().typeNo(typeNo).title(title).content(content).phonenumber(phonenumber)
+					.userId(userId).build();
 
 			// DB에 등록하기
 			Board resultDto = service.insert(dto);
@@ -185,16 +183,17 @@ public class BoardServlet extends HttpServlet {
 
 		} else if (path.equals("/update") || path.equals("/update.jsp")) {
 			// 문의 사항 수정 처리
-			
+
 			// 수정 할 데이터 화면에서 가져오기
 			int no = Integer.parseInt(request.getParameter("no"));
 			String title = request.getParameter("title");
 			String content = request.getParameter("content");
 			String phonenumber = request.getParameter("phonenumber");
 			int typeNo = Integer.parseInt(request.getParameter("typeNo"));
-			
+
 			// 수정 할 데이터 만들기
-			Board dto = Board.builder().no(no).typeNo(typeNo).title(title).content(content).phonenumber(phonenumber).userId(userId).build();
+			Board dto = Board.builder().no(no).typeNo(typeNo).title(title).content(content).phonenumber(phonenumber)
+					.userId(userId).build();
 
 			// DB에 업데이트 보내기
 			boolean result = service.update(dto);
@@ -212,11 +211,11 @@ public class BoardServlet extends HttpServlet {
 			}
 		} else if (path.equals("/answerUpdate")) {
 			// 문의 사항 수정 처리
-			
+
 			// 수정 할 데이터 화면에서 가져오기
 			int board_no = Integer.parseInt(request.getParameter("board_no"));
 			String content = request.getParameter("content");
-			
+
 			// 수정 할 데이터 만들기
 			Answer answer = Answer.builder().boardNo(board_no).content(content).adminId(userId).build();
 
@@ -235,9 +234,9 @@ public class BoardServlet extends HttpServlet {
 				return;
 			} else {
 				System.out.println("수정 실패");
-//				// 수정 실패시 이동할 페이지
-//				response.sendRedirect(root + url + "update.jsp?error=true");
+				//				// 수정 실패시 이동할 페이지
+				//				response.sendRedirect(root + url + "update.jsp?error=true");
 			}
-		} 
+		}
 	}
 }

@@ -30,9 +30,9 @@ public class UsersServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
+		String root = request.getContextPath();
 		String path = request.getPathInfo();
 		String page = "";
-		String root = request.getContextPath();
 
 		System.out.println("UsersServlet : GET : " + path);
 

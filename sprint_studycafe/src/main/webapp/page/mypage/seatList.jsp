@@ -40,8 +40,8 @@
 					<tr>
 						<th>이름</th>
 						<th>아이디</th>
-						<th>이용여부</th>
-						<th>이용시간</th>
+						<th>좌석 번호</th>
+						<th>이용 시간</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -53,20 +53,19 @@
 						<td><%=dto.getUserName()%></td>
 						<td><%=dto.getUserId()%></td>
 						<td><%=dto.getSeatName()%></td>
-						<td><%=dto.getStartTime()%>-<%=dto.getEndTime()%></td>
+						<td><%=dto.getStartTimeStr()%>-<%=dto.getEndTimeStr()%></td>
 					</tr>
 					<%
-					}
+					} 
+					for (int i = 0; i < 10 - arrList.size(); i++) {
 					%>
+					<tr><td colspan="4"><div class="pagination"></div></td></tr>
+					<% } %>
 				</tbody>
 			</table>
 		</div>
-		<div class="pagination">
-			<span>1</span> <span>2</span> <span>3</span> <span>4</span> <span>5</span>
-			<span>6</span> <span>7</span> <span>8</span> <span>9</span> <span>10</span>
-		</div>
 
-		<a href="<%= Common.getUrl() %>" class="gotomain-btn btn btn-cyan-700 fw-semibold fs-30 text-center position-absolute end-0">메인</a>
+		<a href="<%= Common.getUrl() %>" class="gotomain-btn btn btn-cyan-700 fw-semibold text-center position-absolute end-0">메인</a>
 	</div>
 
 	<%-- [Contents] ######################################################### --%>
