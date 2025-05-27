@@ -25,14 +25,19 @@
  <div class="container">
     <div class="row justify-content-center">
     <div class="col-md-7">
-    <div class="content-box" style="height: 1000px;">
+    <div class="content-box" style="height: 1050px;">
         <div class="content-title">문의내용</div>
-        <form>
+        
 		<div class="row mb-3 border-bottom border-top">
 			<label class="col-sm-2 col-form-label">구분</label>
 			<div class="col-sm-10 d-flex align-items-center gap-3">
 			
 			<%
+				role = true ;
+				String readonly = "readonly";
+			 	if( role ){
+			 		readonly = "";
+			 	}
 				Board board = (Board) request.getAttribute("result");
 				Object object = request.getAttribute("typelist");
 	        	List<Type> typelist ;
@@ -71,20 +76,16 @@
        	<a href="<%= Common.getUrl(Common.BOARD, Common.UPDATE) %>?no=${result.no}" class="btn btn-signup btn-cyan-700:hove btn-cyan-700">수정</a>
        	<a href="<%= Common.getUrl(Common.BOARD, Common.DELETE) %>?no=${result.no}" class="btn btn-cancel">삭제</a>
        	</div>
+    <form>
          <div class="row justify-content-center mt-2 mb-5 pb-2">
-            <div class="title2 mt-3 mb-4 text-cyan-700">답변내용
-            <c:choose>
-            <c:when test="${not empty answer.content}">
-                <span style="color: green;">✔</span>
-            </c:when>
-            <c:otherwise>
-                <span style="color: red;">✖</span>
-            </c:otherwise>
-        	</c:choose>
-        	</div>
+            <div class="title2 mt-3 mb-4 text-cyan-700">답변내용</div>
            	<div class="col-sm-10">
-           	<textarea class="form-control" id="floatingTextarea3" style="resize: none; height: 130px;">${answer.content}</textarea>
+           	<input type="hidden" id="board_no" name="board_no" value="${result.no}" />
+           	<textarea class="form-control mb-3" id="content" style="resize: none; height: 130px;" <%= readonly %>>${answer.content}</textarea>
             </div>
+			<div>
+            <button onclick="answer()" class="btn btn-main btn-cyan-700" value="등록"></button>
+			</div>
         </div>
     </form>
     </div>
@@ -95,4 +96,16 @@
 	
 	<%-- [Contents] ######################################################### --%>
 	<jsp:include page="/alljsp/footer.jsp" />
+	<jsp:include page="/alljs/answer.js" />
+	<script>
+		async function answer() {
+			let check = await answerUpdate()
+			if( check ) {
+				alert('중복된 아이디 입니다.')
+			} else {
+				alert('사용 가능한 아이디 입니다.')
+			}
+		}
+	</script>
+</body>	
 </html>
