@@ -65,32 +65,20 @@ public class BoardServlet extends HttpServlet {
 			// 이동 할 페이지 
 			page = "/page/board/insert.jsp";
 
-		} else if (path.equals("/read") || path.equals("/read.jsp")) {
+			} else if (path.equals("/read") || path.equals("/read.jsp")) {
 			// 문의 사항 조회 화면
-
-
-			// 조회 할 데이터 PK(KEY)
-			int no = Integer.parseInt(request.getParameter("no"));
-			List<Type> typelist = commonservice.getTypeList(Common.BOARD);  
-			// System.out.println(typelist);
-
 
 			// DB에서 데이터 조회
 			// 1. 타입
-			List<Type>  a = commonservice.getTypeList(Common.BOARD);
+			List<Type> typelist = commonservice.getTypeList(Common.BOARD);  
 			
 			// 2. Board 데이터
-//			int no = Integer.parseInt(request.getParameter("no"));
-			
 			// 조회 할 데이터 PK(KEY)
+			int no = Integer.parseInt(request.getParameter("no"));
 			Board result = service.select(no);
-			
 
+			// 3. 답변
 			Answer answer = answerService.selectBy(no);
-
-
-			// 답변
-
 
 			// 화면에 표시를 위해 request 에 담기
 			request.setAttribute("result", result);
@@ -146,14 +134,18 @@ public class BoardServlet extends HttpServlet {
 		dispatcher.forward(request, response);
 	}
 
+	/**
+	 *
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
 		String root = request.getContextPath();
 		String path = request.getPathInfo();
 
-//		String userId = ((Users) request.getSession().getAttribute("loginUser")).getUserId();
-		String userId = "qwer" ;
+//		String userId = ((Users) request.getSession().getAttribute("loginUser")).getUser_id();
+		String userId= "qwer";
+		
 
 		System.out.println("BoardServlet : POST : " + path);
 
@@ -210,33 +202,79 @@ public class BoardServlet extends HttpServlet {
 				// 수정 실패시 이동할 페이지
 				response.sendRedirect(root + url + "update.jsp?error=true");
 			}
+			
 		} else if (path.equals("/answerUpdate")) {
 			// 문의 사항 수정 처리
 			
 			// 수정 할 데이터 화면에서 가져오기
-			int board_no = Integer.parseInt(request.getParameter("board_no"));
+			String noStr = request.getParameter("no");
+			String answerNoStr = request.getParameter("answer_no");
 			String content = request.getParameter("content");
+
+			if (noStr == null || noStr.trim().isEmpty()) {
+			    response.sendError(HttpServletResponse.SC_BAD_REQUEST, "no 또는 answer_no 파라미터가 비어 있습니다.");
+			    return;
+			}
+
+			int no = Integer.parseInt(noStr);
 			
-			// 수정 할 데이터 만들기
-			Answer answer = Answer.builder().boardNo(board_no).content(content).adminId(userId).build();
+			
+			if (answerNoStr == null || answerNoStr.trim().isEmpty()) {
+			    // INSERT 처리
+			    Answer answer = Answer.builder()
+			        .boardNo(no)
+			        .content(content)
+			        .adminId(userId)
+			        .build();
 
-			// DB에 업데이트 보내기
-			boolean result = answerService.update(answer);
+			    Answer inserted = answerService.insert(answer);
 
-			// 업데이트 처리 결과
-			if (result) {
-				System.out.println("수정 성공");
+			    if (inserted == null || inserted.getNo() == 0) {
+			        System.out.println("신규 등록 실패");
+			        response.getWriter().print(0);
+			        // response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "답변 등록 실패");
+			        return;
+			    }
 
-				Board board = Board.builder().answeredKbn(true).build();
-				service.update(board);
+			    // 게시글 상태 업데이트
+			    Board board = Board.builder()
+			        .no(no)
+			        .answeredKbn(true)
+			        .build();
+			    boolean update = service.update(board, true);
 
-				// 수정 성공시 이동할 페이지
-				response.getWriter().print(result);
-				return;
+			    System.out.println("신규 등록 성공: answer_no=" + inserted.getNo());
+			    
+			    response.getWriter().print(inserted.getNo());
+			    return;
+			    
 			} else {
-				System.out.println("수정 실패");
-//				// 수정 실패시 이동할 페이지
-//				response.sendRedirect(root + url + "update.jsp?error=true");
+				// 수정 : update
+				int answer_no = Integer.parseInt(answerNoStr);
+				
+				// 수정 할 데이터 만들기
+				Answer answer = Answer.builder().no(answer_no).boardNo(no).content(content).adminId(userId).build();
+				
+				// DB에 업데이트 보내기
+				boolean result = answerService.update(answer);
+
+				// 업데이트 처리 결과
+				if (result) {
+					System.out.println("수정 성공");
+
+					Board board = Board.builder().no(no).answeredKbn(true).build();
+					service.update(board);
+
+					// 수정 성공시 이동할 페이지
+					response.getWriter().print(answer_no);
+					return;
+				} else {
+					System.out.println("수정 실패");
+					response.getWriter().print(answer_no);
+					return;
+//					// 수정 실패시 이동할 페이지
+//					response.sendRedirect(root + url + "update.jsp?error=true");
+				}
 			}
 		} 
 	}

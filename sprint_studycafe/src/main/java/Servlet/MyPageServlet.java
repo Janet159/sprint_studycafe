@@ -53,8 +53,8 @@ public class MyPageServlet extends HttpServlet {
 		} else if (path.equals("/orderList") || path.equals("/orderList.jsp")) {
 			// 나의 구매 내역
 
-			//			String userId = ((Users) request.getSession().getAttribute("loginUser")).getUser_id();
-			String userId = "test";
+			String userId = ((Users) request.getSession().getAttribute("loginUser")).getUser_id();
+			
 
 			// DB에서 데이터 조회
 			List<Reservation> resultList = reService.list(userId);

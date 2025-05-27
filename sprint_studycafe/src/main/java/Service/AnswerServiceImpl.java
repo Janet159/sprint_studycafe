@@ -48,17 +48,15 @@ public class AnswerServiceImpl implements AnswerService {
 
 	@Override
 	public Answer insert(Answer answer) {
-		int result = 0;
+		Answer result ;
 		try {
-			result = answerDAO.insert(answer);
+			result = answerDAO.insertKey(answer);
 		} catch (Exception e) {
 			e.printStackTrace();
+			result = new Answer();
 		}
 
-		if (result > 0) {
-			return answer;
-		}
-		return null;
+		return result;
 	}
 
 	@Override

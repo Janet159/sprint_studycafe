@@ -122,8 +122,8 @@ public class NoticeServlet extends HttpServlet {
 
 		String root = request.getContextPath();
 		String path = request.getPathInfo();
-//		String userId = ((Users) request.getSession().getAttribute("loginUser")).getUserId();
-		String userId = "qwer" ;
+//		String userId = ((Users) request.getSession().getAttribute("loginUser")).getUser_id();
+		String userId= "qwer";
 
 		System.out.println("NoticeServlet : POST : " + path);
 
