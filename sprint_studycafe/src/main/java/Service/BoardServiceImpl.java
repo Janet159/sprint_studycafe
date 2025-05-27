@@ -1,7 +1,9 @@
 package Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import DAO.BoardDAO;
 import DTO.Board;
@@ -9,6 +11,7 @@ import DTO.Board;
 public class BoardServiceImpl implements BoardService {
 	private BoardDAO boardDAO = new BoardDAO();
 
+	/** 전체 목록 조회 */
 	@Override
 	public List<Board> list() {
 		List<Board> list = null;
@@ -22,13 +25,23 @@ public class BoardServiceImpl implements BoardService {
 		return list;
 	}
 
+	/** 특정 유저 목록 조회 */
 	@Override
-	public List<Board> listBy() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Board> listBy(String userId) {
+		List<Board> list = null;
+		try {
+			Map<String, Object> fields = new HashMap<String, Object>();
+			fields.put("userId", userId);
+			list = boardDAO.listBy(fields);
+		} catch (Exception e) {
+			e.printStackTrace();
+			list = new ArrayList<Board>();
+		}
+
+		return list;
 	}
 
-	
+	/** 조회 */
 	@Override
 	public Board select(int no) {
 		Board board = null;
@@ -41,22 +54,20 @@ public class BoardServiceImpl implements BoardService {
 		return board;
 	}
 
-
+	/** 등록 */
 	@Override
 	public Board insert(Board board) {
-		int result = 0;
+		Board result;
 		try {
-			result = boardDAO.insert(board);
+			result = boardDAO.insertKey(board);
 		} catch (Exception e) {
 			e.printStackTrace();
+			result = new Board();
 		}
-
-		if (result > 0) {
-			return board;
-		}
-		return null;
+		return result;
 	}
 
+	/** 수정 */
 	@Override
 	public boolean update(Board board) {
 		System.out.println("update");
@@ -73,6 +84,7 @@ public class BoardServiceImpl implements BoardService {
 		return false;
 	}
 
+	/** 수정 : 답변 업데이트 */
 	@Override
 	public boolean update(Board board, boolean kbn) {
 		System.out.println("field : " + kbn);
@@ -88,6 +100,8 @@ public class BoardServiceImpl implements BoardService {
 		}
 		return false;
 	}
+
+	/** 삭제 */
 	@Override
 	public boolean delete(int no) {
 		int result = 0;
@@ -103,5 +117,4 @@ public class BoardServiceImpl implements BoardService {
 		}
 		return false;
 	}
-
 }

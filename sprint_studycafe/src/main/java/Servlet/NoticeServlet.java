@@ -18,16 +18,13 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class BoardServlet
- */
 @WebServlet("/notice/*")
 public class NoticeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	private NoticeService service = new NoticeServiceImpl();
 	private final String urlJsp = "/page/notice/";
 	private final String url = "/notice/";
+
+	private NoticeService service = new NoticeServiceImpl();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -37,6 +34,7 @@ public class NoticeServlet extends HttpServlet {
 		String page = "";
 
 		System.out.println("NoticeServlet : GET : " + path);
+
 		try {
 			if (path == null || path.isEmpty() || path.equals("/") || path.equals("/list")
 					|| path.equals("/list.jsp")) {
@@ -127,25 +125,31 @@ public class NoticeServlet extends HttpServlet {
 
 		String root = request.getContextPath();
 		String path = request.getPathInfo();
+
 		String userId = "";
 		Object user = request.getSession().getAttribute("loginUser");
 		if (null != user) {
 			userId = ((Users) user).getUser_id();
+		} else {
+			// 유저 정보가 없으면 공지사항 등록, 수정 불가
+			String page = urlJsp + "list.jsp?error=no";
+			RequestDispatcher dispatcher = request.getRequestDispatcher(page);
+			dispatcher.forward(request, response);
 		}
 
 		System.out.println("NoticeServlet : POST : " + path);
 
 		if (path.equals("/insert") || path.equals("/insert.jsp")) {
-			// 문의 사항 등록 처리
+			// 공지 사항 등록 처리
 
 			// 등록 할 데이터 화면에서 가져오기
 			String title = request.getParameter("title");
 			String content = request.getParameter("content");
-			
+
 			// 등록 구분 임의 지정
 			CommonService comserService = new CommonServiceImpl();
 			List<Type> typeList = comserService.getTypeList(Common.NOTICE);
-			Type type ;
+			Type type;
 			if (null != typeList && typeList.size() >= 1) {
 				type = typeList.get(0);
 			} else {
@@ -170,7 +174,7 @@ public class NoticeServlet extends HttpServlet {
 			}
 
 		} else if (path.equals("/update") || path.equals("/update.jsp")) {
-			// 문의 사항 수정 처리
+			// 공지 사항 수정 처리
 
 			// 수정 할 데이터 화면에서 가져오기
 			int no = Integer.parseInt(request.getParameter("no"));
@@ -194,8 +198,6 @@ public class NoticeServlet extends HttpServlet {
 				// 수정 실패시 이동할 페이지
 				response.sendRedirect(root + url + "list?error=true");
 			}
-		} else if (path.equals("/read") || path.equals("/read.jsp")) {
-
 		}
 	}
 }

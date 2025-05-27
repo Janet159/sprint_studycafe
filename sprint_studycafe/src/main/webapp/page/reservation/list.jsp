@@ -12,6 +12,7 @@
 <head>
 	<title><%= Common.TITLE %></title>
 	<jsp:include page="/alljsp/link.jsp" />
+	<link href="<%=root%>/allcss/list.css" rel="stylesheet">
 </head>
 <body>
 	
@@ -57,7 +58,7 @@
 
 	<main>
 	<div class="container mt-5">
-		<h2 class="mb-4 text-center"><%= title %> </h2>
+		<div class="title-area"><%= title %></div>
 
 		<div class="container text-center">
 		
@@ -71,8 +72,8 @@
 			<% } %>
 				<div class="col-3">
 					<% 
-						if (null == seat.getUserId() || seat.getUserId().isEmpty()) {
-						// 빈 좌석일때
+					if (null == seat.getUserId() || seat.getUserId().isEmpty()) {
+					// 빈 좌석일때
 					%>
 					<% if (!role) { /* 사용자 일 때*/ %>
 					<a href="<%= Common.getUrl(Common.RESERVATION, Common.ORDER) %>?seatId=<%= seat.getSeatId() %>">
@@ -88,8 +89,8 @@
 					</a>
 					<% } %>
 					<% 
-						} else {
-						// 사용 중 일때
+					} else {
+					// 사용 중 일때
 					%>
 					<div class="card mb-3" style="max-width: 18rem;">
 						<div class="card-header"><%= seat.getSeatName() %></div>
@@ -112,7 +113,6 @@
 			<%-- end row --%>
 		
 		<% } %>
-			
 			
 		</div>
 		<%-- end container --%>

@@ -22,9 +22,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class SeatsServlet
- */
 @WebServlet("/reservation/*")
 public class ReservationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -38,8 +35,13 @@ public class ReservationServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		String path = request.getPathInfo();
-		String page = "";
-
+		String page = urlJsp + "list.jsp";
+		String userId = "";
+		Object attribute = request.getSession().getAttribute("loginUser");
+		if (null != attribute) {
+			userId = ((Users) attribute).getUser_id();
+		}
+		
 		System.out.println("ReservationServlet : GET : " + path);
 
 		if (path == null || path.isEmpty() || path.equals("/") || path.equals("/list") || path.equals("/list.jsp")) {
@@ -60,39 +62,49 @@ public class ReservationServlet extends HttpServlet {
 			page = urlJsp + "list.jsp";
 
 		} else if (path.equals("/order") || path.equals("/order.jsp")) {
-			// 조회 화면
 
-			// 선택한 좌석
-			String seatId = request.getParameter("seatId");
+			// 로그인 정보가 없으면 주문 할 수 없음
+			if (!userId.isEmpty()) {
+				// 주문 화면
 
-			// DB에서 데이터 조회
-			List<Ticket> resultList = common.getTicketList();
+				// 선택한 좌석
+				String seatId = request.getParameter("seatId");
 
-			// 화면에 표시를 위해 request 에 담기
-			request.setAttribute("resultList", resultList);
-			request.setAttribute("seatId", seatId);
+				// DB에서 데이터 조회
+				List<Ticket> resultList = common.getTicketList();
 
-			// 이동 할 페이지 
-			page = urlJsp + "order.jsp";
+				// 화면에 표시를 위해 request 에 담기
+				request.setAttribute("resultList", resultList);
+				request.setAttribute("seatId", seatId);
+
+				// 이동 할 페이지 
+				page = urlJsp + "order.jsp";
+			}
 
 		} else if (path.equals("/select") || path.equals("/select.jsp")) {
-			// 조회 화면
+			// 주문 결과 화면
 
-			// 조회 할 데이터 PK(KEY)
-			int no = Integer.parseInt(request.getParameter("no"));
+			try {
+				// 조회 할 데이터 PK(KEY)
+				int no = Integer.parseInt(request.getParameter("no"));
 
-			// DB에서 데이터 조회
-			Reservation dto = service.select(no);
-			Map<String, Seats> seatMap = common.getSeatMap();
-			Map<String, Ticket> ticketMap = common.getTicketMap();
-			dto.setSeatName(seatMap.get(dto.getSeatId()).getSeatName());
-			dto.setTicketName(ticketMap.get(dto.getTicketId()).getTicketName());
+				// DB에서 데이터 조회
+				Reservation dto = service.select(no);
+				Map<String, Seats> seatMap = common.getSeatMap();
+				Map<String, Ticket> ticketMap = common.getTicketMap();
+				dto.setSeatName(seatMap.get(dto.getSeatId()).getSeatName());
+				dto.setTicketName(ticketMap.get(dto.getTicketId()).getTicketName());
 
-			// 화면에 표시를 위해 request 에 담기
-			request.setAttribute("dto", dto);
+				// 화면에 표시를 위해 request 에 담기
+				request.setAttribute("dto", dto);
 
-			// 이동 할 페이지 
-			page = urlJsp + "select.jsp";
+				// 이동 할 페이지 
+				page = urlJsp + "select.jsp";
+
+			} catch (NumberFormatException e) {
+				// 주문 번호가 없으면 에러
+				page = urlJsp + "list.jsp?error=no";
+			}
 
 		}
 
@@ -111,6 +123,12 @@ public class ReservationServlet extends HttpServlet {
 		Object attribute = request.getSession().getAttribute("loginUser");
 		if (null != attribute) {
 			userId = ((Users) attribute).getUser_id();
+		} else {
+
+			// 유저 정보가 없으면 주문 할 수 없음
+			String page = urlJsp + "list.jsp?error=no";
+			RequestDispatcher dispatcher = request.getRequestDispatcher(page);
+			dispatcher.forward(request, response);
 		}
 
 		System.out.println("ReservationServlet : POST : " + path);
@@ -159,8 +177,9 @@ public class ReservationServlet extends HttpServlet {
 	}
 
 	/**
-	 * 이용 시작 시간 설정 
+	 * 이용 시작 시간 설정
 	 * 결제 시간에 10분 여유를 두고 5분 단위로 시작 시간 설정
+	 * 
 	 * @param time
 	 * @return
 	 */

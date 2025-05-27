@@ -54,8 +54,7 @@ public class ReservationServiceImpl implements ReservationService {
 
 		return list;
 	}
-	
-	
+
 	/** 주문 내역 조회 */
 	@Override
 	public Reservation select(int no) {
@@ -77,19 +76,20 @@ public class ReservationServiceImpl implements ReservationService {
 		try {
 			List<Reservation> list = dao.orderList(userId);
 			if (null != list && list.size() >= 1) {
-				
+
 				Date now = new Date();
 				Date endTime = list.get(0).getEndTime();
 
 				if (now.after(endTime)) {
-				    dto = list.get(0);
+					dto = list.get(0);
 				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		if (null == dto) dto = new Reservation();
+
+		if (null == dto)
+			dto = new Reservation();
 
 		return dto;
 	}

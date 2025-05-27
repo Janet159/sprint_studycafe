@@ -9,6 +9,7 @@ import DTO.Notice;
 public class NoticeServiceImpl implements NoticeService {
 	private NoticeDAO noticeDAO = new NoticeDAO();
 
+	/** 전체 목록 조회 */
 	@Override
 	public List<Notice> list() {
 		List<Notice> list = null;
@@ -22,12 +23,7 @@ public class NoticeServiceImpl implements NoticeService {
 		return list;
 	}
 
-//	@Override
-//	public List<Board> listBy() {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-
+	/** 조회 */
 	@Override
 	public Notice select(int no) {
 		Notice notice = null;
@@ -42,6 +38,7 @@ public class NoticeServiceImpl implements NoticeService {
 		return notice;
 	}
 
+	/** 등록 */
 	@Override
 	public int insert(Notice notice) {
 		int result = 0;
@@ -54,6 +51,7 @@ public class NoticeServiceImpl implements NoticeService {
 		return result;
 	}
 
+	/** 수정 */
 	@Override
 	public boolean update(Notice notice) {
 		int result = 0;
@@ -69,6 +67,7 @@ public class NoticeServiceImpl implements NoticeService {
 		return false;
 	}
 
+	/** 삭제 */
 	@Override
 	public boolean delete(Notice notice) {
 		int result = 0;

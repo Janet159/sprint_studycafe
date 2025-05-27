@@ -18,19 +18,14 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class BoardServlet
- */
 @WebServlet("/service/*")
 public class ServiceServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private final String urlJsp = "/page/service/" ;
 
 	private ServiceService service = new ServiceServiceImpl();
 	private CommonService typeService = new CommonServiceImpl();
 	
-	private final String urlJsp = "/page/service/" ;
-
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 

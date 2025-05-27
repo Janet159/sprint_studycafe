@@ -8,6 +8,7 @@ import DTO.Service;
 public class ServiceServiceImpl implements ServiceService {
 	private ServiceDAO serviceDAO = new ServiceDAO();
 
+	/** 전체 목록 조회 */
 	@Override
 	public List<Service> list() {
 		List<Service> list = null;
@@ -20,6 +21,7 @@ public class ServiceServiceImpl implements ServiceService {
 		return list;
 	}
 
+	/** 등록 */
 	@Override
 	public Service insert(Service service) {
 		int result = 0;
@@ -34,7 +36,8 @@ public class ServiceServiceImpl implements ServiceService {
 		}
 		return null;
 	}
-	
+
+	/** 조회 */
 	@Override
 	public Service select(int no) {
 		Service service = null;
@@ -47,6 +50,7 @@ public class ServiceServiceImpl implements ServiceService {
 		return service;
 	}
 
+	/** 수정 */
 	@Override
 	public boolean update(Service service) {
 		int result = 0;
@@ -62,6 +66,7 @@ public class ServiceServiceImpl implements ServiceService {
 		return false;
 	}
 
+	/** 삭제 */
 	@Override
 	public boolean delete(Service service) {
 		int result = 0;

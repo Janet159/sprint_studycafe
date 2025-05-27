@@ -2,6 +2,7 @@ package Servlet;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import Config.Common;
 import DTO.Answer;
@@ -21,48 +22,53 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class BoardServlet
- */
 @WebServlet("/board/*")
 public class BoardServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private final String urlJsp = "/page/board/";
+	private final String url = "/board/";
 
 	private BoardService service = new BoardServiceImpl();
 	private CommonService commonservice = new CommonServiceImpl();
 	private AnswerService answerService = new AnswerServiceImpl();
 
-	private final String urlJsp = "/page/board/";
-	private final String url = "/board/";
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String root = request.getContextPath();
 		String path = request.getPathInfo();
-		String page = "";
+		String page = urlJsp + "list.jsp";
+
+		String userId = "";
+		Object attribute = request.getSession().getAttribute("loginUser");
+		if (null != attribute) {
+			userId = ((Users) attribute).getUser_id();
+		}
 
 		System.out.println("BoardServlet : GET : " + path);
 
 		if (path == null || path.isEmpty() || path.equals("/") || path.equals("/list") || path.equals("/list.jsp")) {
 			// 문의 사항 목록 화면
+			List<Board> resultList ; 
 
-			// DB에서 데이터 전체 조회
-			List<Board> resultList = service.list();
+			String param = request.getParameter("type");
+			
+			if (null == param || param.isEmpty() || userId.isEmpty()) {
+				// DB에서 데이터 전체 조회
+				resultList = service.list();
+			} else {
+				resultList = service.listBy(userId);
+			}
+			
+			Map<Integer, Type> typeMap = commonservice.getTypeMap(Common.BOARD);
+			for (Board board : resultList) {
+				board.setTypeName(typeMap.get(board.getTypeNo()).getTypeName());				
+			}
 
 			// 화면에 표시를 위해 request 에 담기
 			request.setAttribute("resultList", resultList);
 
 			// 이동 할 페이지
 			page = urlJsp + "list.jsp";
-
-		} else if (path.equals("/insert") || path.equals("/insert.jsp")) {
-			// 게시글 등록 화면
-
-			List<Type> typelist = commonservice.getTypeList(Common.BOARD);
-			request.setAttribute("typelist", typelist);
-
-			// 이동 할 페이지 
-			page = "/page/board/insert.jsp";
 
 		} else if (path.equals("/read") || path.equals("/read.jsp")) {
 			// 문의 사항 조회 화면
@@ -87,23 +93,39 @@ public class BoardServlet extends HttpServlet {
 			// 이동 할 페이지
 			page = urlJsp + "read.jsp";
 
+		} else if (path.equals("/insert") || path.equals("/insert.jsp")) {
+			// 게시글 등록 화면
+
+			// 로그인 정보가 없으면 등록 할 수 없음
+			if (!userId.isEmpty()) {
+
+				List<Type> typelist = commonservice.getTypeList(Common.BOARD);
+				request.setAttribute("typelist", typelist);
+
+				// 이동 할 페이지 
+				page = urlJsp + "insert.jsp";
+			}
+
 		} else if (path.equals("/update") || path.equals("/update.jsp")) {
 			// 게시글 수정 화면
 
-			// 조회 할 데이터 PK(KEY)
-			int no = Integer.parseInt(request.getParameter("no"));
+			// 로그인 정보가 없으면 수정 할 수 없음
+			if (!userId.isEmpty()) {
+				// 조회 할 데이터 PK(KEY)
+				int no = Integer.parseInt(request.getParameter("no"));
 
-			// DB에서 데이터 조회
-			Board result = service.select(no);
-			List<Type> typelist = commonservice.getTypeList(Common.BOARD);
+				// DB에서 데이터 조회
+				Board result = service.select(no);
+				List<Type> typelist = commonservice.getTypeList(Common.BOARD);
 
-			// 화면에 표시를 위해 request 에 담기
-			request.setAttribute("typelist", typelist);
-			request.setAttribute("result", result);
-			request.setAttribute("no", no);
+				// 화면에 표시를 위해 request 에 담기
+				request.setAttribute("typelist", typelist);
+				request.setAttribute("result", result);
+				request.setAttribute("no", no);
 
-			// 이동 할 페이지
-			page = urlJsp + "update.jsp";
+				// 이동 할 페이지
+				page = urlJsp + "update.jsp";
+			}
 
 		} else if (path.equals("/delete") || path.equals("/delete.jsp")) {
 			// 문의 사항 삭제 처리
@@ -146,6 +168,11 @@ public class BoardServlet extends HttpServlet {
 		Object attribute = request.getSession().getAttribute("loginUser");
 		if (null != attribute) {
 			userId = ((Users) attribute).getUser_id();
+		} else {
+			// 유저 정보가 없으면 문의 사항 등록, 수정, 답변 작성 할 수 없음
+			String page = urlJsp + "list.jsp?error=no";
+			RequestDispatcher dispatcher = request.getRequestDispatcher(page);
+			dispatcher.forward(request, response);
 		}
 
 		System.out.println("BoardServlet : POST : " + path);
@@ -230,13 +257,12 @@ public class BoardServlet extends HttpServlet {
 				if (inserted == null || inserted.getNo() == 0) {
 					System.out.println("신규 등록 실패");
 					response.getWriter().print(0);
-					// response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "답변 등록 실패");
 					return;
 				}
 
 				// 게시글 상태 업데이트
 				Board board = Board.builder().no(no).answeredKbn(true).build();
-				boolean update = service.update(board, true);
+				service.update(board, true);
 
 				System.out.println("신규 등록 성공: answer_no=" + inserted.getNo());
 

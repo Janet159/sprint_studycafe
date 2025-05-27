@@ -16,9 +16,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-/**
- * Servlet implementation class BoardServlet
- */
 @WebServlet("/users/*")
 public class UsersServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;

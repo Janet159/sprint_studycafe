@@ -20,12 +20,10 @@
 	
 	<main>
 		<div class="container mb-10">
-			<div class="px-4 pt-5 my-5 text-center border-bottom">
-				<h2 class="mb-4 text-center fs-50">편의 시설 및 구비 용품</h2>
-			</div>
+		
+			<div class="title-area">편의 시설 및 구비 용품</div>
 			
 			<%-- 게시판 테이블 --%>
-	
 			<table class="table table-hover">
 				<thead>
 					<tr class="text-center">
@@ -59,6 +57,11 @@
 				</tbody>
 			</table>
 	
+			<div class="pagination">
+				<span>1</span> <span>2</span> <span>3</span> <span>4</span> <span>5</span>
+				<span>6</span> <span>7</span> <span>8</span> <span>9</span> <span>10</span>
+			</div>
+
 			<% if (role) { %>
 			<div class="d-grid gap-2 d-sm-flex justify-content-sm-end mb-5">
 				<a href="<%= Common.getUrl(Common.SERVICE, Common.INSERT) %>" class="btn btn-cyan-700 btn-lg px-4 me-sm-3">등록</a>

@@ -12,62 +12,53 @@
 <head>
 	<title><%= Common.TITLE %></title>
 	<jsp:include page="/alljsp/link.jsp" />
+	<link href="<%=root%>/allcss/insert.css" rel="stylesheet">
 </head>
 
 <body>
-	<%
-		//List<Type> typeList = Type.getTestList();
-		//request.setAttribute("typeList" ,typeList);
-	%>
 	<!-- header 포함하기 -->
 	<jsp:include page="/alljsp/header.jsp" />
 	<%-- [Contents] ######################################################### --%>
 
 	<main>
 		<div class="container mb-10">
-			<div class="px-4 pt-5 my-5 text-center border-bottom">
-				<h2 class="mb-4 fs-25">편의 시설 등록</h2>
-			</div>
+			<div class="title-area">편의 시설 등록</div>
 
 			<form action="<%= Common.getUrl(Common.SERVICE, Common.INSERT) %>" method="post">
 
-<div class="d-flex flex-column mb-3">
-	<div class="p-2">
-		<div class="input-group mb-3">
-			<span class="input-group-text fs-25" id="inputGroup-sizing-default">구분</span>
-			<c:forEach var="type" items="${typeList}" varStatus="index">
-				<div class="form-check">
-				<c:choose>
-				    <c:when test="${index.first}">
-				        <input class="form-check-input" type="radio" name="typeNo" id="type${index.index}" value="${type.no}" checked>
-				    </c:when>
-				    <c:otherwise>
-				        <input class="form-check-input" type="radio" name="typeNo" id="type${index.index}" value="${type.no}">
-				    </c:otherwise>
-				</c:choose>
-				<label class="form-check-label" for="type${index.index}">${type.typeName}</label>
-				</div>
-			</c:forEach>
+<div class="content-box mx-auto">
+	<div class="row border-bottom border-top">
+		<label class="col-sm-2 col-form-label">구분</label>
+		<div class="col-sm-10 d-flex align-items-center gap-3">
+		<c:forEach var="type" items="${typeList}" varStatus="index">
+			<div class="form-check">
+			<c:choose>
+			    <c:when test="${index.first}">
+			        <input class="form-check-input" type="radio" name="typeNo" id="type${index.index}" value="${type.no}" checked>
+			    </c:when>
+			    <c:otherwise>
+			        <input class="form-check-input" type="radio" name="typeNo" id="type${index.index}" value="${type.no}">
+			    </c:otherwise>
+			</c:choose>
+			<label class="form-check-label" for="type${index.index}">${type.typeName}</label>
+			</div>
+		</c:forEach>
 		</div>
 	</div>
-	<div class="p-2">
-		<div class="input-group mb-3">
-			<span class="input-group-text fs-25" id="inputGroup-sizing-default">종류</span>
-			<input type="text" class="form-control" aria-label="Sizing example input" name="serviceId"
-				aria-describedby="inputGroup-sizing-default" required>
+	<div class="row border-bottom">
+		<div class="input-group pt-3 pb-3">
+			<label class="col-sm-2 col-form-label">종류</label>
+			<input type="text" class="form-control" name="serviceId" required>
 		</div>
 	</div>
-	<div class="p-2">
-		<div class="input-group mb-3">
-			<span class="input-group-text fs-25" id="inputGroup-sizing-default">위치</span>
-			<input type="text" class="form-control" aria-label="Sizing example input" name="location"
-				aria-describedby="inputGroup-sizing-default" required>
+	<div class="row border-bottom">
+		<div class="input-group pt-3 pb-3">
+			<label class="col-sm-2 col-form-label">위치</label>
+			<input type="text" class="form-control" name="location" required>
 		</div>
 	</div>
-	<div class="p-2">
-		<div class="input-group mb-3">
-			<input type="submit" class="btn btn-cyan-700 w-100 mb-10 fs-30" value="등록" />
-		</div>
+	<div class="row border-bottom mt-5">
+		<input type="submit" class="btn btn-cyan-700 w-100" value="등록" />
 	</div> 
 </div>
 
