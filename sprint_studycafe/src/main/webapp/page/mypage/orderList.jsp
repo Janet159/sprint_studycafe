@@ -19,21 +19,13 @@
 </head>
 <body>
 	<%
-	Object att = request.getAttribute("resultList");
-	List<Reservation> arrList;
-	if (att != null) {
-		arrList = (List<Reservation>) request.getAttribute("resultList");
-	} else {
-		arrList = new ArrayList<Reservation>();
-	}
-
-	Object att1 = request.getAttribute("ticketMap");
-	Map<String, Ticket> ticketMap;
-	if (att != null) {
-		ticketMap = (Map<String, Ticket>) request.getAttribute("ticketMap");
-	} else {
-		ticketMap = new HashMap<String, Ticket>();
-	}
+		Object att = request.getAttribute("resultList");
+		List<Reservation> arrList;
+		if (att != null) {
+			arrList = (List<Reservation>) request.getAttribute("resultList");
+		} else {
+			arrList = new ArrayList<Reservation>();
+		}
 	%>
 	<jsp:include page="/alljsp/header.jsp" />
 	<%-- [Contents] ######################################################### --%>
@@ -53,13 +45,13 @@
 				<tbody>
 					<%
 					for (int i = 0; i < arrList.size(); i++) {
-						Reservation item = arrList.get(i);
+						Reservation dto = arrList.get(i);
 					%>
 					<tr>
-						<td><%=item.getNo()%></td>
-						<td><%=Common.getDateToString(item.getOrderTime())%></td>
-						<td><%=ticketMap.get(item.getTicketId()).getTicketName()%></td>
-						<td><%=Common.getDateToString(item.getStartTime())%> - <%=Common.getDateToString(item.getEndTime())%></td>
+						<td><%=dto.getNo()%></td>
+						<td><%=Common.getDateToString(dto.getOrderTime())%></td>
+						<td><%=dto.getTicketName()%></td>
+						<td><%=Common.getDateToString(dto.getStartTime())%> - <%=Common.getDateToString(dto.getEndTime())%></td>
 					</tr>
 					<%
 					}

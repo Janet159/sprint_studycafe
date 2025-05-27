@@ -1,15 +1,25 @@
 <%@ include file="/alljsp/common.jsp"%>
 <%@ page import="Config.Common"%>
+<%@ page import="DTO.Reservation"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>
+<head>   
 	<title><%= Common.TITLE %></title>
 	<jsp:include page="/alljsp/link.jsp" />
 	<link rel="stylesheet" href="<%= root %>/allcss/read.css">
 </head>
 <body>
+	<%
+		Object att = request.getAttribute("result") ;
+		Reservation dto ;
+		if (att != null ) {
+			dto = (Reservation) request.getAttribute("result");
+		} else {
+			dto = new Reservation();
+		}
+	%>
 	<jsp:include page="/alljsp/header.jsp" />
 	<%-- [Contents] ######################################################### --%>
 	<main class="main-1920">
@@ -20,35 +30,35 @@
         <div class="mypage-infor-box mx-auto rounded mb-10 pt-5 gap-20 d-flex flex-column align-items-center">
             
             <div class="read-item mb-3 row">
-                <label class="col-4 col-form-label text-center fs-20">좌석번호</label>
+                <label class="col-4 col-form-label text-center fs-20">좌석 번호</label>
                 <div class="col-8">
-                    <div class="info-box">placeholder</div>
+                    <div class="info-box"><%= dto.getSeatName() %></div>
                 </div>
             </div>
             
             <div class="read-item mb-3 row">
-                <label class="col-4 col-form-label text-center fs-20">좌석가격</label>
+                <label class="col-4 col-form-label text-center fs-20">구매 가격</label>
                 <div class="col-8">
-                    <div class="info-box">placeholder</div>
+                    <div class="info-box"><%= Common.getIntegerToString(dto.getTicketPrice()) %></div>
                 </div>
             </div>
             
             <div class="read-item mb-3 row">
-                <label class="col-4 col-form-label text-center fs-20">구매시간</label>
+                <label class="col-4 col-form-label text-center fs-20">구매 시간</label>
                 <div class="col-8">
-                    <div class="info-box">placeholder</div>
+                    <div class="info-box"><%= Common.getDateToString(dto.getOrderTime()) %></div>
                 </div>
             </div>
             
             <div class="read-item mb-3 row">
-                <label class="col-4 col-form-label text-center fs-20">남은시간</label>
+                <label class="col-4 col-form-label text-center fs-20">남은 시간</label>
                 <div class="col-8">
-                    <div class="info-box">placeholder</div>
+                    <div class="info-box"><%= Common.getRemainingTime(dto.getEndTime()) %></div>
                 </div>
             </div>
             
         </div>
-        <button class="gotomain-btn btn btn-cyan-700 fw-semibold fs-30 text-center position-absolute end-0"><a href="">메인</a></button>
+        <a href="<%= Common.getUrl() %>" class="gotomain-btn btn btn-cyan-700 fw-semibold fs-30 text-center position-absolute end-0">메인</a>
     </div>
     </main>
 		

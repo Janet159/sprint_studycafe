@@ -1,9 +1,8 @@
 package Service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 import DAO.ReservationDAO;
 import DTO.Reservation;
@@ -11,13 +10,13 @@ import DTO.Reservation;
 public class ReservationServiceImpl implements ReservationService {
 	ReservationDAO dao = new ReservationDAO();
 
-	/** 좌석 목록 조회 */
+	/** 좌석 구매 리스트 */
 	@Override
-	public List<Reservation> list() {
+	public List<Reservation> reservationList() {
 		List<Reservation> list = new ArrayList<Reservation>();
 
 		try {
-			list = dao.list();
+			list = dao.reservationList();
 		} catch (Exception e) {
 			e.printStackTrace();
 			list = new ArrayList<Reservation>();
@@ -26,6 +25,37 @@ public class ReservationServiceImpl implements ReservationService {
 		return list;
 	}
 
+	/** 나의 구매 내역 */
+	@Override
+	public List<Reservation> orderList(String userId) {
+		List<Reservation> list = new ArrayList<Reservation>();
+
+		try {
+			list = dao.orderList(userId);
+		} catch (Exception e) {
+			e.printStackTrace();
+			list = new ArrayList<Reservation>();
+		}
+
+		return list;
+	}
+
+	/** 좌석 현황 */
+	@Override
+	public List<Reservation> seatList() {
+		List<Reservation> list = new ArrayList<Reservation>();
+
+		try {
+			list = dao.seatList();
+		} catch (Exception e) {
+			e.printStackTrace();
+			list = new ArrayList<Reservation>();
+		}
+
+		return list;
+	}
+	
+	
 	/** 주문 내역 조회 */
 	@Override
 	public Reservation select(int no) {
@@ -40,21 +70,26 @@ public class ReservationServiceImpl implements ReservationService {
 		return dto;
 	}
 
-	/** 주문 내역 조회 */
+	/** 현재 주문 내역 조회 */
 	@Override
 	public Reservation select(String userId) {
 		Reservation dto = null;
 		try {
-			List<Reservation> list = dao.list(userId);
+			List<Reservation> list = dao.orderList(userId);
 			if (null != list && list.size() >= 1) {
-				dto = list.get(0);
-			} else {
-				dto = new Reservation();
+				
+				Date now = new Date();
+				Date endTime = list.get(0).getEndTime();
+
+				if (now.after(endTime)) {
+				    dto = list.get(0);
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			dto = new Reservation();
 		}
+		
+		if (null == dto) dto = new Reservation();
 
 		return dto;
 	}
@@ -72,20 +107,4 @@ public class ReservationServiceImpl implements ReservationService {
 
 		return result;
 	}
-
-	/** 나의 구매 내역 */
-	@Override
-	public List<Reservation> list(String userId) {
-		List<Reservation> list = new ArrayList<Reservation>();
-
-		try {
-			list = dao.list(userId);
-		} catch (Exception e) {
-			e.printStackTrace();
-			list = new ArrayList<Reservation>();
-		}
-
-		return list;
-	}
-
 }

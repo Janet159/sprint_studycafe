@@ -81,6 +81,7 @@ public class Common {
 		return formatter.format(date);     
 	}
 	
+	/** 남은 시간 계산 */
 	public static String getRemainingTime(Date date) {
 		if (date == null) return "";
 

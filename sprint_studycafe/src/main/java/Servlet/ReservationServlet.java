@@ -51,7 +51,7 @@ public class ReservationServlet extends HttpServlet {
 				title = "문의사항";
 			}
 			// DB에서 데이터 전체 조회
-			List<Reservation> resultList = service.list();
+			List<Reservation> resultList = service.reservationList();
 
 			// 화면에 표시를 위해 request 에 담기
 			request.setAttribute("resultList", resultList);
