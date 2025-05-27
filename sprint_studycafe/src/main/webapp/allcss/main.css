@@ -4,3 +4,26 @@
     width: auto;
     display: block;
 }
+
+
+.carousel-inner,
+.carousel-item,
+.carousel-item img {
+  width: 1360px;
+  height: 350px;
+   margin: 0;
+  padding: 0;
+  border: none;
+  object-fit: cover;
+}
+ 
+#carouselSlide {
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+}
+.carousel-control-prev-icon,
+.carousel-control-next-icon{
+	background-color:black;
+  border-radius: 50%;
+}
