@@ -2,12 +2,14 @@
 function answerUpdate() {
 	alert("answerUpdate");
 	
-	let board_no = document.getElementById('board_no').value
+	let no = document.getElementById('no').value
+	let answer_no = document.getElementById('answer_no').value
 	let content = document.getElementById('content').value
     let url = `/sprint_studycafe/board/answerUpdate`
     
     let data = {
-		'board_no' : board_no,
+		'no' : no,
+		'answer_no' : answer_no,
 		'content'  : content
 	}
 	
@@ -17,7 +19,7 @@ function answerUpdate() {
 	        type            : 'POST',                 // 요청 메소드
 	        url             : url,                    // 요청 URL
 			data            : data,					  // 요청 데이터
-			contentType     : 'application/json',     // 요청 데이터 타입
+//			contentType     : 'application/json',     // 요청 데이터 타입
 			dataType        : 'html',                 // 응답 데이터 타입
 	        // 요청 성공 
 			success         : function(response, status) {
@@ -25,7 +27,12 @@ function answerUpdate() {
 			    // status   : 응답 상태
 			    if( response == '' ) {
 			        alert('응답 메시지가 없습니다')
-			    }
+			    } else if ( response == 0 ) {
+					// 에러
+				} else {
+					// 성공
+					document.getElementById('answer_no').value = response ;
+				}
 			    resolve(response == 'true' ? true : false) ;
 				// document.getElementById('content').value = response ;
 			},

@@ -34,6 +34,7 @@ body {
 						<div class="col-sm-10 d-flex align-items-center gap-3">
 
 							<%
+							role = true;
 							String readonly = "readonly";
 							if (role) {
 								readonly = "";
@@ -68,8 +69,7 @@ body {
 					<div class="row mb-5 pb-4 border-bottom">
 						<label for="title" class="col-sm-2 col-form-label">제목</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" id="title" readonly
-								value="${result.title}">
+							<input type="text" class="form-control" id="title" readonly value="${result.title}">
 						</div>
 					</div>
 					<div class="row mb-3 pb-5 border-bottom">
@@ -91,8 +91,9 @@ body {
 						<div class="row justify-content-center mt-2 mb-5 pb-2">
 							<div class="title2 mt-3 mb-4 text-cyan-700">답변내용</div>
 							<div class="col-sm-10">
-								<input type="hidden" id="board_no" name="no" value="${result.no}" />
-								<input type="hidden" id="answer_no" name="answer_no" value="${answer.no}" />
+								<input type="hidden" id="board_no" name="no"
+									value="${result.no}" /> <input type="hidden" id="answer_no"
+									name="answer_no" value="${answer.no}" />
 								<textarea class="form-control mb-3" id="content"
 									style="resize: none; height: 130px;" <%=readonly%>>${answer.content}</textarea>
 							</div>
@@ -110,11 +111,12 @@ body {
 
 	<%-- [Contents] ######################################################### --%>
 	<jsp:include page="/alljsp/footer.jsp" />
-	<script src="<%=root %>/alljs/answer.js" type="text/javascript"></script>
-<%-- 	<jsp:include page="/alljs/answer.js" /> --%>
+	<script src="<%=root%>/alljs/answer.js" type="text/javascript"></script>
 	<script>
-		async function answer() {
-			let check = await answerUpdate() ;
+		async
+		function answer() {
+			let check = await
+			answerUpdate();
 			if (check) {
 				alert('답변 업데이트 성공')
 			}

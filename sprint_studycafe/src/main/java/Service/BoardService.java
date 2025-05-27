@@ -21,6 +21,9 @@ public interface BoardService {
 	/** 수정 */
 	boolean update(Board board);
 
+	/** 수정 */
+	boolean update(Board board, boolean kbn);
+
 	/** 삭제 */
 	boolean delete(int no);
 

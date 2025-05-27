@@ -1,3 +1,4 @@
+<%@page import="Config.Common"%>
 <%@ include file="/alljsp/common.jsp" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -14,20 +15,20 @@
 			<ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0"> 
 				<div class="back"></div>
 				<li class = "position-relative">
-					<a href="<%= root %>/page/reservation/list.jsp" class="header-menu d-inline-block nav-link px-2 text-dark fs-5 fw-bold">좌석구매</a>
+					<a href="<%= Common.getUrl(Common.RESERVATION, Common.LIST)%>" class="header-menu d-inline-block nav-link px-2 text-dark fs-5 fw-bold">좌석구매</a>
 					<ul class="submenu list-unstyled">
 						<% if (!role) { %>
-						<li class="menu-item"><a href="" class="d-inline-block text-secondary">좌석구매</a></li>
+						<li class="menu-item"><a href="<%= Common.getUrl(Common.RESERVATION, Common.LIST)%>" class="d-inline-block text-secondary">좌석구매</a></li>
 						<% } else { %>
-						<li class="menu-item"><a href="" class="d-inline-block text-secondary">좌석현황</a></li>
+						<li class="menu-item"><a href="<%= Common.getUrl(Common.RESERVATION, Common.LIST)%>" class="d-inline-block text-secondary">좌석현황</a></li>
 						<% } %>
 					</ul>
 				</li>
 				<li class = "position-relative">
-				<a href="<%= root %>/page/board/notice.jsp" class="header-menu d-inline-block nav-link px-2 text-cyan-700 ">고객센터</a>
+				<a href="<%= Common.getUrl(Common.NOTICE, Common.LIST)%>" class="header-menu d-inline-block nav-link px-2 text-cyan-700 ">고객센터</a>
 					<ul class="submenu list-unstyled">
-						<li class="menu-item"><a href="<%= root %>/board/notice.jsp" class="d-inline-block text-secondary">공지사항</a></li>
-						<li class="menu-item"><a href="<%= root %>/board/list.jsp" class="d-inline-block text-secondary">문의사항</a></li>
+						<li class="menu-item"><a href="<%= Common.getUrl(Common.NOTICE, Common.LIST)%>" class="d-inline-block text-secondary">공지사항</a></li>
+						<li class="menu-item"><a href="<%= Common.getUrl(Common.BOARD, Common.LIST)%>" class="d-inline-block text-secondary">문의사항</a></li>
 					</ul>
 				</li> 
 				<li class = "position-relative">
@@ -41,7 +42,7 @@
 					</ul>
 				</li> 
 				<li class = "position-relative">
-				<a href="<%= root %>/service/list.jsp" class="header-menu d-inline-block nav-link px-2 link-secondary ">편의시설</a>
+				<a href="<%= Common.getUrl(Common.SERVICE, Common.LIST)%>" class="header-menu d-inline-block nav-link px-2 link-secondary ">편의시설</a>
 				</li> 
 			</ul>
 	       	<%

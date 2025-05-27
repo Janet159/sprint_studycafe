@@ -59,6 +59,7 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public boolean update(Board board) {
+		System.out.println("update");
 		int result = 0;
 		try {
 			result = boardDAO.update(board);
@@ -72,6 +73,21 @@ public class BoardServiceImpl implements BoardService {
 		return false;
 	}
 
+	@Override
+	public boolean update(Board board, boolean kbn) {
+		System.out.println("field : " + kbn);
+		int result = 0;
+		try {
+			result = boardDAO.update(board, kbn);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		if (result > 0) {
+			return true;
+		}
+		return false;
+	}
 	@Override
 	public boolean delete(int no) {
 		int result = 0;
