@@ -19,8 +19,11 @@
 	<%
 	Object att = request.getAttribute("resultList");
 	List<Ticket> resultList;
+	
+	String ticketId = "";
 	if (att != null) {
 		resultList = (List<Ticket>) request.getAttribute("resultList");
+		ticketId = resultList.get(0).getTicketId();
 	} else {
 		resultList = new ArrayList<Ticket>();
 	}
@@ -71,7 +74,7 @@
 							action="<%=Common.getUrl(Common.RESERVATION, Common.ORDER)%>"
 							method="post">
 							<input type="hidden" value="${seatId}" id="seatId" name="seatId" />
-							<input type="hidden" value="<%=resultList.get(0).getTicketId()%>" 
+							<input type="hidden" value="<%= ticketId %>" 
 								id="ticketId" name="ticketId" />
 							<input type="submit" class="btn btn-cyan-700 w-100 mb-3 fs-20" value="구매" />
 						</form>

@@ -13,11 +13,6 @@
 	<title><%=Common.TITLE%></title>
 	<jsp:include page="/alljsp/link.jsp" />
 	<link href="<%=root%>/allcss/insert.css" rel="stylesheet">
-	<style>
-		body {
-			padding-bottom: 100px;
-		}
-	</style>
 </head>
 <body>
 	<%
@@ -33,17 +28,17 @@
 	<%-- [Contents] ######################################################### --%>
 
 	<main class="container-1360 ">
-		<div class="container">
-		
-			<div class="title-area">1:1 문의</div>
-			<div class="sub-title-area">문의내용</div>
 
+		<div class="title-area">1:1 문의</div>
+		<div class="sub-title-area">문의내용</div>
+
+		<div class="container pb-10">
 			<form action="<%=Common.getUrl(Common.BOARD, Common.INSERT)%>" method="post">
-				<div class="content-box mx-auto">
+				<div class="content-area mx-auto">
 					<%-- 구분 --%>
-					<div class="row mb-3 border-bottom border-top">
-						<label class="col-sm-2 col-form-label">구분</label>
-						<div class="col-sm-10 d-flex align-items-center gap-3">
+					<div class="row border-bottom border-top mb-3">
+						<label class="col-2 col-form-label fw-bold">구분</label>
+						<div class="col-10 d-flex align-items-center gap-3">
 							<%
 							String check = "";
 							for (int i = 0; i < typelist.size(); i++) {
@@ -52,43 +47,44 @@
 							%>
 							<div class="form-check">
 								<input class="form-check-input" type="radio" name="typeNo"
-									value="<%=type.getNo()%>" id="opt<%=i%>" <%=check%>>
-								<label class="form-check-label" for="opt<%=i%>"><%=type.getTypeName()%></label>
+									value="<%=type.getNo()%>" id="opt<%=i%>" <%=check%>> <label
+									class="form-check-label" for="opt<%=i%>"><%=type.getTypeName()%></label>
 							</div>
 							<%
 							}
 							%>
 						</div>
 					</div>
-					
+
 					<%-- 제목 --%>
-					<div class="row mb-3 border-bottom pb-3">
-						<label for="title" class="col-sm-2 col-form-label">제목</label>
-						<div class="col-sm-10">
-							<input type="text" class="form-control" id="title" name="title"
+					<div class="row border-bottom mb-3 pb-3">
+						<label class="col-2 col-form-label fw-bold" for="title">제목</label>
+						<div class="col-10">
+							<input class=" form-control" type="text" id="title" name="title"
 								placeholder="제목을 입력하세요." required>
 						</div>
 					</div>
 
 					<%-- 내용 --%>
-					<div class="row mb-3 border-bottom pb-3">
-						<label for="content" class="col-sm-2 col-form-label">내용</label>
-						<div class="col-sm-10">
-							<textarea class="form-control" id="content" name="content"
-								rows="6" placeholder="내용을 입력하세요." style="resize: none;" required></textarea>
+					<div class="row border-bottom mb-3 pb-3">
+						<label
+							class="col-2 col-form-label d-flex align-items-center justify-content-center fw-bold" for="content">내용</label>
+						<div class="col-10">
+							<textarea class="form-control" style="resize: none;" rows="6"
+								id="content" name="content" placeholder="내용을 입력하세요." required></textarea>
 						</div>
 					</div>
 
 					<%-- 고객 정보 --%>
-					<div class="row mb-3 border-bottom">
-						<label class="col-sm-2 col-form-label">고객정보</label>
+					<div class="row border-bottom mt-4 mb-3 pb-3">
+						<label class="col col-form-label text-start fs-20">고객정보</label>
 					</div>
 
 					<%-- 전화번호 --%>
-					<div class="col row mb-3">
-						<label for="phone" class="col-sm-2 col-form-label">전화번호</label>
-						<div class="col-sm-4">
-							<input type="text" class="form-control" id="phone"
+					<div class="row border-bottom mb-3 pb-3">
+						<label class="col-2 col-form-label fw-bold" for="phone">전화번호</label>
+						<div class="col-4">
+							<input class="form-control" type="text" id="phone"
 								name="phonenumber" placeholder="-없이 입력하세요." maxlength="11"
 								required>
 						</div>
@@ -96,23 +92,25 @@
 				</div>
 
 				<%-- 수집 동의 --%>
-				<div class="content-box mx-auto pt-0">
-					<h6 class="fw-bold mb-1">개인정보 수집에 대한 동의</h6>
-					<p class="small text-muted text-start">문의를 통해 수집된 개인정보는 문의처리를 위해서만 사용되며,
-						수집된 개인정보는 문의처리 목적 외에 사용되지 않습니다.</p>
+				<div class="content-area mx-auto mt-5 pt-0 pb-0 row d-flex flex-column">
+					<div class="col fw-bold text-start fs-18 mb-1">개인정보 수집에 대한 동의</div>
+					<p class="small text-muted text-end">문의를 통해 아래의 개인 정보를 수집합니다. 수집된 개인정보는 문의 외 목적으로 사용되지 않습니다.</p> 
 					<textarea class="form-control mb-3" rows="6" readonly
 						style="resize: none;">
-1. 수집 항목
-- 이름, 전화번호
+개인 정보의 수집 목적 및 항목
+① 수집 목적 : 원할한 고객 상담, 불편 사항 및 문의 사항 관련 의사소통 경로 확보
+② 수집 항목
+* 필수 입력 사항
+- 이용자 식별을 위한 항목 : 성명, 연락처, 이메일, 아이디(로그인 시 수집)
 
-2. 이용 목적
-- 문의 및 요청사항 처리, 결과 회신
+개인 정보의 보유 및 이용 기간
+입력하신 개인 정보는 소비자 보호에 관한 법률 등 관계 법률에 의해 다음과 같이 보유합니다.
 
-3. 보유 기간
-- 처리 완료 후 1년 보관
+보유기간 : 동의일로부터 3년
+- 답변 완료 시 : 처리 완료 시점으로부터 3개월 보관 이후 분리 보관
+- 답변 미 완료 시 : 접수 시점으로부터 3개월 보관 이후 분리 보관
 
-4. 동의 거부 시 불이익
-- 동의를 거부하실 수 있으나, 이 경우 문의처리 서비스 이용이 제한될 수 있습니다.
+※ 1:1 문의 서비스 제공을 위한 최소한의 개인정보이며 거부할 수 있습니다. 다만, 수집에 동의하지 않을 경우 서비스 이용이 제한됩니다.
 	          				</textarea>
 
 					<%-- 개인정보 동의 --%>
@@ -126,7 +124,9 @@
 							<label class="form-check-label" for="agreeYes">동의함</label>
 						</div>
 					</div>
-					
+				</div>
+				
+				<div class="content-area mx-auto pt-0">
 					<%-- 버튼 --%>
 					<div class="mt-5">
 						<input type="hidden" name="no" value="${board.no}">

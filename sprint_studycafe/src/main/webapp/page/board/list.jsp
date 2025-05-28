@@ -14,11 +14,6 @@
 	<title><%=Common.TITLE%></title>
 	<jsp:include page="/alljsp/link.jsp" />
 	<link href="<%=root%>/allcss/list.css" rel="stylesheet">
-	<style>
-		body {
-			padding-bottom: 100px;
-		}
-	</style>
 </head>
 <body>
 	<%
@@ -42,10 +37,11 @@
 	<%-- [Contents] ######################################################### --%>
 	
 	<main class="container-1360">
-		<div class="list-box">
-			<div class="title-area fs-30">고객센터</div>
+		<div class="title-area fs-30">고객센터</div>
+		<div class="sub-title-area text-cyan-700 fs-25"><%=title%></div>
+
+		<div class="list-area">
 			<div class="table-responsive">
-				<div class="sub-title-area text-cyan-700 fs-25"><%=title%></div>
 				<table class="table table-hover">
 					<thead>
 						<tr>
@@ -57,6 +53,11 @@
 						</tr>
 					</thead>
 					<tbody>
+						<c:if test="${empty resultList}">
+							<tr>
+								<td colspan="5" class="text-center">조회된 데이터가 없습니다.</td>
+							</tr>
+						</c:if>
 						<%
 						for (int i = 0; i < resultList.size(); i++) {
 							Board board = resultList.get(i);
@@ -73,7 +74,7 @@
 						}
 						for (int i = 0; i < 10 - resultList.size(); i++) {
 						%>
-						<tr><td colspan="5"></td></tr>
+						<tr><td colspan="5">&nbsp;</td></tr>
 						<% } %>
 						<%-- for 끝 --%>
 					</tbody>
@@ -81,16 +82,15 @@
 			</div>
 			
 			<div class="pagination">
-				<span>1</span> <span>2</span> <span>3</span> <span>4</span> <span>5</span>
-				<span>6</span> <span>7</span> <span>8</span> <span>9</span> <span>10</span>
+				<span><a href="">1</a></span>
 			</div>
 			
-			<div class="btn-main">
+			<div class="text-end">
 				<% if (user != null) { %>
 				<a href="<%=Common.getUrl(Common.BOARD, Common.INSERT)%>"
 					class="btn btn-cyan-700">1:1문의</a>
 				<% } %>
-				<a href="<%=root%>" class="btn btn-cyan-700 btn-main">메인</a>
+				<a href="<%=root%>" class="btn btn-cyan-700">메인</a>
 			</div>
 		</div>
 	</main>

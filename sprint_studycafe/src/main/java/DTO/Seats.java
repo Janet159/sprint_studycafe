@@ -1,8 +1,5 @@
 package DTO;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.alohaclass.jdbc.annotation.Pk;
 import com.alohaclass.jdbc.annotation.Table;
 
@@ -25,15 +22,4 @@ public class Seats {
 	/** 이용 여부 */
 	private Boolean usingKbn;
 
-	public static List<Seats> getTestList() {
-		List<Seats> resultList = new ArrayList<Seats>();
-
-		boolean is = false ;
-		for (int i = 0; i < 12; i++) {
-			Seats result = new Seats("seatid" + i, "seatName" + i, is);
-			resultList.add(result);
-			is = !is;
-		}
-		return resultList;
-	}
 }
