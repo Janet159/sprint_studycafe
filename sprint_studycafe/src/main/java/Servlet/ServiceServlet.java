@@ -33,7 +33,7 @@ public class ServiceServlet extends HttpServlet {
 
 		String root = request.getContextPath();
 		String path = request.getPathInfo();
-		String page = "";
+		String page = url + "list.jsp";
 		Users user = null;
 		Object attribute = request.getSession().getAttribute("loginUser");
 		if (null != attribute) {
@@ -139,8 +139,10 @@ public class ServiceServlet extends HttpServlet {
 
 		String root = request.getContextPath();
 		String path = request.getPathInfo();
+
+		// 관리자가 아니면 처리 불가
 		Object attribute = request.getSession().getAttribute("loginUser");
-		if (null == attribute || ((Users) attribute).getAdminKbn()) {
+		if (null == attribute || !((Users) attribute).getAdminKbn()) {
 			String page = url + "list.jsp" ;
 			RequestDispatcher dispatcher = request.getRequestDispatcher(page);
 			dispatcher.forward(request, response);

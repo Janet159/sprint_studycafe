@@ -14,11 +14,6 @@
 	<title>고객센터</title>
 	<jsp:include page="/alljsp/link.jsp" />
 	<link href="<%=root%>/allcss/list.css" rel="stylesheet">
-	<style>
-		body {
-			padding-bottom: 100px;
-		}
-	</style>
 </head>
 <body>
 	<%

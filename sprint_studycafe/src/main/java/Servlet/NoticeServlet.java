@@ -138,17 +138,16 @@ public class NoticeServlet extends HttpServlet {
 		String root = request.getContextPath();
 		String path = request.getPathInfo();
 
-		String userId = "";
-		Object user = request.getSession().getAttribute("loginUser");
-		if (null != user) {
-			userId = ((Users) user).getUser_id();
-		} else {
-			// 유저 정보가 없으면 공지사항 등록, 수정 불가
-			String page = url + "list.jsp?error=no";
+		// 관리자가 아니면 처리 불가
+		Object attribute = request.getSession().getAttribute("loginUser");
+		if (null == attribute || !((Users) attribute).getAdminKbn()) {
+			String page = url + "list.jsp" ;
 			RequestDispatcher dispatcher = request.getRequestDispatcher(page);
 			dispatcher.forward(request, response);
 			return ;
 		}
+
+		String userId = ((Users) attribute).getUser_id();
 
 		System.out.println("NoticeServlet : POST : " + path);
 
@@ -194,8 +193,18 @@ public class NoticeServlet extends HttpServlet {
 			String title = request.getParameter("title");
 			String content = request.getParameter("content");
 
+			// 등록 구분 임의 지정
+			CommonService comserService = new CommonServiceImpl();
+			List<Type> typeList = comserService.getTypeList(Common.NOTICE);
+			Type type;
+			if (null != typeList && typeList.size() >= 1) {
+				type = typeList.get(0);
+			} else {
+				type = new Type();
+			}
+			
 			// 수정 할 데이터 만들기
-			Notice dto = Notice.builder().typeNo(1).no(no).adminId(userId).title(title).content(content).build();
+			Notice dto = Notice.builder().no(no).typeNo(type.getNo()).adminId(userId).title(title).content(content).build();
 
 			// DB에 업데이트 보내기
 			boolean result = service.update(dto);

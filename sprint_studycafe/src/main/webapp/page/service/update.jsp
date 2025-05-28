@@ -1,19 +1,19 @@
-<%@ include file="/alljsp/common.jsp" %>
-<%@ include file="/alljsp/jstl.jsp" %>
+<%@ include file="/alljsp/common.jsp"%>
+<%@ include file="/alljsp/jstl.jsp"%>
 
 <%@ page import="java.util.List"%>
 <%@ page import="Config.Common"%>
 <%@ page import="DTO.Service"%>
 <%@ page import="DTO.Type"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-
 <head>
-<title><%= Common.TITLE %></title>
+<title><%=Common.TITLE%></title>
 <jsp:include page="/alljsp/link.jsp" />
+<link href="<%=root%>/allcss/insert.css" rel="stylesheet">
 </head>
-
 <body>
 
 	<!-- header 포함하기 -->
@@ -21,21 +21,20 @@
 	<%-- [Contents] ######################################################### --%>
 
 	<main>
+		<h2 class="title-area">편의 시설 수정</h2>
 
 		<div class="container">
-			<div class="px-4 pt-5 my-5 text-center border-bottom">
-				<h2 class="mb-4 fs-50">편의 시설 수정</h2>
-			</div>
+			<div class="content-area mx-auto mb-10">
 
-			<form action="<%=Common.getUrl(Common.SERVICE, Common.UPDATE)%>"
-				method="post">
-				<input type="hidden" name="no" value="${service.no}">
+				<form action="<%=Common.getUrl(Common.SERVICE, Common.UPDATE)%>"
+					method="post">
 
-				<div class="d-flex flex-column mb-3">
-					<div class="p-2">
-						<div class="input-group mb-3">
-							<span class="input-group-text fs-25"
-								id="inputGroup-sizing-default">구분</span>
+					<input type="hidden" name="no" value="${service.no}">
+
+					<%-- 구분 --%>
+					<div class="row border-top border-bottom mb-3">
+						<label class="col-2 col-form-label fw-bold">구분</label>
+						<div class="col-10 d-flex align-items-center gap-3">
 							<c:forEach var="type" items="${typeList}" varStatus="index">
 								<div class="form-check">
 									<c:choose>
@@ -53,39 +52,37 @@
 							</c:forEach>
 						</div>
 					</div>
-					<div class="p-2">
-						<div class="input-group mb-3">
-							<span class="input-group-text fs-25"
-								id="inputGroup-sizing-default">종류</span> <input type="text"
-								class="form-control" aria-label="Sizing example input"
-								name="serviceId" value="${service.serviceId}"
-								aria-describedby="inputGroup-sizing-default">
-						</div>
-					</div>
-					<div class="p-2">
-						<div class="input-group mb-3">
-							<span class="input-group-text fs-25"
-								id="inputGroup-sizing-default">위치</span> <input type="text"
-								class="form-control" aria-label="Sizing example input"
-								name="location" value="${service.location}"
-								aria-describedby="inputGroup-sizing-default">
+
+					<%-- 종류 --%>
+					<div class="row border-bottom mb-3 pb-3">
+						<label class="col-2 col-form-label fw-bold">종류</label>
+						<div class="col-10">
+							<input type="text" class="form-control" name="serviceId"
+								value="${service.serviceId}">
 						</div>
 					</div>
 
-					<div class="p-2">
-						<div class="input-group mb-3">
-							<input type="submit" class="btn btn-cyan-700 w-100 mb-3 fs-30"
-								value="수정" />
-						</div>
-						<div class="input-group mb-3">
-							<a
-								href="<%= Common.getUrl(Common.SERVICE, Common.DELETE) %>?no=${service.no}"
-								class="btn btn-cancel w-100 fs-30">삭제</a>
+					<%-- 위치 --%>
+					<div class="row border-bottom mb-3 pb-3">
+						<label class="col-2 col-form-label fw-bold">위치</label>
+						<div class="col-10">
+							<input type="text" class="form-control" name="location"
+								value="${service.location}">
 						</div>
 					</div>
-				</div>
 
-			</form>
+					<%-- 버튼 --%>
+					<div class="w-100 d-flex flex-column gap-3 mt-5">
+						<div class="col">
+							<input type="submit" class="btn btn-cyan-700 w-100" value="수정" />
+						</div>
+						<div class="col">
+							<a href="<%= Common.getUrl(Common.SERVICE, Common.DELETE) %>?no=${service.no}"
+								class="btn btn-cancel w-100">삭제</a>
+						</div>
+					</div>
+				</form>
+			</div>
 		</div>
 	</main>
 

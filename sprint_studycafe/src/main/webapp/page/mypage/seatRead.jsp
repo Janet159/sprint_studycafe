@@ -35,28 +35,28 @@
 	            <div class="info-item-area mb-3 row">
 	                <label class="col-4 col-form-label text-center fs-20">좌석 번호</label>
 	                <div class="col-8">
-	                    <div class="info-box"><%= dto.getSeatName() %></div>
+	                    <div class="info-box"><%= dto.getSeatName() %>&nbsp;</div>
 	                </div>
 	            </div>
 	            
 	            <div class="info-item-area mb-3 row">
 	                <label class="col-4 col-form-label text-center fs-20">구매 가격</label>
 	                <div class="col-8">
-	                    <div class="info-box"><%= Common.getIntegerToString(dto.getTicketPrice()) %></div>
+	                    <div class="info-box"><%= Common.getIntegerToString(dto.getTicketPrice()) %>원</div>
 	                </div>
 	            </div>
 	            
 	            <div class="info-item-area mb-3 row">
 	                <label class="col-4 col-form-label text-center fs-20">구매 시간</label>
 	                <div class="col-8">
-	                    <div class="info-box"><%= Common.getDateToString(dto.getOrderTime()) %></div>
+	                    <div class="info-box"><%= Common.getDateToString(dto.getOrderTime()) %>&nbsp;</div>
 	                </div>
 	            </div>
 	            
 	            <div class="info-item-area mb-3 row">
 	                <label class="col-4 col-form-label text-center fs-20">남은 시간</label>
 	                <div class="col-8">
-	                    <div class="info-box"><%= Common.getRemainingTime(dto.getEndTime()) %></div>
+	                    <div class="info-box"><%= Common.getRemainingTime(dto.getEndTime()) %>&nbsp;</div>
 	                </div>
 	            </div>
 	            
