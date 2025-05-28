@@ -12,14 +12,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title><%=Common.TITLE%></title>
-	<jsp:include page="/alljsp/link.jsp" />
-	<link href="<%=root%>/allcss/insert.css" rel="stylesheet">
-	<style>
-		body {
-			padding-bottom: 100px;
-		}
-	</style>
+<title><%=Common.TITLE%></title>
+<jsp:include page="/alljsp/link.jsp" />
+<link href="<%=root%>/allcss/insert.css" rel="stylesheet">
+<link href="<%=root%>/allcss/read.css" rel="stylesheet">
 </head>
 <body>
 	<%
@@ -53,83 +49,131 @@
 		typelist = new ArrayList<Type>();
 	}
 	
+	// 관리자이거나 작성자인지
+	boolean canUpdate = false ;
+	if (role || (null != board.getUserId() && null != user.getUser_id() && board.getUserId().equals(user.getUser_id()))) {
+		canUpdate = true ;
+	}
+	
 	%>
 
 	<jsp:include page="/alljsp/header.jsp" />
 	<%-- [Contents] ######################################################### --%>
-	
+
 	<main class="container-1360">
-		<div class="row justify-content-center">
-			<div class="col-md-7">
-				<div class="content-box" style="height: 1050px;">
-					<div class="content-title">문의내용</div>
+		<div class="title-area">문의내용</div>
 
-					<div class="row mb-3 border-bottom border-top">
-						<label class="col-sm-2 col-form-label">구분</label>
-						<div class="col-sm-10 d-flex align-items-center gap-3">
+		<div class="container mb-10">
+			<div class="content-area mx-auto">
+				<%-- 구분 --%>
+				<div class="row border-top border-bottom mb-3">
+					<label class="col-2 col-form-label fw-bold">구분</label>
+					<div class="col-10 d-flex align-items-center gap-3">
 
-							<%
-							String check = "";
-							for (int i = 0; i < typelist.size(); i++) {
-								Type type = typelist.get(i);
-								if (type.getNo() == board.getTypeNo()) {
-									check = "checked";
-								} else {
-									check = "";
-								}
-							%>
-							<div class="form-check">
-								<input class="form-check-input" type="radio" name="category"
-									id="opt<%=i%>" <%=check%> disabled> <label
-									class="form-check-label" for="opt<%=i%>"><%=type.getTypeName()%></label>
-							</div>
-							<%
+						<%
+						String check = "";
+						for (int i = 0; i < typelist.size(); i++) {
+							Type type = typelist.get(i);
+							if (type.getNo() == board.getTypeNo()) {
+								check = "checked";
+							} else {
+								check = "";
 							}
-							%>
+						%>
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="category"
+								id="opt<%=i%>" <%=check%> disabled> <label
+								class="form-check-label" for="opt<%=i%>"><%=type.getTypeName()%></label>
 						</div>
+						<%
+						}
+						%>
 					</div>
-					<div class="row mb-5 pb-4 border-bottom">
-						<label for="title" class="col-sm-2 col-form-label">제목</label>
-						<div class="col-sm-10">
-							<input type="text" class="form-control" id="title" readonly
-								value="${result.title}">
-						</div>
-					</div>
-					<div class="row mb-3 pb-5 border-bottom">
-						<label for="floatingTextarea2"
-							class="col-sm-2 col-form-label d-flex align-items-center justify-content-center">내용</label>
-						<div class="col-sm-10">
-							<textarea class="form-control " id="floatingTextarea2"
-								style="resize: none; height: 300px;" readonly>${result.content}</textarea>
-						</div>
-					</div>
-					<div class="d-grid gap-2">
-						<%-- 수정, 삭제 버튼 --%>
-						<% if(null != board.getUserId() && null != user.getUser_id() && board.getUserId().equals(user.getUser_id())) { %>
-						<a href="<%= Common.getUrl(Common.BOARD, Common.UPDATE) %>?no=${result.no}"
-							class="btn btn-cyan-700">수정</a>
-						<a href="<%= Common.getUrl(Common.BOARD, Common.DELETE) %>?no=${result.no}"
-							class="btn btn-cancel">삭제</a>
-						<% } %>
-					</div>
-					<form>
-						<div class="row justify-content-center mt-2 mb-5 pb-2">
-							<div class="sub-title-area mt-3 mb-4 text-cyan-700">답변내용</div>
-							<div class="col-sm-10">
-								<input type="hidden" id="board_no" name="no"
-									value="${result.no}" /> <input type="hidden" id="answer_no"
-									name="answer_no" value="${answer.no}" />
-								<textarea class="form-control mb-3" id="content"
-									style="resize: none; height: 130px;" <%=readonly%>>${answer.content}</textarea>
-							</div>
-							<% if (role) { %>
-							<div>
-								<button onclick="answer()" class="btn btn-main btn-cyan-700">등록</button>
-							</div>
-							<% } %>
-						</div>
-					</form>
 				</div>
+
+				<%-- 제목 --%>
+				<div class="row border-bottom mb-3 pb-3">
+					<label class="col-2 col-form-label fw-bold" for="title">제목</label>
+					<div class="col-10">
+						<input type="text" class="form-control" id="title" readonly
+							value="${result.title}">
+					</div>
+				</div>
+
+				<%-- 내용 --%>
+				<div class="row border-bottom mb-3 pb-3">
+					<label
+							class="col-2 col-form-label d-flex align-items-center justify-content-center fw-bold" for="content">내용</label>
+					<div class="col-10">
+						<textarea class="form-control " id="content"
+							style="resize: none; height: 300px;" readonly>${result.content}</textarea>
+					</div>
+				</div>
+
+				<%
+				if (canUpdate) {
+				%>
+				<%-- 고객 정보 --%>
+				<div class="row border-bottom mt-4 mb-3 pb-3">
+					<label class="col col-form-label text-start fs-20">고객정보</label>
+				</div>
+
+				<%-- 전화번호 --%>
+				<div class="row border-bottom mb-3 pb-3">
+					<label class="col-2 col-form-label fw-bold fw-bold" for="phone">전화번호</label>
+					<div class="col-4">
+						<input class="form-control" type="text" id="phone"
+							name="phonenumber" placeholder="-없이 입력하세요." maxlength="11"
+							readonly>
+					</div>
+				</div>
+				<%
+				}
+				%>
+
+				<%-- 버튼 --%>
+				<div class="w-100 d-flex flex-column gap-3 mt-5">
+					<%-- 수정, 삭제 버튼 --%>
+					<%
+					if (canUpdate) {
+					%>
+					<div class="col">
+						<a
+							href="<%= Common.getUrl(Common.BOARD, Common.UPDATE) %>?no=${result.no}"
+							class="btn btn-cyan-700 w-100">수정</a>
+					</div>
+					<div class="col">
+						<a
+							href="<%= Common.getUrl(Common.BOARD, Common.DELETE) %>?no=${result.no}"
+							class="btn btn-cancel w-100">삭제</a>
+					</div>
+					<%
+					}
+					%>
+				</div>
+
+				<%-- 답변 --%>
+				<form>
+					<div class="w-100">
+						<div class="sub-title-area text-cyan-700 mt-8">답변내용</div>
+						<div class="w-100">
+							<input type="hidden" id="board_no" name="no" value="${result.no}" />
+							<input type="hidden" id="answer_no" name="answer_no"
+								value="${answer.no}" />
+							<textarea class="form-control mb-3" id="content"
+								style="resize: none; height: 130px;" <%=readonly%>>${answer.content}</textarea>
+						</div>
+						<%
+						if (role) {
+						%>
+						<div class="w-100">
+							<button onclick="answer()" class="btn btn-cyan-700 w-100">등록</button>
+						</div>
+						<%
+						}
+						%>
+					</div>
+				</form>
 			</div>
 		</div>
 	</main>

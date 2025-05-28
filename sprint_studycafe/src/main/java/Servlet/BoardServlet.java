@@ -46,110 +46,116 @@ public class BoardServlet extends HttpServlet {
 
 		System.out.println("BoardServlet : GET : " + path);
 
-		if (path == null || path.isEmpty() || path.equals("/") || path.equals("/list") || path.equals("/list.jsp")) {
-			// 문의 사항 목록 화면
-			List<Board> resultList ; 
+		try {
+			if (path == null || path.isEmpty() || path.equals("/") || path.equals("/list")
+					|| path.equals("/list.jsp")) {
+				// 문의 사항 목록 화면
+				List<Board> resultList;
 
-			String param = request.getParameter("type");
-			
-			if (null == param || param.isEmpty() || userId.isEmpty()) {
-				// DB에서 데이터 전체 조회
-				resultList = service.list();
-			} else {
-				resultList = service.listBy(userId);
-			}
-			
-			Map<Integer, Type> typeMap = commonservice.getTypeMap(Common.BOARD);
-			for (Board board : resultList) {
-				board.setTypeName(typeMap.get(board.getTypeNo()).getTypeName());				
-			}
+				String param = request.getParameter("type");
 
-			// 화면에 표시를 위해 request 에 담기
-			request.setAttribute("resultList", resultList);
+				if (null == param || param.isEmpty() || userId.isEmpty()) {
+					// DB에서 데이터 전체 조회
+					resultList = service.list();
+				} else {
+					resultList = service.listBy(userId);
+				}
 
-			// 이동 할 페이지
-			page = urlJsp + "list.jsp";
-
-		} else if (path.equals("/read") || path.equals("/read.jsp")) {
-			// 문의 사항 조회 화면
-
-			// DB에서 데이터 조회
-			// 1. 타입
-			List<Type> typelist = commonservice.getTypeList(Common.BOARD);
-
-			// 2. Board 데이터
-			// 조회 할 데이터 PK(KEY)
-			int no = Integer.parseInt(request.getParameter("no"));
-			Board result = service.select(no);
-
-			// 3. 답변
-			Answer answer = answerService.selectBy(no);
-
-			// 화면에 표시를 위해 request 에 담기
-			request.setAttribute("result", result);
-			request.setAttribute("typelist", typelist);
-			request.setAttribute("answer", answer);
-
-			// 이동 할 페이지
-			page = urlJsp + "read.jsp";
-
-		} else if (path.equals("/insert") || path.equals("/insert.jsp")) {
-			// 게시글 등록 화면
-
-			// 로그인 정보가 없으면 등록 할 수 없음
-			if (!userId.isEmpty()) {
-
-				List<Type> typelist = commonservice.getTypeList(Common.BOARD);
-				request.setAttribute("typelist", typelist);
-
-				// 이동 할 페이지 
-				page = urlJsp + "insert.jsp";
-			}
-
-		} else if (path.equals("/update") || path.equals("/update.jsp")) {
-			// 게시글 수정 화면
-
-			// 로그인 정보가 없으면 수정 할 수 없음
-			if (!userId.isEmpty()) {
-				// 조회 할 데이터 PK(KEY)
-				int no = Integer.parseInt(request.getParameter("no"));
-
-				// DB에서 데이터 조회
-				Board result = service.select(no);
-				List<Type> typelist = commonservice.getTypeList(Common.BOARD);
+				Map<Integer, Type> typeMap = commonservice.getTypeMap(Common.BOARD);
+				for (Board board : resultList) {
+					board.setTypeName(typeMap.get(board.getTypeNo()).getTypeName());
+				}
 
 				// 화면에 표시를 위해 request 에 담기
-				request.setAttribute("typelist", typelist);
-				request.setAttribute("result", result);
-				request.setAttribute("no", no);
+				request.setAttribute("resultList", resultList);
 
 				// 이동 할 페이지
-				page = urlJsp + "update.jsp";
+				page = urlJsp + "list.jsp";
+
+			} else if (path.equals("/insert") || path.equals("/insert.jsp")) {
+				// 게시글 등록 화면
+
+				// 로그인 정보가 없으면 등록 할 수 없음
+				if (!userId.isEmpty()) {
+
+					List<Type> typelist = commonservice.getTypeList(Common.BOARD);
+					request.setAttribute("typelist", typelist);
+
+					// 이동 할 페이지 
+					page = urlJsp + "insert.jsp";
+				}
+
+			} else if (path.equals("/read") || path.equals("/read.jsp")) {
+				// 문의 사항 조회 화면
+
+				// DB에서 데이터 조회
+				// 1. 타입
+				List<Type> typelist = commonservice.getTypeList(Common.BOARD);
+
+				// 2. Board 데이터
+				// 조회 할 데이터 PK(KEY)
+				int no = Integer.parseInt(request.getParameter("no"));
+				Board result = service.select(no);
+
+				// 3. 답변
+				Answer answer = answerService.selectBy(no);
+
+				// 화면에 표시를 위해 request 에 담기
+				request.setAttribute("result", result);
+				request.setAttribute("typelist", typelist);
+				request.setAttribute("answer", answer);
+
+				// 이동 할 페이지
+				page = urlJsp + "read.jsp";
+
+			} else if (path.equals("/update") || path.equals("/update.jsp")) {
+				// 게시글 수정 화면
+
+				// 로그인 정보가 없으면 수정 할 수 없음
+				if (!userId.isEmpty()) {
+					// 조회 할 데이터 PK(KEY)
+					int no = Integer.parseInt(request.getParameter("no"));
+
+					// DB에서 데이터 조회
+					Board result = service.select(no);
+					List<Type> typelist = commonservice.getTypeList(Common.BOARD);
+
+					// 화면에 표시를 위해 request 에 담기
+					request.setAttribute("typelist", typelist);
+					request.setAttribute("result", result);
+					request.setAttribute("no", no);
+
+					// 이동 할 페이지
+					page = urlJsp + "update.jsp";
+				}
+
+			} else if (path.equals("/delete") || path.equals("/delete.jsp")) {
+				// 문의 사항 삭제 처리
+
+				// 삭제 할 데이터 화면에서 가져오기
+				int no = Integer.parseInt(request.getParameter("no"));
+
+				// DB에 삭제 처리 보내기
+				boolean result = service.delete(no);
+
+				// 삭제 결과
+				if (result) {
+					System.out.println("삭제 성공");
+					// 삭제 성공 시 이동할 페이지
+					response.sendRedirect(root + url + "list");
+					return;
+				} else {
+					System.out.println("삭제 실패");
+					// 삭제 실패 시 이동할 페이지
+					response.sendRedirect(root + url + "list.jsp?error=true");
+					return;
+				}
 			}
-
-		} else if (path.equals("/delete") || path.equals("/delete.jsp")) {
-			// 문의 사항 삭제 처리
-
-			// 삭제 할 데이터 화면에서 가져오기
-			int no = Integer.parseInt(request.getParameter("no"));
-
-			// DB에 삭제 처리 보내기
-			boolean result = service.delete(no);
-
-			// 삭제 결과
-			if (result) {
-				System.out.println("삭제 성공");
-				// 삭제 성공 시 이동할 페이지
-				response.sendRedirect(root + url + "list");
-				return;
-			} else {
-				System.out.println("삭제 실패");
-				// 삭제 실패 시 이동할 페이지
-				response.sendRedirect(root + url + "list.jsp?error=true");
-				return;
-			}
+		} catch (NumberFormatException e) {
+			// 문의사항 번호 없을 때 리스트 화면으로 이동
+			response.sendRedirect(root + url + "list?error=true");
+			return;
 		}
-
 		// 화면 이동
 		RequestDispatcher dispatcher = request.getRequestDispatcher(page);
 		dispatcher.forward(request, response);
@@ -173,6 +179,7 @@ public class BoardServlet extends HttpServlet {
 			String page = urlJsp + "list.jsp?error=no";
 			RequestDispatcher dispatcher = request.getRequestDispatcher(page);
 			dispatcher.forward(request, response);
+			return ;
 		}
 
 		System.out.println("BoardServlet : POST : " + path);

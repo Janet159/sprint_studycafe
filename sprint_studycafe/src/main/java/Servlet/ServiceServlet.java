@@ -31,6 +31,7 @@ public class ServiceServlet extends HttpServlet {
 
 		String root = request.getContextPath();
 		String path = request.getPathInfo();
+		
 		String page = "";
 
 		System.out.println("ServiceServlet : GET : " + path);

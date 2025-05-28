@@ -62,8 +62,8 @@
 	            
 	        </div>
 	        
-	        <div>
-	        <a href="<%= Common.getUrl() %>" class="gotomain-btn btn btn-cyan-700 fw-semibold fs-30 text-center position-absolute end-0">메인</a>
+	        <div class="text-end">
+	        <a href="<%= Common.getUrl() %>" class="btn btn-cyan-700 px-4">메인</a>
 	        </div>
 	    </div>
     </main>

@@ -29,36 +29,33 @@ public class UsersServlet extends HttpServlet {
 
 		String root = request.getContextPath();
 		String path = request.getPathInfo();
-		String page = "";
+		String page = "/";
 
 		System.out.println("UsersServlet : GET : " + path);
 
 		if (path == null || path.isEmpty() || path.equals("/userlist") || path.equals("/userlist.jsp")) {
 			// 회원 목록 화면
 
-			// DB에서 데이터 전체 조회
-			List<Users> resultList = users.list();
+			Users user;
+			Object attribute = request.getSession().getAttribute("loginUser");
+			if (null != attribute) {
+				user = (Users) attribute;
+			} else {
+				user = new Users();
+			}
+			
+			if (user.getAdminKbn()) {
+				// 관리자인 경우에만
 
-			// 화면에 표시를 위해 request 에 담기
-			request.setAttribute("resultList", resultList);
+				// DB에서 데이터 전체 조회
+				List<Users> resultList = users.list();
 
-			// 이동 할 페이지 
-			page = urlJsp + "userlist.jsp";
+				// 화면에 표시를 위해 request 에 담기
+				request.setAttribute("resultList", resultList);
 
-		} else if (path.equals("/usersread") || path.equals("/usersread.jsp")) {
-			// 회원 정보 화면
-
-			// 조회 할 데이터 PK(KEY)
-			int no = Integer.parseInt(request.getParameter("no"));
-
-			// DB에서 데이터 조회
-			Users result = users.select(no);
-
-			// 화면에 표시를 위해 request 에 담기
-			request.setAttribute("result", result);
-
-			// 이동 할 페이지 
-			page = urlJsp + "usersread.jsp";
+				// 이동 할 페이지 
+				page = urlJsp + "userlist.jsp";
+			}
 
 		} else if (path.contains("/idCheck")) {
 			// /idCheck - 아이디 중복 확인
@@ -148,23 +145,23 @@ public class UsersServlet extends HttpServlet {
 				session.setAttribute("loginId", user.getUser_id());
 				session.setAttribute("loginUser", loginUser);
 				session.setAttribute("role", loginUser.getAdminKbn());
-				
-			    // 아이디 저장 체크 여부 확인
-			    String saveId = request.getParameter("saveId");
 
-			    Cookie cookie = new Cookie("savedId", user_id);
-			    cookie.setPath("/");
+				// 아이디 저장 체크 여부 확인
+				String saveId = request.getParameter("saveId");
 
-			    if (saveId != null) {
-			        cookie.setMaxAge(60 * 60 * 24 * 7); // 7일간 저장
-			    } else {
-			        cookie.setMaxAge(0); // 삭제
-			    }
+				Cookie cookie = new Cookie("savedId", user_id);
+				cookie.setPath("/");
 
-			    response.addCookie(cookie);
-				
-				response.sendRedirect(root+"/main.jsp");
-				
+				if (saveId != null) {
+					cookie.setMaxAge(60 * 60 * 24 * 7); // 7일간 저장
+				} else {
+					cookie.setMaxAge(0); // 삭제
+				}
+
+				response.addCookie(cookie);
+
+				response.sendRedirect(root + "/main.jsp");
+
 			}
 			// 로그인 실패
 			else {

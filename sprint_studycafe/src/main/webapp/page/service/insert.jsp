@@ -26,10 +26,10 @@
 
 			<form action="<%= Common.getUrl(Common.SERVICE, Common.INSERT) %>" method="post">
 
-<div class="content-box mx-auto">
+<div class="content-area mx-auto">
 	<div class="row border-bottom border-top">
-		<label class="col-sm-2 col-form-label">구분</label>
-		<div class="col-sm-10 d-flex align-items-center gap-3">
+		<label class="col-2 col-form-label">구분</label>
+		<div class="col-10 d-flex align-items-center gap-3">
 		<c:forEach var="type" items="${typeList}" varStatus="index">
 			<div class="form-check">
 			<c:choose>
@@ -47,13 +47,13 @@
 	</div>
 	<div class="row border-bottom">
 		<div class="input-group pt-3 pb-3">
-			<label class="col-sm-2 col-form-label">종류</label>
+			<label class="col-2 col-form-label">종류</label>
 			<input type="text" class="form-control" name="serviceId" required>
 		</div>
 	</div>
 	<div class="row border-bottom">
 		<div class="input-group pt-3 pb-3">
-			<label class="col-sm-2 col-form-label">위치</label>
+			<label class="col-2 col-form-label">위치</label>
 			<input type="text" class="form-control" name="location" required>
 		</div>
 	</div>

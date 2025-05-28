@@ -57,7 +57,7 @@
 	%>
 
 	<main>
-	<div class="container mt-5">
+	<div class="container mt-5 mb-10">
 		<div class="title-area"><%= title %></div>
 
 		<div class="container text-center">

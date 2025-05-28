@@ -10,8 +10,8 @@
 <html>
 
 <head>
-	<title><%= Common.TITLE %></title>
-	<jsp:include page="/alljsp/link.jsp" />
+<title><%= Common.TITLE %></title>
+<jsp:include page="/alljsp/link.jsp" />
 </head>
 
 <body>
@@ -27,52 +27,63 @@
 				<h2 class="mb-4 fs-50">편의 시설 수정</h2>
 			</div>
 
-			<form action="<%= Common.getUrl(Common.SERVICE, Common.UPDATE) %>" method="post">
-<input type="hidden" name="no" value="${service.no}">
+			<form action="<%=Common.getUrl(Common.SERVICE, Common.UPDATE)%>"
+				method="post">
+				<input type="hidden" name="no" value="${service.no}">
 
-<div class="d-flex flex-column mb-3">
-	<div class="p-2">
-		<div class="input-group mb-3">
-			<span class="input-group-text fs-25" id="inputGroup-sizing-default">구분</span>
-			<c:forEach var="type" items="${typeList}" varStatus="index">
-				<div class="form-check">
-					<c:choose>
-					    <c:when test="${type.no == service.typeNo}">
-					        <input class="form-check-input" type="radio" name="typeNo" id="type${index.index}" value="${type.no}" checked>
-					    </c:when>
-					    <c:otherwise>
-					        <input class="form-check-input" type="radio" name="typeNo" id="type${index.index}" value="${type.no}">
-					    </c:otherwise>
-					</c:choose>
-					<label class="form-check-label" for="type${index.index}">${type.typeName}</label>
+				<div class="d-flex flex-column mb-3">
+					<div class="p-2">
+						<div class="input-group mb-3">
+							<span class="input-group-text fs-25"
+								id="inputGroup-sizing-default">구분</span>
+							<c:forEach var="type" items="${typeList}" varStatus="index">
+								<div class="form-check">
+									<c:choose>
+										<c:when test="${type.no == service.typeNo}">
+											<input class="form-check-input" type="radio" name="typeNo"
+												id="type${index.index}" value="${type.no}" checked>
+										</c:when>
+										<c:otherwise>
+											<input class="form-check-input" type="radio" name="typeNo"
+												id="type${index.index}" value="${type.no}">
+										</c:otherwise>
+									</c:choose>
+									<label class="form-check-label" for="type${index.index}">${type.typeName}</label>
+								</div>
+							</c:forEach>
+						</div>
+					</div>
+					<div class="p-2">
+						<div class="input-group mb-3">
+							<span class="input-group-text fs-25"
+								id="inputGroup-sizing-default">종류</span> <input type="text"
+								class="form-control" aria-label="Sizing example input"
+								name="serviceId" value="${service.serviceId}"
+								aria-describedby="inputGroup-sizing-default">
+						</div>
+					</div>
+					<div class="p-2">
+						<div class="input-group mb-3">
+							<span class="input-group-text fs-25"
+								id="inputGroup-sizing-default">위치</span> <input type="text"
+								class="form-control" aria-label="Sizing example input"
+								name="location" value="${service.location}"
+								aria-describedby="inputGroup-sizing-default">
+						</div>
+					</div>
+
+					<div class="p-2">
+						<div class="input-group mb-3">
+							<input type="submit" class="btn btn-cyan-700 w-100 mb-3 fs-30"
+								value="수정" />
+						</div>
+						<div class="input-group mb-3">
+							<a
+								href="<%= Common.getUrl(Common.SERVICE, Common.DELETE) %>?no=${service.no}"
+								class="btn btn-cancel w-100 fs-30">삭제</a>
+						</div>
+					</div>
 				</div>
-			</c:forEach>
-		</div>
-	</div>
-	<div class="p-2">
-		<div class="input-group mb-3">
-			<span class="input-group-text fs-25" id="inputGroup-sizing-default">종류</span>
-			<input type="text" class="form-control" aria-label="Sizing example input" name="serviceId" value="${service.serviceId}"
-				aria-describedby="inputGroup-sizing-default">
-		</div>
-	</div>
-	<div class="p-2">
-		<div class="input-group mb-3">
-			<span class="input-group-text fs-25" id="inputGroup-sizing-default">위치</span>
-			<input type="text" class="form-control" aria-label="Sizing example input" name="location" value="${service.location}"
-				aria-describedby="inputGroup-sizing-default">
-		</div>
-	</div>
-
-	<div class="p-2">
-		<div class="input-group mb-3">
-			<input type="submit" class="btn btn-cyan-700 w-100 mb-3 fs-30" value="수정" />
-		</div>
-		<div class="input-group mb-3">
-			<a href="<%= Common.getUrl(Common.SERVICE, Common.DELETE) %>?no=${service.no}" class="btn btn-cancel w-100 fs-30" >삭제</a>
-		</div>
-	</div>
-</div>
 
 			</form>
 		</div>
