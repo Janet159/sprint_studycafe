@@ -15,6 +15,7 @@
 	<%-- [Contents] ######################################################### --%>
 	<main>
         <div class="container-1360 introduce-container text-center">
+        <p class="text-center fs-50 fw-bold text-black-70 my-10">회사 소개</p>
         <img src="<%= root %>/img/회사소개 브랜드 이미지 컬러.png" class="introduce-img d-block mb-10">
             <div class="introduce-text-container pb-10 mb-10">
                 <p class="introduce-text fw-normal fs-35 text-body-secondary">빠르게 몰입하는 공간</p>
