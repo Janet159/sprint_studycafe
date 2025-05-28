@@ -31,7 +31,7 @@ public class NoticeServlet extends HttpServlet {
 
 		String root = request.getContextPath();
 		String path = request.getPathInfo();
-		String page = urlJsp + "list.jsp";
+		String page = url + "list.jsp";
 
 		String userId = "";
 		Object attribute = request.getSession().getAttribute("loginUser");
@@ -144,7 +144,7 @@ public class NoticeServlet extends HttpServlet {
 			userId = ((Users) user).getUser_id();
 		} else {
 			// 유저 정보가 없으면 공지사항 등록, 수정 불가
-			String page = urlJsp + "list.jsp?error=no";
+			String page = url + "list.jsp?error=no";
 			RequestDispatcher dispatcher = request.getRequestDispatcher(page);
 			dispatcher.forward(request, response);
 			return ;

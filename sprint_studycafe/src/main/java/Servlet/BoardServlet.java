@@ -36,7 +36,7 @@ public class BoardServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String root = request.getContextPath();
 		String path = request.getPathInfo();
-		String page = urlJsp + "list.jsp";
+		String page = url + "list.jsp";
 
 		String userId = "";
 		Object attribute = request.getSession().getAttribute("loginUser");
@@ -176,7 +176,7 @@ public class BoardServlet extends HttpServlet {
 			userId = ((Users) attribute).getUser_id();
 		} else {
 			// 유저 정보가 없으면 문의 사항 등록, 수정, 답변 작성 할 수 없음
-			String page = urlJsp + "list.jsp?error=no";
+			String page = url + "list.jsp?error=no";
 			RequestDispatcher dispatcher = request.getRequestDispatcher(page);
 			dispatcher.forward(request, response);
 			return ;

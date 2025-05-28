@@ -7,6 +7,7 @@ import java.util.Map;
 import Config.Common;
 import DTO.Service;
 import DTO.Type;
+import DTO.Users;
 import Service.CommonService;
 import Service.CommonServiceImpl;
 import Service.ServiceService;
@@ -21,18 +22,23 @@ import jakarta.servlet.http.HttpServletResponse;
 @WebServlet("/service/*")
 public class ServiceServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private final String urlJsp = "/page/service/" ;
+	private final String urlJsp = "/page/service/";
+	private final String url = "/service/";
 
 	private ServiceService service = new ServiceServiceImpl();
 	private CommonService typeService = new CommonServiceImpl();
-	
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
 		String root = request.getContextPath();
 		String path = request.getPathInfo();
-		
 		String page = "";
+		Users user = null;
+		Object attribute = request.getSession().getAttribute("loginUser");
+		if (null != attribute) {
+			user = (Users) attribute;
+		}
 
 		System.out.println("ServiceServlet : GET : " + path);
 
@@ -56,60 +62,70 @@ public class ServiceServlet extends HttpServlet {
 
 		} else if (path.equals("/insert") || path.equals("/insert.jsp")) {
 			// 게시글 등록 화면
-			
-			// DB에서 데이터 전체 조회
-			List<Type> typeList = typeService.getTypeList(Common.SERVICE);
-			
-			// 화면에 표시를 위해 request 에 담기
-			request.setAttribute("typeList", typeList);
 
-			// 이동 할 페이지 
-			page = urlJsp +"insert.jsp";
+			// 관리자인 경우 등록 가능
+			if (null != user && user.getAdminKbn()) {
+
+				// DB에서 데이터 전체 조회
+				List<Type> typeList = typeService.getTypeList(Common.SERVICE);
+
+				// 화면에 표시를 위해 request 에 담기
+				request.setAttribute("typeList", typeList);
+
+				// 이동 할 페이지 
+				page = urlJsp + "insert.jsp";
+			}
 
 		} else if (path.equals("/update") || path.equals("/update.jsp")) {
 			// 게시글 수정 화면 
 
-			// 조회 할 데이터 PK(KEY)
-			int no = Integer.parseInt(request.getParameter("no"));
+			// 관리자인 경우 수정 가능
+			if (null != user && user.getAdminKbn()) {
+				// 조회 할 데이터 PK(KEY)
+				int no = Integer.parseInt(request.getParameter("no"));
 
-			// DB에서 데이터 전체 조회
-			List<Type> typeList = typeService.getTypeList(Common.SERVICE);
-			
-			// 화면에 표시를 위해 request 에 담기
-			request.setAttribute("typeList", typeList);
-			
-			// DB에서 데이터 조회
-			Service result = service.select(no);
+				// DB에서 데이터 전체 조회
+				List<Type> typeList = typeService.getTypeList(Common.SERVICE);
 
-			// 화면에 표시를 위해 request 에 담기
-			request.setAttribute("service", result);
+				// 화면에 표시를 위해 request 에 담기
+				request.setAttribute("typeList", typeList);
 
-			// 이동 할 페이지 
-			page = urlJsp + "update.jsp";
+				// DB에서 데이터 조회
+				Service result = service.select(no);
 
+				// 화면에 표시를 위해 request 에 담기
+				request.setAttribute("service", result);
+
+				// 이동 할 페이지 
+				page = urlJsp + "update.jsp";
+			}
 		} else if (path.equals("/delete") || path.equals("/delete.jsp")) {
 			// 문의 사항 삭제 처리
-			
-			// 삭제 할 데이터 화면에서 가져오기
-			int no = Integer.parseInt(request.getParameter("no"));
-			
-			// 삭제 할 데이터 만들기
-			Service dto = Service.builder().no(no).build();
-			
-			// DB에 삭제 처리 보내기
-			boolean result = service.delete(dto);
-			
-			// 삭제 결과
-			if (result) {
-				System.out.println("삭제 성공");
-				// 삭제 성공 시 이동할 페이지
-				response.sendRedirect(root + "/service/list");
-				return;
-			} else {
-				System.out.println("삭제 실패");
-				// 삭제 실패 시 이동할 페이지
-				response.sendRedirect(root + "/service/update.jsp?error=true");
-				return;
+
+			// 관리자인 경우 삭제 가능
+			if (null != user && user.getAdminKbn()) {
+
+				// 삭제 할 데이터 화면에서 가져오기
+				int no = Integer.parseInt(request.getParameter("no"));
+
+				// 삭제 할 데이터 만들기
+				Service dto = Service.builder().no(no).build();
+
+				// DB에 삭제 처리 보내기
+				boolean result = service.delete(dto);
+
+				// 삭제 결과
+				if (result) {
+					System.out.println("삭제 성공");
+					// 삭제 성공 시 이동할 페이지
+					response.sendRedirect(root + "/service/list");
+					return;
+				} else {
+					System.out.println("삭제 실패");
+					// 삭제 실패 시 이동할 페이지
+					response.sendRedirect(root + "/service/update.jsp?error=true");
+					return;
+				}
 			}
 		}
 
@@ -123,6 +139,13 @@ public class ServiceServlet extends HttpServlet {
 
 		String root = request.getContextPath();
 		String path = request.getPathInfo();
+		Object attribute = request.getSession().getAttribute("loginUser");
+		if (null == attribute || ((Users) attribute).getAdminKbn()) {
+			String page = url + "list.jsp" ;
+			RequestDispatcher dispatcher = request.getRequestDispatcher(page);
+			dispatcher.forward(request, response);
+			return ;
+		}
 
 		System.out.println("ServiceServlet : POST : " + path);
 

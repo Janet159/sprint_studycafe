@@ -1,8 +1,5 @@
 package DTO;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.alohaclass.jdbc.annotation.Pk;
 import com.alohaclass.jdbc.annotation.Table;
 
@@ -27,13 +24,4 @@ public class Ticket {
 	/** 이용권 시간 */
 	private int ticketTime;
 
-	public static List<Ticket> getTestList() {
-		List<Ticket> resultList = new ArrayList<Ticket>();
-
-		for (int i = 0; i < 6; i++) {
-			Ticket result = new Ticket("ticketId" + i, "ticketName" + i,2000*(i+1), i);
-			resultList.add(result);
-		}
-		return resultList;
-	}
 }

@@ -1,8 +1,6 @@
 package DTO;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import com.alohaclass.jdbc.annotation.Pk;
 import com.alohaclass.jdbc.annotation.Table;
@@ -34,13 +32,4 @@ public class Notice {
 	/** 수정일자 */
 	private Date updatedAt;
 
-	public static List<Notice> getTestList() {
-		List<Notice> resultList = new ArrayList<Notice>();
-
-		for (int i = 0; i < 6; i++) {
-			Notice result = new Notice(i, "admin" + i, i, "title" + i, "content" + i, new Date(), new Date());
-			resultList.add(result);
-		}
-		return resultList;
-	}
 }

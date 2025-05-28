@@ -25,16 +25,8 @@ public class Service {
 	/** 위치 */
 	private String location;
 	
+	/** 타입 이름 */
 	@Column(exist = false)
 	private String typeName ;
 
-//	public static List<Service> getTestList() {
-//		List<Service> resultList = new ArrayList<Service>();
-//
-//		for (int i = 0; i < 6; i++) {
-//			Service result = new Service(i, i, "serviceId" + i, "location" + i);
-//			resultList.add(result);
-//		}
-//		return resultList;
-//	}
 }
