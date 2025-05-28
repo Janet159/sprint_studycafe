@@ -98,10 +98,15 @@ public class UsersServiceImpl implements UsersService {
 			return false;
 		// 비밀번호 일치 여부 확인
 		String joinedPassword = joinedUser.getPassword();
-		boolean result = BCrypt.checkpw(password, joinedPassword);
+		boolean result = false;
+		try {
+		    result = BCrypt.checkpw(password, joinedPassword);
+		} catch (IllegalArgumentException e) {
+		    // 암호화된 값이 아님 = 평문일 가능성
+		    result = password.equals(joinedPassword);
+		}
 		return result;
 	}
-	
 
 	/** 아이디로 회원 조회 */
 	@Override
