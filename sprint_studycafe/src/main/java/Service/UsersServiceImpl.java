@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import DAO.UsersDAO;
 import DTO.Users;
 
@@ -36,27 +38,16 @@ public class UsersServiceImpl implements UsersService {
 		return users;
 	}
 
-//	/** 로그인 정보에 따른 조회 */
-//	@Override
-//	public Users login(String userId, String password) {
-//		try {
-//			Map<String, Object> map = new HashMap<>();
-//			;
-//			map.put("user_id", userId);
-//			map.put("password", password);
-//
-//			return usersDAO.selectBy(map); // alcl-jdbc 방식
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			return null;
-//		}
-//	}
-
 	/** 등록 */
 	@Override
 	public Users insert(Users users) {
 		int result = 0;
 		try {
+			// 비밀번호 암호화
+			String password = users.getPassword();
+			String encodedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+			users.setPassword(encodedPassword);
+			//회원 등록
 			result = usersDAO.insert(users);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -107,10 +98,10 @@ public class UsersServiceImpl implements UsersService {
 			return false;
 		// 비밀번호 일치 여부 확인
 		String joinedPassword = joinedUser.getPassword();
-		boolean result = password.equals(joinedPassword);
-		//		boolean result = BCrypt.checkpw(password, joinedPassword);
+		boolean result = BCrypt.checkpw(password, joinedPassword);
 		return result;
 	}
+	
 
 	/** 아이디로 회원 조회 */
 	@Override

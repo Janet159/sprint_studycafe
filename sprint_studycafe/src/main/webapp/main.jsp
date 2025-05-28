@@ -45,8 +45,68 @@
 				  </button>
 				</section>
 		        <img src="<%= root %>/img/스프린트 메인페이지 최종.png" class="main-img img-fluid">
+                <div class="gallery pb-6">
+                    <h1 class="text-center fs-50 text-cyan-700 fw-bold my-3">내부 시설</h1>
+                    <p class="fz-normal text-center fs-30 text-muted my-2">
+                        스터디카페 전경
+                    </p>
+                <!-- 카드 디자인 레이아웃 -->
+				<div class="d-flex align-items-start gap-5">
+				    <!-- 2. 중간 + 작은 카드 2개 (세로 방향) -->
+				    <div class="d-flex flex-column gap-5">
+				        <div class="d-flex justify-content-center align-items-center m-img card flex-grow-1">
+				            <a href="#"><img src="<%= root %>/img/스스갤러리1.png" alt="new2" class="img-fluid"></a>
+				        </div>
+				
+				        <div class="d-flex justify-content-between align-items-center gap-5">
+				            <div class="d-flex justify-content-center align-items-center s-img card flex-grow-1">
+				                <a href="#" class="d-flex flex-column justify-content-center align-items-center gap-3">
+				                    <img src="<%= root %>/img/스스갤러리3.png" alt="10" class="img-fluid">
+				                </a>
+				            </div>
+				            <div class="d-flex justify-content-center align-items-center s-img card flex-grow-1">
+				                <a href="#" class="d-flex flex-column justify-content-center align-items-center gap-3">
+				                    <img src="<%= root %>/img/스스갤러리4.png" alt="20" class="img-fluid">
+				                </a>
+				            </div>
+				        </div>
+				    </div>
+				
+				    <!-- 3. 중간 + 작은 카드 2개 (세로 방향) -->
+				    <div class="d-flex flex-column gap-5">
+				        <div class="d-flex justify-content-center align-items-center m-img card flex-grow-1">
+				            <a href="#"><img src="<%= root %>/img/스스갤러리2.png" alt="new3" class="img-fluid"></a>
+				        </div>
+				
+				        <div class="d-flex justify-content-between align-items-center gap-5">
+				            <div class="d-flex justify-content-center align-items-center s-img card flex-grow-1">
+				                <a href="#" class="d-flex flex-column justify-content-center align-items-center gap-3">
+				                    <img src="<%= root %>/img/스스갤러리5.png" alt="30" class="img-fluid">
+				                </a>
+				            </div>
+				            <div class="d-flex justify-content-center align-items-center s-img card flex-grow-1">
+				                <a href="#" class="d-flex flex-column justify-content-center align-items-center gap-3">
+				                    <img src="<%= root %>/img/스스갤러리6.png" alt="40" class="img-fluid">
+				                </a>
+				            </div>
+				        </div>
+				    </div>
+				
+				</div>
+
+                </div>
+                <div class="position-relative text-center">
 		        <img src="<%= root %>/img/메인페이지 집중하는 사람들.png" class="main-img img-fluid">
+		          <div class="position-absolute top-50 start-50 translate-middle text-cyan-55 fw-bold fs-35 text-shadow">
+				    집중이 잘되는 분위기와 조명
+				  </div>
+				 </div>
+                <div class="position-relative text-center">
 		        <img src="<%= root %>/img/메인페이지 좌석.png" class="main-img img-fluid">
+		          <div class="position-absolute top-50 start-50 translate-middle text-cyan-55 fw-bold fs-35 text-shadow">
+				    쾌적한 공부 환경
+				  </div>
+			  	</div>
 		    </div>
 	    </div>
     </main>

@@ -5,7 +5,6 @@
     display: block;
 }
 
-
 .carousel-inner,
 .carousel-item,
 .carousel-item img {
@@ -36,7 +35,28 @@
     background-color: rgba(255, 255, 255, 0.5);
 }
 .card:hover{
-    transform: translateY(-5px) !important;
+    transform: translateY(-25px) !important;
     box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.2) !important;
     transition: all 0.3s ease !important;
+}
+
+.gallery{
+	width:100%;
+}
+
+.m-img{
+	width:648px;
+	height:432px;
+	object-fit: contain;
+}
+.s-img{
+	width:297.94px;
+	height: 297.98px;
+	object-fit: contain;
+}
+.text-shadow {
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
+}
+.text-cyan-55{
+	color: #8AC1D0;
 }
