@@ -9,6 +9,7 @@
 	<title><%=Common.TITLE%></title>
 	<jsp:include page="/alljsp/link.jsp" />
 	<link href="<%=root%>/allcss/read.css" rel="stylesheet">
+	
 </head>
 <body>
 	<jsp:include page="/alljsp/header.jsp" />

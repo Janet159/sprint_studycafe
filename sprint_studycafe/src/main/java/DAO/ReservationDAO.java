@@ -115,13 +115,15 @@ public class ReservationDAO extends BaseDAOImpl<Reservation> {
 		sql.append(" FROM USERS AS U");
 		sql.append(" LEFT JOIN ");
 		sql.append(" ( ");
-		sql.append("  SELECT * FROM RESERVATION WHERE END_TIME > NOW() ORDER BY END_TIME DESC LIMIT 1 ");
+		sql.append("  SELECT * FROM RESERVATION WHERE EXISTS (");
+		sql.append("    SELECT MAX(NO) AS NO FROM RESERVATION WHERE END_TIME > NOW() GROUP BY USER_ID");
+		sql.append("  )");
 		sql.append(" ) AS R");
 		sql.append(" ON U.USER_ID = R.USER_ID");
 		sql.append(" LEFT JOIN SEATS AS S ON  R.SEAT_ID = S.SEAT_ID");
 		sql.append(" ORDER BY R.SEAT_ID IS NULL");
 		sql.append(" , R.SEAT_ID");
-
+		
 		List<Reservation> list = new ArrayList<Reservation>();
 		try {
 			stmt = con.createStatement();

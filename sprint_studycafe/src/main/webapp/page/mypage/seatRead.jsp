@@ -10,6 +10,7 @@
 	<title><%= Common.TITLE %></title>
 	<jsp:include page="/alljsp/link.jsp" />
 	<link href="<%= root %>/allcss/read.css" rel="stylesheet">
+	<link href="<%=root%>/allcss/insert.css" rel="stylesheet">
 </head>
 <body>
 	<%
@@ -30,7 +31,7 @@
 	        <div class="text-center fs-30 py-10 fw-bold border-bottom border-gray">마이페이지</div>
 	        <div class="text-center my-6 fs-25 py-5 fw-bold">좌석정보</div>
 	        
-	        <div class="info-area mx-auto rounded mb-10 pt-5 gap-20 d-flex flex-column align-items-center">
+	        <div class="info-area mx-auto rounded pt-5 gap-20 d-flex flex-column align-items-center">
 	            
 	            <div class="info-item-area mb-3 row">
 	                <label class="col-4 col-form-label text-center fs-20">좌석 번호</label>
@@ -61,11 +62,13 @@
 	            </div>
 	            
 	        </div>
-	        
-	        <div class="text-end">
-	        <a href="<%= Common.getUrl() %>" class="btn btn-cyan-700 px-4">메인</a>
-	        </div>
 	    </div>
+	        
+	        <div class="content-area mx-auto mt-5 mb-10">
+		        <div class="text-end">
+		        <a href="<%= Common.getUrl() %>" class="btn btn-cyan-700 px-4">메인</a>
+		        </div>
+	        </div>
     </main>
 	
 	<%-- [Contents] ######################################################### --%>

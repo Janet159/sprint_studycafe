@@ -80,7 +80,7 @@ public class ReservationServiceImpl implements ReservationService {
 				Date now = new Date();
 				Date endTime = list.get(0).getEndTime();
 
-				if (now.after(endTime)) {
+				if (now.before(endTime)) {
 					dto = list.get(0);
 				}
 			}

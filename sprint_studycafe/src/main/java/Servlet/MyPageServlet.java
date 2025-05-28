@@ -77,7 +77,6 @@ public class MyPageServlet extends HttpServlet {
 
 				// 화면에 표시를 위해 request 에 담기
 				request.setAttribute("result", result);
-
 				// 이동 할 페이지 
 				page = urlJsp + "seatRead.jsp";
 			}

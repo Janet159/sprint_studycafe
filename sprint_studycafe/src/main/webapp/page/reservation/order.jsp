@@ -14,6 +14,7 @@
 	<jsp:include page="/alljsp/link.jsp" />
 	<link href="<%=root%>/allcss/list.css" rel="stylesheet">
 	<link href="<%=root%>/allcss/read.css" rel="stylesheet">
+	<link href="<%=root%>/allcss/insert.css" rel="stylesheet">
 </head>
 <body>
 	<%
@@ -37,7 +38,7 @@
 		<div class="container-1360">
 			<div class="title-area">좌석 구매</div>
 
-			<div class="text-center">
+			<div class="content-area mx-auto">
 				<%
 				String first = "btn-cyan-700-55";
 				for (int i = 0; i < resultList.size(); i++) {
@@ -68,22 +69,20 @@
 				<% } %>
 				<%-- end for --%>
 
-				<div class="row">
-					<div class="col-12">
+				<div class="w-100 d-flex flex-column gap-3 mt-5 mb-10">
+					<div class="col">
 						<form
 							action="<%=Common.getUrl(Common.RESERVATION, Common.ORDER)%>"
 							method="post">
 							<input type="hidden" value="${seatId}" id="seatId" name="seatId" />
 							<input type="hidden" value="<%= ticketId %>" 
 								id="ticketId" name="ticketId" />
-							<input type="submit" class="btn btn-cyan-700 w-100 mb-3 fs-20" value="구매" />
+							<input type="submit" class="btn btn-cyan-700 w-100" value="구매" />
 						</form>
 					</div>
-				</div>
-				<div class="row">
-					<div class="col-12">
+					<div class="col">
 						<a href="<%=Common.getUrl(Common.RESERVATION, Common.LIST)%>"
-							class="btn btn-cancel w-100 fs-20">취소</a>
+							class="btn btn-cancel w-100">취소</a>
 					</div>
 				</div>
 			</div>
