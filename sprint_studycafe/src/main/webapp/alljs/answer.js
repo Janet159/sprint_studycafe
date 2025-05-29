@@ -1,10 +1,9 @@
 
 function answerUpdate() {
-	alert("answerUpdate");
-	
-	let no = document.getElementById('no').value
+
+	let no = document.getElementById('board_no').value
 	let answer_no = document.getElementById('answer_no').value
-	let content = document.getElementById('content').value
+	let content = document.getElementById('answer_content').value
     let url = `/sprint_studycafe/board/answerUpdate`
     
     let data = {
@@ -45,5 +44,4 @@ function answerUpdate() {
 			}
 	    })
 	})
-	
 }

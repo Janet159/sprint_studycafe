@@ -123,7 +123,7 @@
 					<label class="col-2 col-form-label fw-bold fw-bold" for="phone">전화번호</label>
 					<div class="col-4">
 						<input class="form-control" type="text" id="phone"
-							name="phonenumber" placeholder="-없이 입력하세요." maxlength="11"
+							name="phonenumber" value="${result.phonenumber}"
 							readonly>
 					</div>
 				</div>
@@ -160,7 +160,7 @@
 							<input type="hidden" id="board_no" name="no" value="${result.no}" />
 							<input type="hidden" id="answer_no" name="answer_no"
 								value="${answer.no}" />
-							<textarea class="form-control mb-3" id="content"
+							<textarea class="form-control mb-3" id="answer_content"
 								style="resize: none; height: 130px;" <%=readonly%>>${answer.content}</textarea>
 						</div>
 						<%
@@ -182,10 +182,8 @@
 	<jsp:include page="/alljsp/footer.jsp" />
 	<script src="<%=root%>/alljs/answer.js" type="text/javascript"></script>
 	<script>
-		async
-		function answer() {
-			let check = await
-			answerUpdate();
+		async function answer() {
+			let check = await answerUpdate();
 			if (check) {
 				alert('답변 업데이트 성공')
 			}

@@ -170,6 +170,8 @@ public class BoardServlet extends HttpServlet {
 		String root = request.getContextPath();
 		String path = request.getPathInfo();
 
+		System.out.println("BoardServlet : POST : " + path);
+
 		String userId = "";
 		Object attribute = request.getSession().getAttribute("loginUser");
 		if (null != attribute) {
@@ -181,8 +183,6 @@ public class BoardServlet extends HttpServlet {
 			dispatcher.forward(request, response);
 			return ;
 		}
-
-		System.out.println("BoardServlet : POST : " + path);
 
 		if (path.equals("/insert") || path.equals("/insert.jsp")) {
 			// 문의 사항 등록 처리 
