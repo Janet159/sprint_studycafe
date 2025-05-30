@@ -53,7 +53,7 @@
 							Notice notice = arrayList.get(i);
 						%>
 						<tr>
-							<td><%=notice.getNo()%></td>
+							<td><%=notice.getVNum()%></td>
 							<td><a
 								href="<%=Common.getUrl(Common.NOTICE, Common.READ)%>?no=<%=notice.getNo()%>"><%=notice.getTitle()%></a></td>
 							<td><%=Common.getDateToString(notice.getCreatedAt())%></td>

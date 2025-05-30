@@ -63,7 +63,7 @@
 							Board board = resultList.get(i);
 						%>
 						<tr>
-							<td><%=board.getNo()%></td>
+							<td><%=board.getVNum()%></td>
 							<td><%=board.isAnsweredKbn() ? "✔" : "✖"%></td>
 							<td><%=board.getTypeName()%></td>
 							<td><a href="<%=Common.getUrl(Common.BOARD, Common.READ)%>?no=<%=board.getNo()%>">

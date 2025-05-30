@@ -2,6 +2,7 @@ package DTO;
 
 import java.util.Date;
 
+import com.alohaclass.jdbc.annotation.Column;
 import com.alohaclass.jdbc.annotation.Pk;
 import com.alohaclass.jdbc.annotation.Table;
 
@@ -32,4 +33,6 @@ public class Notice {
 	/** 수정일자 */
 	private Date updatedAt;
 
+	@Column(exist = false)
+	private int vNum;
 }

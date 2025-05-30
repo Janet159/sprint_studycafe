@@ -42,6 +42,9 @@ public class Board {
 	
 	@Column(exist = false)
 	private String typeName;
+
+	@Column(exist = false)
+	private int vNum;
 	
 	public String getIsAnswered() {
 		return String.valueOf(answeredKbn);

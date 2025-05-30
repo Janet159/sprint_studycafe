@@ -115,7 +115,7 @@ public class ReservationDAO extends BaseDAOImpl<Reservation> {
 		sql.append(" FROM USERS AS U");
 		sql.append(" LEFT JOIN ");
 		sql.append(" ( ");
-		sql.append("  SELECT * FROM RESERVATION WHERE EXISTS (");
+		sql.append("  SELECT * FROM RESERVATION WHERE NO IN (");
 		sql.append("    SELECT MAX(NO) AS NO FROM RESERVATION WHERE END_TIME > NOW() GROUP BY USER_ID");
 		sql.append("  )");
 		sql.append(" ) AS R");
