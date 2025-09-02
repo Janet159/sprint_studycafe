@@ -76,7 +76,7 @@
 | 기능 정의서 | [🔗 기능 정의서](https://docs.google.com/spreadsheets/d/1svnAJVEtLXsYsY_yor5TdBT2My-zDkPw/edit?usp=drive_link&ouid=109677689284487268281&rtpof=true&sd=true) |
 | 테이블 정의서 | [🔗 테이블 정의서](https://docs.google.com/document/d/1-XKSYmKDZs4ZDP1qW2S9SR9hJQ3KmjNLnscReGKHF_o/edit?usp=drive_link) |
 | 화면 설계 | [🔗 Figma 화면설계](https://www.figma.com/design/OlaKpB8jaRxgIqCBUHWuuz/%EC%8A%A4%ED%94%84%EB%A6%B0%ED%8A%B8-%EC%8A%A4%ED%84%B0%EB%94%94%EC%B9%B4%ED%8E%98?m=dev&t=Mfdk8yjZxYf9NeT5-1) |
-| ERD | [🔗 Figma ERD](https://drive.google.com/file/d/1-L9Mh_oBo5lavlc3kN-HtM1tBPv9t_HU/view?usp=drive_link) |
+| ERD | [🔗 ERD](https://drive.google.com/file/d/1-L9Mh_oBo5lavlc3kN-HtM1tBPv9t_HU/view?usp=drive_link) |
 
 
 ### 🛠️ 개발 환경 
